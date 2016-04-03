@@ -31,19 +31,19 @@ function update($link,$table,$array,$where=null){
     $str = null;
     foreach($array as $key=>$val){
         if($str == null)
-            $ser = "";
+            $sep = "";
         else
             $sep = ",";
         $str.=$sep.$key."='".$val."'";
     }
-    $sql = "update {$table} set {$str}".($where==null?null:"where".$where);
+    $sql = "update {$table} set {$str}".($where==null?null:"where ".$where);
     mysqli_query($link,$sql);
     return mysqli_affected_rows($link);
 }
 
 function delete($link,$table,$where=null){
    // global $link;
-    $where=($where==null?null:"where.".$where);
+    $where=($where==null?null:"where ".$where);
     $sql = "delete from {$table} {$where}";
     mysqli_query($link,$sql);
     return mysqli_affected_rows($link);

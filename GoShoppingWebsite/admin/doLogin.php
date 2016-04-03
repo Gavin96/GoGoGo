@@ -10,6 +10,7 @@ $username = $_POST['username'];
 $password = $_POST['password'];
 $verify = $_POST['verify'];
 $verify1 = $_SESSION['verify'];
+$autoFlag = $_POST['autoFlag'];
 $link = connect();
 if($verify==$verify1){
     $sql = "select * from go_admin where username='{$username}' and password='{$password}'";
@@ -17,7 +18,11 @@ if($verify==$verify1){
     if($result){
         $_SESSION['adminName'] = $result['username'];
         $_SESSION['adminId'] = $result['id'];
-        alertMes("登陆成功","index.php");
+        if($autoFlag){
+            setcookie("adminId",$result['id'],time()+7*24*3600);
+            setcookie("adminName",$result['username'],time()+7*24*3600);
+        }
+        echo "<script>window.location='index.php';</script>";
     }else{
         alertMes("登录失败，重新登录","login.php");
     }
