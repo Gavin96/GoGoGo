@@ -35,4 +35,3 @@ function verifyImage(){
     imagegif($image);
     imagedestroy($image);
 }
-verifyImage();
