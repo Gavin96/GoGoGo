@@ -19,7 +19,7 @@
             <td><input type="password" name="password" placehoder="请输入管理员密码"></td>
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" value="添加管理员"></td>
+            <td colspan="2" align="center"><input type="submit" value="添加管理员"></td>
         </tr>
     </table>
 </form>

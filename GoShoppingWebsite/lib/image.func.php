@@ -31,6 +31,8 @@ function verifyImage(){
     for($i=0;$i<60;$i++){
         imagesetpixel($image,mt_rand(0,$width-1),mt_rand(0,$height-1),$black);
     }
+    //关键代码，缺少这一句可能无法生成图像！！
+    ob_clean();
     header("content-type:image/gif");
     imagegif($image);
     imagedestroy($image);

@@ -52,7 +52,22 @@ function getAllAdmin($link){
     return $rows;
 }
 
-
+function getAdminByPage($page,$pageSize=2){
+    $link = connect();
+    $sql="select * from go_admin";
+    global $totalRows;
+    $totalRows=getResultNum($link,$sql);
+    global $totalPage;
+    $totalPage=ceil($totalRows/$pageSize);
+    if($page<1||$page==null||!is_numeric($page)){
+        $page=1;
+    }
+    if($page>=$totalPage)$page=$totalPage;
+    $offset=($page-1)*$pageSize;
+    $sql="select id,username from go_admin order by id limit {$offset},{$pageSize} ";
+    $rows=fetchAll($link,$sql);
+    return $rows;
+}
 
 
 function delAdmin($id){

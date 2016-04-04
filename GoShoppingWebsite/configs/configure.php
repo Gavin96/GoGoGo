@@ -10,4 +10,4 @@ define("DB_HOST","127.0.0.1:3306");
 define("DB_USER","root");
 define("DB_PWD","");
 define("DB_DBNAME","gogo_website");
-define("DB_CHARSET","utf8");
+define("DB_CHARSET","utf-8");

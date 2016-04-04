@@ -9,9 +9,10 @@
 
 function connect(){
 
-    $link = mysqli_connect(DB_HOST,DB_USER,DB_PWD,DB_DBNAME) or die("数据库连接失败");
-
-    mysqli_set_charset($link,DB_CHARSET);
+    //$link = mysqli_connect(DB_HOST,DB_USER,DB_PWD,DB_DBNAME) or die("数据库连接失败");
+    $link = mysqli_connect("127.0.0.1:3306","root","","gogo_website") or die("数据库连接失败");
+    //mysqli_set_charset($link,DB_CHARSET);
+    mysqli_set_charset($link,"utf-8");
     //mysqli_select_db($link,DB_DBNAME) or die("指定数据库打开失败");
     return $link;
 

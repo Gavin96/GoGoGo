@@ -6,6 +6,7 @@
  * Time: 13:03
  */
 require_once "../include.php";
+ob_clean();
 $act = $_REQUEST['act'];
 if($act=="logout"){
     logout();
