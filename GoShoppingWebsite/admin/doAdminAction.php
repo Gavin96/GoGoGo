@@ -24,6 +24,10 @@ if($act=="logout"){
     $mes=editPro($_REQUEST['id']);
 }elseif($act=="delPro"){
     $mes=delPro($_REQUEST['id']);
+}elseif ($act=="waterText"){
+    $mes=doWaterText($id);
+}elseif ($act=="waterPic"){
+    $mes=doWaterPic($id);
 }
 ?>
 

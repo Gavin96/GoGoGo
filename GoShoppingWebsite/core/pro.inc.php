@@ -165,3 +165,9 @@ function checkProExist($link,$cid){
 }
 
 
+function getProInfo ($link)
+{
+	$sql = "select id,pName from imooc_pro oder by id asc";
+	$rows=fetchAll($link,$sql);
+	return $rows;
+}
