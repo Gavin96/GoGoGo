@@ -24,6 +24,12 @@ if($act=="logout"){
     $mes=editPro($_REQUEST['id']);
 }elseif($act=="delPro"){
     $mes=delPro($_REQUEST['id']);
+}elseif($act=="addUser"){
+    $mes=addUser();
+}elseif($act=='delUser'){
+    $mes = delUser($_REQUEST['id']);
+}elseif($act=='editUser'){
+    $mes = editUser($_REQUEST['id']);
 }
 ?>
 
