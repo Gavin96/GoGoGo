@@ -12,7 +12,8 @@ function connect(){
     //$link = mysqli_connect(DB_HOST,DB_USER,DB_PWD,DB_DBNAME) or die("数据库连接失败");
     $link = mysqli_connect("127.0.0.1:3306","root","","gogo_website") or die("数据库连接失败");
     //mysqli_set_charset($link,DB_CHARSET);
-    mysqli_set_charset($link,"utf-8");
+    //mysqli_set_charset($link,"utf8");
+    mysqli_query($link,"set names 'utf8'");
     //mysqli_select_db($link,DB_DBNAME) or die("指定数据库打开失败");
     return $link;
 
@@ -23,6 +24,7 @@ function insert($link,$table,$array){
     $keys = join(",",array_keys($array));
     $vals = "'".join("','",array_values($array))."'";
     $sql = "insert {$table}($keys) values({$vals})";
+//    echo $sql;
     mysqli_query($link,$sql);
     return mysqli_insert_id($link);
 }
@@ -37,7 +39,7 @@ function update($link,$table,$array,$where=null){
             $sep = ",";
         $str.=$sep.$key."='".$val."'";
     }
-    $sql = "update {$table} set {$str}".($where==null?null:"where ".$where);
+    $sql = "update {$table} set {$str} ".($where==null?null:"where ".$where);echo $sql;
     mysqli_query($link,$sql);
     return mysqli_affected_rows($link);
 }
@@ -59,6 +61,7 @@ function fetchOne($link,$sql,$result_type=MYSQLI_ASSOC){
 
 function fetchAll($link,$sql,$result_type=MYSQLI_ASSOC){
     //global $link;
+    $rows = array();
     $result = mysqli_query($link,$sql);
     while($row=mysqli_fetch_array($result,$result_type)){
         $rows[]=$row;
@@ -70,4 +73,8 @@ function getResultNum($link,$sql){
     //global $link;
     $result = mysqli_query($link,$sql);
     return mysqli_num_rows($result);
+}
+
+function getInsertId($link){
+    return mysqli_insert_id($link);
 }
