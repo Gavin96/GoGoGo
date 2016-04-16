@@ -62,38 +62,3 @@ function thumb($filename,$destination=null,$dst_w=null,$dst_h=null,$isReservedSo
     }
     return $dstFilename;
 }
-//添加文字水印
-function waterText($filename,$text="GoGoGo.com",$fontfile="font1.TTF")
-{
-    $fileInfo = getimagesize($filename);
-    $mime = $fileInfo['mime'];
-    $createFun = str_replace("/", "createfrom", $mime);//jpg
-    $outFun = str_replace("/", null, $mime);
-    $image = $createFun($filename);
-    $color = imagecolorallocatealpha($image, 255, 0, 0, 50);
-    $fontfile = "../fonts/{$fontfile}";
-    imagettftext($image, 14, 0, 0, 14, $color, $fontfile, $text);
-    //header("content-type:" . $mime);
-    $outFun($image,$filename);
-    imagedestroy($image);
-}
-//添加图片水印
-function waterPic($dstFile,$srcFile="../image_50/2e15dad2eb21755202efe3342e032117.jpg")
-{
-    $srcFileInfo=getimagesize($srcFile);
-    $src_w=$srcFileInfo[0];
-    $src_h=$srcFileInfo[1];
-    $dstFileInfo=getimagesize($dstFile);
-    $srcMime=$dstFileInfo['mime'];
-    $dstMine=$dstFileInfo['mime'];
-    $createSrcFun = str_replace("/", "createfrom", $srcMime);
-    $createDstFun = str_replace("/", "createfrom", $dstMine);
-    $outDstFun = str_replace("/", null, $dstMine);
-    $dst_im=$createDstFun($dstFile);
-    $src_im=$createSrcFun($srcFile);
-    imagecopymerge($dst_im,$src_im,0,0,0,0,$src_w,$src_h,60);//默认位置左上
-    //header("content-type:" . $dstMine);
-    $outDstFun($dst_im,$dstFile);
-    imagedestroy($src_im);
-    imagedestroy($dst_im);
-}
