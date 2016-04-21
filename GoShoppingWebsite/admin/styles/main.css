@@ -13,8 +13,8 @@
 .collection{background:url(../images/icon/collection.jpg) left center no-repeat; padding-left:19px; font-weight:bold;}
 .topBar a:hover{color:red;}
 /*logo*/
-.logoBar{height:85px; background-color:#1D7AD9;}
-.logo{padding-left:41px; padding-top:13px;}
+.logoBar{height:95px; background-color:#1D7AD9;}
+.logo{padding-left:41px; padding-top:3px;}
 /*search*/
 .search_box{width:430px; padding-top:23px; padding-left:185px;}
 /*.search_text{width:350px;height:14px; line-height:14px; padding:11px 5px 10px; background-color:#FFF;}

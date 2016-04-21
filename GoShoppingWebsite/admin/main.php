@@ -25,25 +25,7 @@
 			<td><?php echo PHP_SAPI;?></td>
 		</tr>
 	</table>
-	<h3>软件信息</h3>
-	<table width="70%" border="1" cellpadding="5" cellspacing="0" bgcolor="#cccccc">
-		<tr>
-			<th>系统名称</th>
-			<td>慕课网电子商城</td>
-		</tr>
-		<tr>
-			<th>开发团队</th>
-			<td>King&慕课网的小伙伴</td>
-		</tr>
-		<tr>
-			<th>公司网址</th>
-			<td><a href="http://www.imooc.com">http://www.imooc.com</a></td>
-		</tr>
-		<tr>
-			<th>成功案例</th>
-			<td>慕课网</td>
-		</tr>
-	</table>
+
 </center>
 
 </body>
