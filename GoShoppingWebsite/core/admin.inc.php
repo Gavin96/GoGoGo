@@ -79,3 +79,64 @@ function delAdmin($id){
     }
     return $mes;
 }
+
+function addUser()
+{
+    $link = connect();
+    $arr = $_POST;
+    $arr['password']=md5($_POST['password']);
+    $arr['regTime']=time();
+    $uploadFile = uploadFile("../uploads");
+    if ($uploadFile&&is_array($uploadFile)) {
+        $arr['face'] = $uploadFile[0]['name'];
+    }
+    else
+        return "添加失败<a href='addUser.php'>重新添加</a> ";
+    //删除以post方式提交的act
+    unset($arr['act']);
+    if(insert($link,"go_user",$arr)){
+        $mes = "添加成功!<br/><a href='addUser.php'>继续添加</a>|<a href='listUser.php'>查看用户列表</a>";
+    }else{
+        $filename="../uploads/".$uploadFile[0]['name'];
+        if(file_exists($filename)){
+            unlink($filename);
+        }
+        $mes = "添加失败!<br/><a href='addUser.php'>重新添加</a>";
+    }
+    return $mes;
+}
+
+function getAllUser($link){
+
+    $sql="select id,username,email,activeFlag from go_user order by id";
+    $rows=fetchAll($link,$sql);
+    return $rows;
+}
+
+function delUser($id){
+    $link = connect();
+    $sql="select face from go_user where id = ".$id;
+    $row=fetchOne($link,$sql);
+    $face=$row['face'];
+    if(file_exists("../uploads/".$face)){
+        unlink("../uploads/".$face);
+    }
+    if(delete($link,"go_user","id={$id}")){
+        $mes="删除成功!<br/><a href='listUser.php'>查看用户列表</a>";
+    }else{
+        $mes="删除失败!<br/><a href='listUser.php'>请重新删除</a>";
+    }
+    return $mes;
+}
+
+function editUser($id){
+    $arr=$_POST;
+    $arr['password']=md5($arr['password']);
+    $link=connect();
+    if(update($link,"go_user",$arr,"id={$id}")>0){
+        $mes="修改成功!<br/><a href='listUser.php'>查看用户列表</a>";
+    }else{
+        $mes="修改失败!<br/><a href='listUser.php'>请重新修改</a>";
+    }
+    return $mes;
+}
