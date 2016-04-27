@@ -23,7 +23,7 @@
   /*购物车*/
 .shopCar{width: 145px;height: 35px;background-color: #FF8C00; margin-top: 35px; margin-right: 59px;}
 .shopText{font-size: 14px;font-family: "Microsoft YaHei","微软雅黑";line-height: 35px;
-         color: #FFF; height: :100%;width: 87px;border-right:#E27A00 solid 1px;
+         color: #FFF; height: 100%;width: 87px;border-right:#E27A00 solid 1px;
          background: url(../images/icon/shopItem.png) 10px center no-repeat; text-indent: 40px;  }
 .shopNum{width: 27px;height: 35px;border-left: #FF9C01 solid 1px;
          font: 14px/35px "Microsoft YaHei","微软雅黑";color: #FFF; 
@@ -104,4 +104,4 @@
 .footer{margin-top: 450px;height: 200px; text-align: center;background-color: #D4D4D4;line-height: 24px;padding: 50px 0;}
 .footer i{font-style: normal;margin: 0 5px;}
 .footer a{color: #000;}
-.footer a:hover{color: #F60;};
+.footer a:hover{color: #F60;}
