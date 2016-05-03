@@ -94,8 +94,28 @@ function addUser()
         return "添加失败<a href='addUser.php'>重新添加</a> ";
     //删除以post方式提交的act
     unset($arr['act']);
-    if(insert($link,"go_user",$arr)){
-        $mes = "添加成功!<br/><a href='addUser.php'>继续添加</a>|<a href='listUser.php'>查看用户列表</a>";
+
+    $insertId = insert($link,"go_user",$arr);
+    if($insertId>0){
+        require("../lib/smtp.php");
+         $smtpserver = "smtp.163.com";
+        $smtpserverport = 25;
+        $smtpusermail = "wlmxjm@163.com";
+        $smtpemailto = $arr['email'];
+        $smtpuser = "wlmxjm";//SMTP服务器的用户帐号
+        $smtppass = "tongji2016"; //SMTP服务器的用户密码
+        $mailsubject = "用户帐号激活";
+        $mailbody = "亲爱的".$arr['username']."：
+        感谢您在我站注册了新帐号。
+        请点击链接激活您的帐号。
+        http://localhost/GoGoGo/GoShoppingWebsite/admin/doAdminAction.php?act=verify&verify=".$insertId."
+        如果以上链接无法点击，请将它复制到你的浏览器地址栏中进入访问，该链接24小时内有效。";//邮件内容;
+        $mailtype = "HTTP";
+        $smtp = new smtp($smtpserver,$smtpserverport,true,$smtpuser,$smtppass);
+        $smtp->debug = false;
+        $smtp->sendmail($smtpemailto, $smtpusermail, $mailsubject, $mailbody, $mailtype);
+
+        $mes = "添加成功!请登录到邮箱及时激活帐号！<br/><a href='addUser.php'>继续添加</a>|<a href='listUser.php'>查看用户列表</a>";
     }else{
         $filename="../uploads/".$uploadFile[0]['name'];
         if(file_exists($filename)){
@@ -104,6 +124,18 @@ function addUser()
         $mes = "添加失败!<br/><a href='addUser.php'>重新添加</a>";
     }
     return $mes;
+}
+
+function verify($verify){
+    $link = connect();
+    $arr['activeFlag']=1;
+
+    if(update($link,"go_user",$arr,"id={$verify}")>0){
+        $msg = '激活成功！';
+    }else{
+        $msg = '已激活！';
+    }
+    echo $msg;
 }
 
 function getAllUser($link){
