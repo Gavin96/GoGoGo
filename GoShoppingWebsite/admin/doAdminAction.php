@@ -30,6 +30,8 @@ if($act=="logout"){
     $mes = delUser($_REQUEST['id']);
 }elseif($act=='editUser'){
     $mes = editUser($_REQUEST['id']);
+}elseif($act=='verify'){
+    $mes = verify($_REQUEST['verify']);
 }
 ?>
 
