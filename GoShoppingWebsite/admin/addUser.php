@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+w<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -6,7 +6,7 @@
 </head>
 <body>
 <h3>添加用户</h3>
-<form action="../../../GoGoGo/GoShoppingWebsite/admin/doAdminAction.php" method="post" enctype="multipart/form-data">
+<form action="doAdminAction.php" method="post" enctype="multipart/form-data">
     <table width="70%" border="1" cellpadding="5" cellspacing="0" bgcolor="#cccccc">
         <!--        表单无法同时以post get传递参数，采用该方法传递。-->
         <input type="hidden" name="act" value="addUser" >

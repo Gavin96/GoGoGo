@@ -15,8 +15,8 @@ ob_clean();
 </head>
 <body>
 <h3>编辑用户</h3>
-<form action="../../../GoGoGo/GoShoppingWebsite/admin/doAdminAction.php?act=editUser&id=<?php echo $id;?>" method="post">
-    <table width="70%" border="1" cellpadding="5" cellspacing="0" bgcolo
+<form action="doAdminAction.php?act=editUser&id=<?php echo $id;?>" method="post">
+    <table width="70%" border="1" cellpadding="5" cellspacing="0" bgcolor="#cccccc">
         <tr>
             <td align="right">用户名</td>
             <td><input type="text" name="username" value="<?php echo $row['username'];?>"/></td>

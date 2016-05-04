@@ -82,9 +82,10 @@ function delAdmin($id){
 
 function addUser()
 {
+    
     $link = connect();
     $arr = $_POST;
-    $arr['password']=md5($_POST['password']);
+
     $arr['regTime']=time();
     $uploadFile = uploadFile("../uploads");
     if ($uploadFile&&is_array($uploadFile)) {
