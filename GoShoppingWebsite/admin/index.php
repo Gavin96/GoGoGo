@@ -51,7 +51,7 @@ checkLogined();
                 <div class="title">管理员</div>
                 <ul class="mList">
                     <li>
-                        <h3><span onclick="show('menu1','change1')" id="change1">+</span>商品管理</h3>
+                        <h3><span onclick="show('menu1','change1')" id="change1" style="cursor:hand">+</span>商品管理</h3>
                         <dl id="menu1" style="display:none;">
                         	<dd><a href="addPro.php" target="mainFrame">添加商品</a></dd>
                             <dd><a href="listPro.php" target="mainFrame">商品列表</a></dd>

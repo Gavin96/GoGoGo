@@ -14,21 +14,21 @@ a:hover{text-decoration: underline;}
 
 
 /*头部*/
-.head{height: 60px; background-color: #2a2c2e; padding: 0 10px;}
-.logo{width: 100px; height: 100%; background: url(../images/logo.png) left top no-repeat;}
-.head_text{height: 100%; font:22px/60px "微软雅黑"; color: #FFF; }
+.head{height: 60px; background-color: #9fa8a3; padding: 0 10px;}
+.logo{width: 100px; height: 100%; background: url(../images/logo_small.png) left top no-repeat;}
+.head_text{height: 100%; font:22px/60px "微软雅黑"; color: #CA171B; }
 
 /*用户位置*/
-.operation_user{font:12px/2.5 "微软雅黑";padding: 0 10px; background-color: rgb(225, 224, 224);}
+.operation_user{font:12px/2.5 "微软雅黑";padding: 0 10px; background-color: #e3e0cf;}
 .link span{font-family: "宋体"; font-weight: 500; padding: 0 10px;}
 .link a{color: #000;}
 
 .content{overflow: hidden;}
 .main{width: 100%;float: left; margin-bottom: -999999px;padding-bottom: 999999px; overflow: hidden;}
-.menu{width: 200px; float: left; margin-left: -100%; height: 100%;  position: relative; z-index: 2; background-color: #505254; border-right: solid 1px rgb(11, 82, 215);margin-bottom: -999999px;padding-bottom: 999999px; overflow: hidden;}
+.menu{width: 200px; float: left; margin-left: -100%; height: 100%;  position: relative; z-index: 2; background-color: #8a918d; border-right: solid 1px rgb(11, 82, 215);margin-bottom: -999999px;padding-bottom: 999999px; overflow: hidden;}
 .cont{position: relative;z-index: 3; zoom:1;}
 .main .cont{margin-left: 201px;}
-.title{font:16px/2.5 "微软雅黑";padding: 0 10px; background-color: #ccc;}
+.title{font:16px/2.5 "微软雅黑";padding: 0 10px; background-color: #c5d5cb;}
 /*左侧导航*/
 .mList{color:#FFF; font-size: 14px; font-family: "微软雅黑"; padding-top: 1em; zoom:1;}
 .mList h3{font:14px/2 ""; padding-left: 1em;}

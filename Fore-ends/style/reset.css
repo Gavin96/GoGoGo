@@ -8,6 +8,7 @@ ul,ol{list-style:none;}
 input,select,textarea{outline:none;border:none;background:none;}
 textarea{resize:none;}
 a{text-decoration:none; color:#656565;}
+/*b{text-decoration:none; color:#006400}*/
 
 /*清浮动*/
 .clearfix:after{content:"";*display:block;*clear:both;}

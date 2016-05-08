@@ -14,7 +14,7 @@ ob_clean();
 <head>
     <meta charset="utf-8">
     <title>-.-</title>
-    <link rel="stylesheet" href="../../../GoGoGo/GoShoppingWebsite/admin/styles/backstage.css">
+    <link rel="stylesheet" href="styles/backstage.css">
 </head>
 
 <body>
