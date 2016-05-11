@@ -164,7 +164,7 @@ function delUser($id){
 
 function editUser($id){
     $arr=$_POST;
-    $arr['password']=md5($arr['password']);
+    //$arr['password']=md5($arr['password']);
     $link=connect();
     if(update($link,"go_user",$arr,"id={$id}")>0){
         $mes="修改成功!<br/><a href='listUser.php'>查看用户列表</a>";

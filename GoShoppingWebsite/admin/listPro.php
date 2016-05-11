@@ -167,10 +167,10 @@ function showDetail(id,t){
 		  height:"auto",
 	      width: "auto",
 	      position: {my: "center", at: "center",  collision:"fit"},
-	      modal:false,//是否模式对话框
-	      draggable:true,//是否允许拖拽
-	      resizable:true,//是否允许拖动
-	      title:"商品名称："+t,//对话框标题
+	      modal:false,
+	      draggable:true,
+	      resizable:true,
+	      title:"商品名称："+t,
 	      show:"slide",
 	      hide:"explode"
 	});
