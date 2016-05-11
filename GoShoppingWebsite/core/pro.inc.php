@@ -164,4 +164,26 @@ function checkProExist($link,$cid){
 	return $rows;
 }
 
+function getAllPros($link){
+	$sql="select p.id,p.pName,p.pIndex,p.pNum,p.mPrice,p.iPrice,p.pDescription,p.pTime,p.isShow,p.isHot,c.name,p.cId from go_product as p join go_cate c on p.cId=c.id";
+	$rows=fetchAll($link,$sql);
+	return $rows;
+}
 
+function getProByCId($link,$id){
+	$sql="select p.id,p.pName,p.pIndex,p.pNum,p.mPrice,p.iPrice,p.pDescription,p.pTime,p.isShow,p.isHot,c.name,p.cId from go_product as p join go_cate c on p.cId=c.id where p.cId={$id} limit 4";
+	$row=fetchAll($link,$sql);
+	return $row;
+}
+
+function getSmallProByCId($link,$id){
+	$sql="select p.id,p.pName,p.pIndex,p.pNum,p.mPrice,p.iPrice,p.pDescription,p.pTime,p.isShow,p.isHot,c.name,p.cId from go_product as p join go_cate c on p.cId=c.id where p.cId={$id} limit 4,4";
+	$row=fetchAll($link,$sql);
+	return $row;
+}
+
+function getAllProByCId($link,$id){
+	$sql="select p.id,p.pName,p.pIndex,p.pNum,p.mPrice,p.iPrice,p.pDescription,p.pTime,p.isShow,p.isHot,c.name,p.cId from go_product as p join go_cate c on p.cId=c.id where p.cId={$id}";
+	$row=fetchAll($link,$sql);
+	return $row;
+}
