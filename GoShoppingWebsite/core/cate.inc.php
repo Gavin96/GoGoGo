@@ -55,9 +55,16 @@ function delCate($id){
 }
 
 
-function getAllCate(){
-    $link = connect();
+function getAllCate($link){
+    
     $sql="select id,name from go_cate";
     $rows=fetchAll($link,$sql);
+    return $rows;
+}
+
+function getOneCate($link,$id){
+
+    $sql="select id,name from go_cate where id={$id}";
+    $rows=fetchOne($link,$sql);
     return $rows;
 }
