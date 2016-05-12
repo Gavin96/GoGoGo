@@ -1,0 +1,27 @@
+建立定时器
+
+首先运行：
+DELIMITER |
+
+DROP PROCEDURE IF EXISTS e_test |
+CREATE PROCEDURE e_test()
+
+    BEGIN
+       update go_product set isHot=isHot*0.5;
+    END
+
+然后：
+SET GLOBAL event_scheduler = 1;
+CREATE EVENT IF NOT EXISTS event_test
+
+ON SCHEDULE EVERY 3 day
+
+ON COMPLETION PRESERVE
+
+DO CALL e_test();
+
+开启定时器
+ALTER EVENT event_test ON COMPLETION PRESERVE ENABLE;
+
+关闭
+ALTER EVENT event_test ON COMPLETION PRESERVE DISABLE;
