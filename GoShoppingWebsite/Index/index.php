@@ -90,8 +90,8 @@ if(!($cates&&is_array($cates))){
 				</div>
 				<ul class="nav fl">
 					<li><a href="#" class="active">首页</a></li>
-					<li><a href="#">优惠</a></li>
-					<li><a href="#">热销</a></li>
+					<li><a href="discount.php">优惠</a></li>
+					<li><a href="hot.php">热销</a></li>
 					<li><a href="#">健康知识</a></li>
 					<li><a href="#">质量管控</a></li>
 					<li><a href="#">名品会</a></li>
