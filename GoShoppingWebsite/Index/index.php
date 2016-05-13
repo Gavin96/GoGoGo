@@ -64,8 +64,8 @@ if(!($cates&&is_array($cates))){
 			    </div>
 			<div class="search_box fl">
                   <span class="search_glass fl" > </span>
-				  <form action="cateDetail.php" method="post">
-				  <input type="text" class="search_text fl">
+				  <form action="product.php" method="post">
+				  <input type="text" name="product_name" class="search_text fl">
 				  <input type="submit" value="搜 索" class="search_btn fr">
 				  </form>
 			    </div>  

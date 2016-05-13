@@ -1,3 +1,14 @@
+<?php
+
+require_once '../include.php';
+$link = connect();
+
+if(isset($_POST["product_name"]))
+    //print_r($_POST["product_name"]);
+    $pros=getAllProByName($link,$_POST["product_name"]);
+
+?>
+
 <!doctype html>
 <html>
 <head>
@@ -61,9 +72,9 @@
 
             </div>
             <ul class="nav fl">
-                <li><a href="index.php">首页</a></li>
+                <li><a href="index.php" class="active">首页</a></li>
                 <li><a href="discount.php">优惠</a></li>
-                <li><a href="hot.php" class="active">热销</a></li>
+                <li><a href="hot.php">热销</a></li>
                 <li><a href="#">健康知识</a></li>
                 <li><a href="#">质量管控</a></li>
                 <li><a href="#">名品会</a></li>
@@ -74,39 +85,42 @@
 </div>
 
 
-<div class="shopList comWidth clearfix">
 
-    <div class="leftArea2" style="width:1000px;overflow:visible;height:auto;border:none;">
-        <div class="shopList_top clearfix">
-            <?php
-            require_once '../include.php';
-            $link = connect();
-            $pros = getHotPro($link);
-            if(($pros&&is_array($pros))):
-                foreach($pros as $pro):
-                    $proImg = getProImgById($link,$pro["id"]);
-                    ?>
-                    <div class="shop_item" style="margin-left: 40px;margin-top:15px;border:#999 solid 1px;">
-                        <div class="shop_img">
-                            <a href="#"><img height="200" width="187" src="../image_220/<?php echo $proImg["albumPath"]?>" alt=""></a>
-                        </div>
-                        <h3><?php echo $pro['pName'];?></h3>
-                        <p><?php echo $pro['iPrice'];?>元</p>
+
+<div class="shopList comWidth clearfix" >
+
+<div class="leftArea2" style="width:1000px;overflow:visible;height:auto;border:none;">
+    <div class="shopList_top clearfix">
+        <?php
+        
+        if(($pros&&is_array($pros))):
+            foreach($pros as $pro):
+                $proImg = getProImgById($link,$pro["id"]);
+                ?>
+                <div class="shop_item" style="margin-left: 40px;margin-top:15px;border:#999 solid 1px;">
+                    <div class="shop_img">
+                        <a href="#"><img height="200" width="187" src="../image_220/<?php echo $proImg["albumPath"]?>" alt=""></a>
                     </div>
-                    <?php
-                        endforeach;
-                        endif;
-                    ?>
-        </div>
+                    <h3><?php echo $pro['pName'];?></h3>
+                    <p><?php echo $pro['iPrice'];?>元</p>
 
-
+                </div>
+                <?php
+                     endforeach;
+                     endif;
+                ?>
     </div>
 </div>
+
+</div>
+
 <div style="clear:both"></div>
 
 
 
-<div class="footer">
+
+
+<div class="footer" style="margin-top:100px;">
     <p><a href="#">同济大学</a><i>|</i><a href="#">软件学院</a><i>|</i><a href="#">2013级</a><i>|</i><a href="#">专业综合</a></p>
     <p>BlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBla</p>
     <p class="weblogo">

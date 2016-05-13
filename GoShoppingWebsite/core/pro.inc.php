@@ -199,3 +199,9 @@ function getHotPro($link){
 	$rows=fetchAll($link,$sql);
 	return $rows;
 }
+
+function getAllProByName($link,$product_name){
+	$sql="select p.id,p.pName,p.pIndex,p.pNum,p.mPrice,p.iPrice,p.pDescription,p.pTime,p.isShow,p.isHot,c.name,p.cId from go_product as p join go_cate c on p.cId=c.id where p.pName like '%{$product_name}%'";
+	$rows=fetchAll($link,$sql);
+	return $rows;
+}

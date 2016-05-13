@@ -53,9 +53,10 @@ if(isset($_GET["CId"]))
 			    </div>
 			<div class="search_box fl">
                   <span class="search_glass fl" > </span>
-				
-				  <input type="text" class="search_text fl">
-				  <input type="button" value="搜 索" class="search_btn fr">
+					<form action="product.php" method="post">
+						<input type="text" name="product_name" class="search_text fl">
+						<input type="submit" value="搜 索" class="search_btn fr">
+					</form>
 			    </div>  
 			    <div class="shopCar fr">
 				<span class="shopText fl">购物车</span>
@@ -88,7 +89,7 @@ if(isset($_GET["CId"]))
 		<span class="icon"> </span><h3><?php echo $cate['name'];?></h3>
 <!--		<a href="#" class="more">更多&gt;&gt;</a>-->
 	</div>
-	<div class="shopList comWidth clearfix" ">
+	<div class="shopList comWidth clearfix" >
 
         <div class="leftArea2" style="width:1000px;overflow:visible;height:auto;border:none;">
          	<div class="shopList_top clearfix">

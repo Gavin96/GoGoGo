@@ -15,8 +15,24 @@
                 <B> <a class="collection"><img src="images/icon/collection.png">Crazy shopping</a></B>
             </div>
             <div class="rightArea">
-                <B><em>欢迎来到Gogo购！</em></B>
-                <B><a href="#">[登录]</a>&nbsp<a href="#">[注册]</a></B>
+                <B><em>欢迎您
+                        <?php
+                        if(isset($_SESSION['userName'])){
+                            echo $_SESSION['userName'];
+                        }elseif(isset($_COOKIE['userName'])){
+                            echo $_COOKIE['userName'];
+                        }
+                        ?>
+                    </em></B>
+                <B>
+                    <?php
+                    if(!(isset($_SESSION['userName'])||isset($_COOKIE['userName']))):
+                        ?>
+                        <a href="login.php">[登录]</a>
+                        <?php
+                    endif
+                    ?>
+                    &nbsp<a href="doUserAction.php?act=logout">[退出]</a></B>
             </div>
         </div>
     </div>
@@ -27,8 +43,10 @@
             </div>
             <div class="search_box fl">
                 <span class="search_glass fl" > </span>
-                <input type="text" class="search_text fl">
-                <input type="button" value="搜 索" class="search_btn fr">
+                <form action="product.php" method="post">
+                    <input type="text" name="product_name" class="search_text fl">
+                    <input type="submit" value="搜 索" class="search_btn fr">
+                </form>
             </div>
             <div class="shopCar fr">
                 <span class="shopText fl">购物车</span>
@@ -58,7 +76,7 @@
 
 <div class="shopList comWidth clearfix">
 
-    <div class="leftArea2" style="width:1000px;">
+    <div class="leftArea2" style="width:1000px;overflow:visible;height:auto;border:none;">
         <div class="shopList_top clearfix">
             <?php
             require_once '../include.php';
@@ -68,7 +86,7 @@
                 foreach($pros as $pro):
                     $proImg = getProImgById($link,$pro["id"]);
                     ?>
-                    <div class="shop_item">
+                    <div class="shop_item" style="margin-left: 40px;margin-top:15px;border:#999 solid 1px;">
                         <div class="shop_img">
                             <a href="#"><img height="200" width="187" src="../image_220/<?php echo $proImg["albumPath"]?>" alt=""></a>
                         </div>
@@ -76,16 +94,15 @@
                         <p><?php echo $pro['iPrice'];?>元</p>
                     </div>
                     <?php
-                endforeach;
-            endif;
-            ?>
+                        endforeach;
+                        endif;
+                    ?>
         </div>
 
 
     </div>
 </div>
-
-<br/>
+<div style="clear:both"></div>
 
 
 
