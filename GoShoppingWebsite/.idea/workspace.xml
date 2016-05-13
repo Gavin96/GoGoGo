@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="717ff947-1b84-4ed9-b46e-2f6aa5e6f683" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Index/cateDetail.php" afterPath="$PROJECT_DIR$/Index/cateDetail.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Index/discount.php" afterPath="$PROJECT_DIR$/Index/discount.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Index/hot.php" afterPath="$PROJECT_DIR$/Index/hot.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Index/index.php" afterPath="$PROJECT_DIR$/Index/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Index/lib.php" afterPath="$PROJECT_DIR$/Index/lib.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/pro.inc.php" afterPath="$PROJECT_DIR$/core/pro.inc.php" />
-    </list>
+    <list default="true" id="717ff947-1b84-4ed9-b46e-2f6aa5e6f683" name="Default" comment="" />
     <ignored path="GoShoppingWebsite.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -412,16 +404,16 @@
       <workItem from="1462407378745" duration="4863000" />
       <workItem from="1462435127607" duration="8645000" />
       <workItem from="1462839393885" duration="4372000" />
-      <workItem from="1463117128050" duration="2281000" />
+      <workItem from="1463117128050" duration="2853000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93398000" />
+    <option name="totallyTimeSpent" value="93970000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30652505" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
