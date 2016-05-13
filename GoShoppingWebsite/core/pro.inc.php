@@ -187,3 +187,15 @@ function getAllProByCId($link,$id){
 	$row=fetchAll($link,$sql);
 	return $row;
 }
+
+function getAllProBYDes($link){
+	$sql="select p.id,p.pName,p.pIndex,p.pNum,p.mPrice,p.iPrice,p.pDescription,p.pTime,p.isShow,p.isHot,c.name,p.cId from go_product as p join go_cate c on p.cId=c.id where p.pDescription like '%[***]%'";
+	$rows=fetchAll($link,$sql);
+	return $rows;
+}
+
+function getHotPro($link){
+	$sql="select p.id,p.pName,p.pIndex,p.pNum,p.mPrice,p.iPrice,p.pDescription,p.pTime,p.isShow,p.isHot,c.name,p.cId from go_product as p join go_cate c on p.cId=c.id order by p.isHot DESC limit 1";
+	$rows=fetchAll($link,$sql);
+	return $rows;
+}
