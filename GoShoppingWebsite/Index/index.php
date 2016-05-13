@@ -36,8 +36,24 @@ if(!($cates&&is_array($cates))){
 				 <B> <a class="collection"><img src="images/icon/collection.png">Crazy shopping</a></B>
 			    </div>
 			    <div class="rightArea">
-			    	<B><em>欢迎来到Gogo购！</em></B>
-			    	<B><a href="#">[登录]</a>&nbsp<a href="#">[注册]</a></B>
+			    	<B><em>欢迎您
+							<?php
+							if(isset($_SESSION['userName'])){
+								echo $_SESSION['userName'];
+							}elseif(isset($_COOKIE['userName'])){
+								echo $_COOKIE['userName'];
+							}
+							?>
+						</em></B>
+			    	<B>
+						<?php
+							if(!(isset($_SESSION['userName'])||isset($_COOKIE['userName']))):
+						?>
+						<a href="login.php">[登录]</a>
+						<?php
+							endif
+						?>
+						&nbsp<a href="doUserAction.php?act=logout">[退出]</a></B>
 			    </div>
 			</div>
 		</div>
@@ -54,7 +70,7 @@ if(!($cates&&is_array($cates))){
 				  </form>
 			    </div>  
 			    <div class="shopCar fr">
-				<span class="shopText fl">购物车</span>
+				<span class="shopText fl"><a href="#">购物车</a></span>
 				<span class="shopNum fl">0</span>
 				</div>
 			</div>
@@ -162,8 +178,10 @@ if(!($cates&&is_array($cates))){
          	</div>
         </div>
 	</div>
+	<br/>
 	<?php endforeach;?>
-    <br/>
+
+
 
 	
 

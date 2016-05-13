@@ -85,7 +85,7 @@
 .shopList{margin-top: 15px;}
 .shopList .leftArea{width: 191px;}
 .shopList .leftArea2{width: 806px;border:#999 solid 1px; border-bottom: #FF7201 solid 3px;
-  height: 396px;overflow: hidden;}
+  min-height: 198px;overflow: hidden;}
 
 /*商品列表右侧上部*/
 .shopList_top,
