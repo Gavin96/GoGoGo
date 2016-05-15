@@ -68,3 +68,49 @@ function registerUser()
     return $mes;
 }
 
+function getCartByUser($link,$userName){
+
+    $sql="select * from go_cart where userName = '{$userName}'";
+    $rows=fetchAll($link,$sql);
+
+    //$sql="select p.id,p.pName,p.pIndex,p.pNum,p.mPrice,p.iPrice,p.pDescription,p.pTime,p.isShow,p.isHot,c.name,p.cId from go_product as p join go_cate c on p.cId=c.id where p.cId={$rows["proID"]}";
+    //$cart=fetchAll($link,$sql);
+    return $rows;
+}
+
+function getCommittedCartByUser($link,$userName){
+
+    $sql="select * from go_cart where userName = '{$userName}' and isCommit = 1";
+    $rows=fetchAll($link,$sql);
+
+    return $rows;
+}
+
+
+//商品添加进购物车
+function addCart(){
+    $link = connect();
+    $arr = $_POST;
+    unset($arr['act']);
+    $insertId = insert($link,"go_cart",$arr);
+    if($insertId>0){
+        $mes = "添加成功!<br/><a href='index.php'>回到首页</a>";
+    }else{
+        $mes = "添加失败!<br/><a href='index.php'>回到首页</a>";
+    }
+    return mes;
+}
+
+function delCart($user,$proID){
+    $link = connect();
+
+
+    $where="proID=".$proID." and user=".$user;
+    if(delete($link,"go_cart",$where)){
+        $mes="删除成功!<br/><a href='#'>查看购物车</a>";
+    }else{
+        $mes="删除失败！<br/><a href='#'>请重新操作</a>";
+    }
+    return $mes;
+
+}

@@ -20,3 +20,4 @@ require_once "lib/upload.func.php";
 require_once "core/cate.inc.php";
 require_once "core/pro.inc.php";
 require_once "core/album.inc.php";
+require_once "Index/lib.php";

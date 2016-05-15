@@ -12,6 +12,10 @@ if($act=="logout") {
     logoutUser();
 }elseif($act=="addUser"){
     $mes=registerUser();
+}elseif($act=="addCart"){
+    $mes=addCart();
+}elseif($act="delCart"){
+    $mes=delCart($_REQUEST['user'],$_REQUEST['proID']);
 }
 
 ?>

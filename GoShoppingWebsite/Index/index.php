@@ -14,6 +14,19 @@ if(!($cates&&is_array($cates))){
 	exit;
 }
 
+if(isset($_SESSION['userName']))
+{
+	$sql = "select * from go_cart where userName = '{$_SESSION['userName']}'";
+	$cartRows=getResultNum($link,$sql);
+}elseif(isset($_COOKIE['userName']))
+{
+	$sql = "select * from go_cart where userName = '{$_COOKIE['userName']}'";
+	$cartRows=getResultNum($link,$sql);
+}else
+{
+	$cartRows=0;
+}
+
 ?>
 
 <!doctype html>
@@ -70,8 +83,8 @@ if(!($cates&&is_array($cates))){
 				  </form>
 			    </div>  
 			    <div class="shopCar fr">
-				<span class="shopText fl"><a href="#">购物车</a></span>
-				<span class="shopNum fl">0</span>
+				<span class="shopText fl"><a href="listCart.php">购物车</a></span>
+				<span class="shopNum fl"><?php echo $cartRows; ?></span>
 				</div>
 			</div>
 		</div>

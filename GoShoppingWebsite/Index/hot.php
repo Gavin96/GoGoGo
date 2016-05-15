@@ -1,3 +1,22 @@
+<?php
+
+require_once '../include.php';
+$link = connect();
+
+if(isset($_SESSION['userName']))
+{
+    $sql = "select * from go_cart where userName = '{$_SESSION['userName']}'";
+    $cartRows=getResultNum($link,$sql);
+}elseif(isset($_COOKIE['userName']))
+{
+    $sql = "select * from go_cart where userName = '{$_COOKIE['userName']}'";
+    $cartRows=getResultNum($link,$sql);
+}else
+{
+    $cartRows=0;
+}
+?>
+
 <!doctype html>
 <html>
 <head>
@@ -49,8 +68,8 @@
                 </form>
             </div>
             <div class="shopCar fr">
-                <span class="shopText fl">购物车</span>
-                <span class="shopNum fl">0</span>
+                <span class="shopText fl"><a href="listCart.php">购物车</a></span>
+                <span class="shopNum fl"><?php echo $cartRows; ?></span>
             </div>
         </div>
     </div>
@@ -79,8 +98,6 @@
     <div class="leftArea2" style="width:1000px;overflow:visible;height:auto;border:none;">
         <div class="shopList_top clearfix">
             <?php
-            require_once '../include.php';
-            $link = connect();
             $pros = getHotPro($link);
             if(($pros&&is_array($pros))):
                 foreach($pros as $pro):
