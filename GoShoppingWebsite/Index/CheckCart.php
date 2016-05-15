@@ -112,7 +112,7 @@ $totalPrice = 0;
         </div>
         <div class="hr_25"></div>
         <div class="shopping_item">
-            <h3 class="shopping_tit">送货清单<a href="listCart.php" class="backCar">返回购物车修改</a></h3>
+            <h3 class="shopping_tit">送货清单<a href="doUserAction.php?act=modifyCart" class="backCar">返回购物车修改</a></h3>
             <?php
                 foreach($carts as $cart):
                     $pro = getProById($link,$cart["proID"]);

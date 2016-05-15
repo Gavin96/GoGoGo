@@ -86,6 +86,13 @@ function getCommittedCartByUser($link,$userName){
     return $rows;
 }
 
+function modifyCart(){
+    $link=connect();
+    $arr["isCommit"]=0;
+    $arr["amount"]=0;
+    $rows=update($link,"go_cart",$arr);
+    header("location:listCart.php");
+}
 
 //商品添加进购物车
 function addCart(){
@@ -107,9 +114,9 @@ function delCart($user,$proID){
 
     $where="proID=".$proID." and user=".$user;
     if(delete($link,"go_cart",$where)){
-        $mes="删除成功!<br/><a href='#'>查看购物车</a>";
+        $mes="删除成功!<br/><a href='listCart.php'>查看购物车</a>";
     }else{
-        $mes="删除失败！<br/><a href='#'>请重新操作</a>";
+        $mes="删除失败！<br/><a href='listCart.php'>请重新操作</a>";
     }
     return $mes;
 

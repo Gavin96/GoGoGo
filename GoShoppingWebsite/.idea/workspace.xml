@@ -2,17 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="717ff947-1b84-4ed9-b46e-2f6aa5e6f683" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Index/CheckCart.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Index/cateDetail.php" afterPath="$PROJECT_DIR$/Index/cateDetail.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Index/discount.php" afterPath="$PROJECT_DIR$/Index/discount.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Index/CheckCart.php" afterPath="$PROJECT_DIR$/Index/CheckCart.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Index/doUserAction.php" afterPath="$PROJECT_DIR$/Index/doUserAction.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Index/hot.php" afterPath="$PROJECT_DIR$/Index/hot.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Index/index.php" afterPath="$PROJECT_DIR$/Index/index.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Index/lib.php" afterPath="$PROJECT_DIR$/Index/lib.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Index/style/main.css" afterPath="$PROJECT_DIR$/Index/style/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/admin.inc.php" afterPath="$PROJECT_DIR$/core/admin.inc.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include.php" afterPath="$PROJECT_DIR$/include.php" />
     </list>
     <ignored path="GoShoppingWebsite.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -103,16 +96,39 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="lib.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="doUserAction.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Index/doUserAction.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="18" column="1" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="lib.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Index/lib.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="82" column="66" selection-start-line="82" selection-start-column="66" selection-end-line="82" selection-end-column="66" />
+            <state relative-caret-position="-120">
+              <caret line="93" column="21" selection-start-line="93" selection-start-column="21" selection-end-line="93" selection-end-column="21" />
               <folding>
-                <marker date="1463288300402" expanded="true" signature="2035:2057" placeholder="select id,us... go_cart" />
-                <marker date="1463288300402" expanded="true" signature="2035:2087" placeholder="select id,us... go_cart" />
-                <marker date="1463288300402" expanded="true" signature="2135:2304" placeholder="select p.id,... go_product" />
-                <marker date="1463288300402" expanded="true" signature="2439:2508" placeholder="select * fro... go_cart" />
+                <marker date="1463293810053" expanded="true" signature="2035:2057" placeholder="select id,us... go_cart" />
+                <marker date="1463293810053" expanded="true" signature="2035:2087" placeholder="select id,us... go_cart" />
+                <marker date="1463293810053" expanded="true" signature="2135:2304" placeholder="select p.id,... go_product" />
+                <marker date="1463293810053" expanded="true" signature="2439:2508" placeholder="select * fro... go_cart" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mysql.func.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/mysql.func.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="777">
+              <caret line="71" column="9" selection-start-line="71" selection-start-column="9" selection-end-line="71" selection-end-column="9" />
+              <folding>
+                <marker date="1463114423744" expanded="true" signature="1063:1090" placeholder="update ${{$t... " />
+                <marker date="1463114423744" expanded="true" signature="1325:1346" placeholder="delete from " />
               </folding>
             </state>
           </provider>
@@ -131,23 +147,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hot.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Index/hot.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="71" column="72" selection-start-line="71" selection-start-column="72" selection-end-line="71" selection-end-column="72" />
-              <folding>
-                <marker date="1463285466746" expanded="true" signature="105:169" placeholder="select * fro... go_cart" />
-                <marker date="1463285466746" expanded="true" signature="263:326" placeholder="select * fro... go_cart" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="listCart.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="listCart.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Index/listCart.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="349">
+            <state relative-caret-position="-221">
               <caret line="23" column="30" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
               <folding>
                 <marker date="1463290850528" expanded="true" signature="338:402" placeholder="select * fro... go_cart" />
@@ -201,26 +204,16 @@
       <file leaf-file-name="CheckCart.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Index/CheckCart.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1854">
-              <caret line="107" column="84" selection-start-line="107" selection-start-column="84" selection-end-line="107" selection-end-column="84" />
+            <state relative-caret-position="220">
+              <caret line="117" column="60" selection-start-line="117" selection-start-column="60" selection-end-line="117" selection-end-column="60" />
               <folding>
                 <element signature="n#style#0;n#select#0;n#div#0;n#li#0;n#ul#0;n#div#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1463288771263" expanded="true" signature="339:403" placeholder="select * fro... go_cart" />
-                <marker date="1463288771263" expanded="true" signature="561:624" placeholder="select * fro... go_cart" />
-                <marker date="1463288771263" expanded="true" signature="990:1002" placeholder="..." />
-                <marker date="1463288771263" expanded="true" signature="1231:1295" placeholder="..." />
-                <marker date="1463288771263" expanded="true" signature="1235:1295" placeholder="..." />
+                <marker date="1463293159594" expanded="true" signature="339:403" placeholder="select * fro... go_cart" />
+                <marker date="1463293159594" expanded="true" signature="561:624" placeholder="select * fro... go_cart" />
+                <marker date="1463293159594" expanded="true" signature="990:1002" placeholder="..." />
+                <marker date="1463293159594" expanded="true" signature="1231:1295" placeholder="..." />
+                <marker date="1463293159594" expanded="true" signature="1235:1295" placeholder="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Index/style/main.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-61">
-              <caret line="134" column="51" selection-start-line="134" selection-start-column="48" selection-end-line="134" selection-end-column="51" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -281,7 +274,6 @@
         <option value="$PROJECT_DIR$/Index/style/main.css" />
         <option value="$PROJECT_DIR$/core/pro.inc.php" />
         <option value="$PROJECT_DIR$/Index/product.php" />
-        <option value="$PROJECT_DIR$/Index/doUserAction.php" />
         <option value="$PROJECT_DIR$/Index/shopCard.php" />
         <option value="$PROJECT_DIR$/include.php" />
         <option value="$PROJECT_DIR$/core/admin.inc.php" />
@@ -289,9 +281,10 @@
         <option value="$PROJECT_DIR$/Index/cateDetail.php" />
         <option value="$PROJECT_DIR$/Index/discount.php" />
         <option value="$PROJECT_DIR$/Index/hot.php" />
-        <option value="$PROJECT_DIR$/Index/lib.php" />
-        <option value="$PROJECT_DIR$/Index/CheckCart.php" />
         <option value="$PROJECT_DIR$/Index/listCart.php" />
+        <option value="$PROJECT_DIR$/Index/CheckCart.php" />
+        <option value="$PROJECT_DIR$/Index/doUserAction.php" />
+        <option value="$PROJECT_DIR$/Index/lib.php" />
       </list>
     </option>
   </component>
@@ -534,16 +527,16 @@
       <workItem from="1462839393885" duration="4372000" />
       <workItem from="1463117128050" duration="2853000" />
       <workItem from="1463213944552" duration="1494000" />
-      <workItem from="1463279488568" duration="9297000" />
+      <workItem from="1463279488568" duration="11435000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="104761000" />
+    <option name="totallyTimeSpent" value="106899000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3171472" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -821,14 +814,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Index/doUserAction.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="17" column="51" selection-start-line="17" selection-start-column="51" selection-end-line="17" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/pro.inc.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="222">
@@ -895,17 +880,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/mysql.func.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="71" column="9" selection-start-line="71" selection-start-column="9" selection-end-line="71" selection-end-column="9" />
-          <folding>
-            <marker date="1463114423744" expanded="true" signature="1063:1090" placeholder="update ${{$t... " />
-            <marker date="1463114423744" expanded="true" signature="1325:1346" placeholder="delete from " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Index/cateDetail.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
@@ -932,61 +906,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-61">
           <caret line="134" column="51" selection-start-line="134" selection-start-column="48" selection-end-line="134" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Index/lib.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="82" column="66" selection-start-line="82" selection-start-column="66" selection-end-line="82" selection-end-column="66" />
-          <folding>
-            <marker date="1463288300402" expanded="true" signature="2035:2057" placeholder="select id,us... go_cart" />
-            <marker date="1463288300402" expanded="true" signature="2035:2087" placeholder="select id,us... go_cart" />
-            <marker date="1463288300402" expanded="true" signature="2135:2304" placeholder="select p.id,... go_product" />
-            <marker date="1463288300402" expanded="true" signature="2439:2508" placeholder="select * fro... go_cart" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Index/discount.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="63" column="16" selection-start-line="63" selection-start-column="16" selection-end-line="66" selection-end-column="23" />
-          <folding>
-            <marker date="1463285466870" expanded="true" signature="105:169" placeholder="select * fro... go_cart" />
-            <marker date="1463285466870" expanded="true" signature="263:326" placeholder="select * fro... go_cart" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Index/CheckCart.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1854">
-          <caret line="107" column="84" selection-start-line="107" selection-start-column="84" selection-end-line="107" selection-end-column="84" />
-          <folding>
-            <element signature="n#style#0;n#select#0;n#div#0;n#li#0;n#ul#0;n#div#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1463288771263" expanded="true" signature="339:403" placeholder="select * fro... go_cart" />
-            <marker date="1463288771263" expanded="true" signature="561:624" placeholder="select * fro... go_cart" />
-            <marker date="1463288771263" expanded="true" signature="990:1002" placeholder="..." />
-            <marker date="1463288771263" expanded="true" signature="1231:1295" placeholder="..." />
-            <marker date="1463288771263" expanded="true" signature="1235:1295" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="12" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/common.func.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="17" />
           <folding />
         </state>
       </provider>
@@ -1065,9 +984,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lib/common.func.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Index/discount.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="63" column="16" selection-start-line="63" selection-start-column="16" selection-end-line="66" selection-end-column="23" />
+          <folding>
+            <marker date="1463285466870" expanded="true" signature="105:169" placeholder="select * fro... go_cart" />
+            <marker date="1463285466870" expanded="true" signature="263:326" placeholder="select * fro... go_cart" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Index/listCart.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
+        <state relative-caret-position="-221">
           <caret line="23" column="30" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
           <folding>
             <marker date="1463290850528" expanded="true" signature="338:402" placeholder="select * fro... go_cart" />
@@ -1077,6 +1015,61 @@
             <marker date="1463290850528" expanded="true" signature="1020:1036" placeholder="..." />
             <marker date="1463290850528" expanded="true" signature="1289:1361" placeholder="..." />
             <marker date="1463290850528" expanded="true" signature="1293:1361" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Index/CheckCart.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="117" column="60" selection-start-line="117" selection-start-column="60" selection-end-line="117" selection-end-column="60" />
+          <folding>
+            <element signature="n#style#0;n#select#0;n#div#0;n#li#0;n#ul#0;n#div#0;n#div#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1463293159594" expanded="true" signature="339:403" placeholder="select * fro... go_cart" />
+            <marker date="1463293159594" expanded="true" signature="561:624" placeholder="select * fro... go_cart" />
+            <marker date="1463293159594" expanded="true" signature="990:1002" placeholder="..." />
+            <marker date="1463293159594" expanded="true" signature="1231:1295" placeholder="..." />
+            <marker date="1463293159594" expanded="true" signature="1235:1295" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Index/doUserAction.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="18" column="1" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/mysql.func.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="777">
+          <caret line="71" column="9" selection-start-line="71" selection-start-column="9" selection-end-line="71" selection-end-column="9" />
+          <folding>
+            <marker date="1463114423744" expanded="true" signature="1063:1090" placeholder="update ${{$t... " />
+            <marker date="1463114423744" expanded="true" signature="1325:1346" placeholder="delete from " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Index/lib.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-120">
+          <caret line="93" column="21" selection-start-line="93" selection-start-column="21" selection-end-line="93" selection-end-column="21" />
+          <folding>
+            <marker date="1463293810053" expanded="true" signature="2035:2057" placeholder="select id,us... go_cart" />
+            <marker date="1463293810053" expanded="true" signature="2035:2087" placeholder="select id,us... go_cart" />
+            <marker date="1463293810053" expanded="true" signature="2135:2304" placeholder="select p.id,... go_product" />
+            <marker date="1463293810053" expanded="true" signature="2439:2508" placeholder="select * fro... go_cart" />
           </folding>
         </state>
       </provider>
