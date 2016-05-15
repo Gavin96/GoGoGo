@@ -77,9 +77,9 @@ if(isset($_SESSION['userName']))
 			</div>
 		</div>
 		<div class="navBox">
-			<div class="comWidth">
+			<div class="comWidth"  style="width:800px;">
 				<div class="shopClass fl">
-					<h3><i style="background: url()"></i></h3>
+					<h3 ><i></i></h3>
 
 				</div>
 				<ul class="nav fl">
@@ -88,7 +88,7 @@ if(isset($_SESSION['userName']))
 					<li><a href="hot.php">热销</a></li>
 					<li><a href="#">健康知识</a></li>
 					<li><a href="#">质量管控</a></li>
-					<li><a href="#">名品会</a></li>
+					<li><a href="order.php">订单中心</a></li>
 				</ul>
 
 			</div>

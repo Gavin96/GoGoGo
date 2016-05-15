@@ -31,47 +31,67 @@ $totalPrice = 0;
 </head>
 
 <body>
-<div class="topBar">
-    <div class="comWidth">
-        <div class="leftArea">
-            <B> <a class="collection"><img src="images/icon/collection.png">Crazy shopping</a></B>
-        </div>
-        <div class="rightArea">
-            <B><em>欢迎您
+<div class="headerBar">
+    <div class="topBar">
+        <div class="comWidth">
+            <div class="leftArea">
+                <B> <a class="collection"><img src="images/icon/collection.png">Crazy shopping</a></B>
+            </div>
+            <div class="rightArea">
+                <B><em>欢迎您
+                        <?php
+                        if(isset($_SESSION['userName'])){
+                            echo $_SESSION['userName'];
+                        }elseif(isset($_COOKIE['userName'])){
+                            echo $_COOKIE['userName'];
+                        }
+                        ?>
+                    </em></B>
+                <B>
                     <?php
-                    if(isset($_SESSION['userName'])){
-                        echo $_SESSION['userName'];
-                    }elseif(isset($_COOKIE['userName'])){
-                        echo $_COOKIE['userName'];
-                    }
+                    if(!(isset($_SESSION['userName'])||isset($_COOKIE['userName']))):
+                        ?>
+                        <a href="login.php">[登录]</a>
+                        <?php
+                    endif
                     ?>
-                </em></B>
-            <B>
-                <?php
-                if(!(isset($_SESSION['userName'])||isset($_COOKIE['userName']))):
-                    ?>
-                    <a href="login.php">[登录]</a>
-                    <?php
-                endif
-                ?>
-                &nbsp<a href="doUserAction.php?act=logout">[退出]</a></B>
+                    &nbsp<a href="doUserAction.php?act=logout">[退出]</a></B>
+            </div>
         </div>
     </div>
-</div>
-<div class="logoBar">
-    <div class="comWidth">
-        <div class="logo fl">
-            <a href="#"><img src="images/icon/Fruits_Vegetable.png" alt=""></a>
+    <div class="logoBar">
+        <div class="comWidth">
+            <div class="logo fl">
+                <a href="#"><img src="images/icon/Fruits_Vegetable.png" alt="有机食品销售"></a>
+            </div>
+            <div class="search_box fl">
+                <span class="search_glass fl" > </span>
+                <form action="product.php" method="post">
+                    <input type="text" name="product_name" class="search_text fl">
+                    <input type="submit" value="搜 索" class="search_btn fr">
+                </form>
+            </div>
+            <div class="shopCar fr">
+                <span class="shopText fl"><a href="listCart.php">购物车</a></span>
+                <span class="shopNum fl"><?php echo $cartRows; ?></span>
+            </div>
         </div>
-        <div class="search_box fl">
-            <form action="product.php" method="post">
-                <input type="text" name="product_name" class="search_text fl">
-                <input type="submit" value="搜 索" class="search_btn fr">
-            </form>
-        </div>
-        <div class="shopCar fr">
-            <span class="shopText fl"><a href="listCart.php">购物车</a></span>
-            <span class="shopNum fl"><?php echo $cartRows; ?></span>
+    </div>
+    <div class="navBox">
+        <div class="comWidth"  style="width:800px;">
+            <div class="shopClass fl">
+                <h3><i style="background: url()"></i></h3>
+
+            </div>
+            <ul class="nav fl">
+                <li><a href="index.php">首页</a></li>
+                <li><a href="discount.php">优惠</a></li>
+                <li><a href="hot.php">热销</a></li>
+                <li><a href="#">健康知识</a></li>
+                <li><a href="#">质量管控</a></li>
+                <li><a href="order.php">订单中心</a></li>
+            </ul>
+
         </div>
     </div>
 </div>
