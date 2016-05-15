@@ -1,3 +1,5 @@
+
+
 <?php
 
 require_once '../include.php';
@@ -7,21 +9,22 @@ if(isset($_SESSION['userName']))
 {
     $sql = "select * from go_cart where userName = '{$_SESSION['userName']}'";
     $cartRows=getResultNum($link,$sql);
+    $orders=getOrderByUser($link,$_SESSION['userName']);
 }elseif(isset($_COOKIE['userName']))
 {
     $sql = "select * from go_cart where userName = '{$_COOKIE['userName']}'";
     $cartRows=getResultNum($link,$sql);
+    $orders=getOrderByUser($link,$_COOKIE['userName']);
 }else
 {
-    $cartRows=0;
+    alertMes("请先登录","login.php");
 }
 ?>
-
 <!doctype html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>首页</title>
+    <title>Shop Cards</title>
     <link href="style/reset.css" rel="stylesheet" type="text/css">
     <link href="style/main.css" rel="stylesheet" type="text/css">
 </head>
@@ -82,7 +85,7 @@ if(isset($_SESSION['userName']))
             <ul class="nav fl">
                 <li><a href="index.php">首页</a></li>
                 <li><a href="discount.php">优惠</a></li>
-                <li><a href="hot.php" class="active">热销</a></li>
+                <li><a href="hot.php">热销</a></li>
                 <li><a href="#">健康知识</a></li>
                 <li><a href="#">质量管控</a></li>
                 <li><a href="order.php">订单中心</a></li>
@@ -93,49 +96,67 @@ if(isset($_SESSION['userName']))
 </div>
 
 
-<div class="shopList comWidth clearfix">
+<div class="shoppingCart comWidth">
+    <div class="shopping_item">
+        <h3 class="shopping_tit">我的订单</h3>
+        <div class="shopping_cont pb_10">
+            <div class="cart_inner">
 
-    <div class="leftArea2" style="width:1000px;overflow:visible;height:auto;border:none;">
-        <div class="shopList_top clearfix">
-            <?php
-            $pros = getHotPro($link);
-            if(($pros&&is_array($pros))):
-                foreach($pros as $pro):
-                    $proImg = getProImgById($link,$pro["id"]);
-                    ?>
-                    <div class="shop_item" style="margin-left: 40px;margin-top:15px;border:#999 solid 1px;">
-                        <div class="shop_img">
-                            <a href="#"><img height="200" width="187" src="../image_220/<?php echo $proImg["albumPath"]?>" alt=""></a>
-                        </div>
-                        <h3><?php echo $pro['pName'];?></h3>
-                        <p><?php echo $pro['iPrice'];?>元</p>
-                    </div>
-                    <?php
-                        endforeach;
-                        endif;
-                    ?>
+            </div>
         </div>
-
-
     </div>
 </div>
-<div style="clear:both"></div>
 
+<?php
+foreach($orders as $order):
+    $pro = getProById($link,$order["proID"]);
+    if(($pro&&is_array($pro))):
+        $proImg = getProImgById($link,$pro["id"]);
+        ?>
 
+        <div class="shoppingCart comWidth">
+            <div class="shopping_item">
+                <div class="shopping_cont pb_10">
+                    <div class="cart_inner">
+                        <div class="cart_head clearfix">
+                            <div class="cart_item t_name">商品名称</div>
+                            <div class="cart_item t_price">单价</div>
+                            <div class="cart_item t_return">返现</div>
+                            <div class="cart_item t_num">数量</div>
+                            <div class="cart_item t_subtotal">小计</div>
+                        </div>
+                        <div class="cart_cont clearfix">
+                            <div class="cart_item t_name">
+                                <div class="cart_shopInfo clearfix">
+                                    <img height="95" width="95" src="../image_220/<?php echo $proImg["albumPath"]?>" alt="">
+                                    <div class="cart_shopInfo_cont">
+                                        <p class="cart_link"><a href="#"><?php echo $pro['pName'];?></a></p>
+                                        <p class="cart_info"><?php echo $pro['pDescription'];?></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cart_item t_price">
+                                $ <?php echo $pro['iPrice'];?>
+                            </div>
+                            <div class="cart_item t_return"> $0</div>
+                            <div class="cart_item t_num">1</div>
+                            <div class="cart_item t_subtotal t_red">$500</div>
+                        </div>
+                        <div class="cart_message">
+                            若有问题请留言，若有问题请留言
 
-<div class="footer">
-    <p><a href="#">同济大学</a><i>|</i><a href="#">软件学院</a><i>|</i><a href="#">2013级</a><i>|</i><a href="#">专业综合</a></p>
-    <p>BlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBla</p>
-    <p class="weblogo">
-        <br/> <br/>
-        <a href="#"><img src="images/banner/weblogo.png" alt="logo"></a>&nbsp;
-        <a href="#"><img src="images/banner/weblogo.png" alt="logo"></a>&nbsp;
-        <a href="#"><img src="images/banner/weblogo.png" alt="logo"></a>&nbsp;
-        <a href="#"><img src="images/banner/weblogo.png" alt="logo"></a>
-    </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php
+    endif;
+endforeach;
+?>
 
+<div class="cart_btnBox">
+    <input type="button" class="cart_btn" value="确认提交">
 </div>
-
 </body>
-
 </html>

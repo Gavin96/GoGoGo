@@ -68,6 +68,17 @@ function registerUser()
     return $mes;
 }
 
+//得到用户的所有未完成订单，此时isCommit = 2
+//得到用户的所有完成订单，此时isCommit = 3
+function getOrderByUser($link,$userName){
+
+    $sql="select * from go_cart where userName = '{$userName}' and isCommit = 2
+          union select * from go_cart where userName = '{$userName}' and isCommit = 3";
+    $rows=fetchAll($link,$sql);
+    
+    return $rows;
+}
+
 function getCartByUser($link,$userName){
 
     $sql="select * from go_cart where userName = '{$userName}'";

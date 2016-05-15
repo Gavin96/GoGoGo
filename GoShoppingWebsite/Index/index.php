@@ -102,12 +102,12 @@ if(isset($_SESSION['userName']))
 					</div>
 				</div>
 				<ul class="nav fl">
-					<li><a href="#" class="active">首页</a></li>
+					<li><a href="index.php" class="active">首页</a></li>
 					<li><a href="discount.php">优惠</a></li>
 					<li><a href="hot.php">热销</a></li>
 					<li><a href="#">健康知识</a></li>
 					<li><a href="#">质量管控</a></li>
-					<li><a href="#">名品会</a></li>
+					<li><a href="order.php">订单中心</a></li>
 				</ul>
 
 			</div>
