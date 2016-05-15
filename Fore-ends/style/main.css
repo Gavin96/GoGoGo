@@ -137,7 +137,7 @@
 .input_s{width:64px;}
 .input_s2{width:84px;}
 .jian{padding:0 3px;}
-.affirm{width:114px; height:28px;  background:url(../images/sh_btn.jpg) left top no-repeat;}
+.affirm{width:114px; height:28px;   }
 .radio{position:relative; top:3px; margin-right:4px;}
 .backCar{float:right; font-size:12px; font-family:"宋体"; margin-right:33px; color:#3377FF;}
 .backCar:hover{text-decoration:underline;}
@@ -156,7 +156,7 @@
 .cart_cont .t_price,
 .cart_cont .t_return,
 .cart_cont .t_num,
-.cart_cont .t_subtotal{line-height:37px;}
+.cart_cont .t_subtotal{line-height:40px;}
 .cart_shopInfo img{width:90px; height:100px; display:block; float:left;}
 .cart_shopInfo_cont{padding-left:90px; font-size:12px;}
 .cart_link{line-height:37px; margin-bottom:30px;}
@@ -171,6 +171,59 @@
 .cart_rmb i{font-size:14px; color:#999; font-style:normal;}
 .cart_rmb span{font:bold 24px/1 Verdana; color:red;}
 .cart_btnBox{text-align:right;}
-.cart_btn{width:165px; height:33px; background-color:#E50007; font:18px/33px "Microsoft YaHei", "微软雅黑"; color:#FFF;}
+.cart_btn{width:80px; height:33px; background-color:
+        #7fffd4; font:18px/33px "Microsoft YaHei", "微软雅黑"; color:#FFF;}
 
 .hr_25{height:25px;}
+
+/*商品数量控制部分*/
+p.p_num {
+    width: 78px;
+    height: 24px;
+    border-top: solid 1px #d0d0d0;
+    position: relative;
+    border-bottom: solid 1px #d0d0d0;
+    margin-top: 10px;
+}
+
+span.sy_minus,span.sy_plus {
+    width: 15px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    display: block;
+    position: absolute;
+    top: 0px;
+    font-size: 14px;
+    border: solid 1px #d0d0d0;
+    background: #ebebeb;
+    cursor: pointer;
+    border-top: none;
+    border-bottom: none;
+}
+
+span.sy_minus {
+    left: 0px;
+}
+
+span.sy_plus {
+    right: 0px;
+}
+
+input.sy_num {
+    width: 44px;
+    height: 18px;
+    line-height: 24px;
+    text-align: center;
+    position: absolute;
+    top: 0px;
+    left: 17px;
+}
+
+span.sy_num {
+    padding: 5px 8px;
+    border: solid 1px #d0d0d0;
+    border-left: none;
+    border-right: none;
+    cursor: pointer;
+}

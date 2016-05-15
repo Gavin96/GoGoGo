@@ -15,6 +15,7 @@
     </head>
 
     <body>
+    <script language="JavaScript" src="./JS/goodsNum.js"></script>
     <div class="topBar">
         <div class="comWidth">
             <div class="leftArea">
@@ -69,11 +70,21 @@
                         $ 500
                     </div>
                     <div class="cart_item t_return">$0</div>
-                    <div class="cart_item t_num">1</div>
+                    <div class="cart_item t_num">
+                        <p class="p_num">
+                        <span class="sy_minus" id="min1">-</span>
+                        <input class="sy_num" id="text_box1" readonly="readonly" type="text" name="number1" value="1" />
+                        <span class="sy_plus" id="add1" type="button">+</span>
+                        </p>
+                    </div>
                     <div class="cart_item t_subtotal t_red">$500</div>
                 </div>
                 <div class="cart_message">
                     若有问题请留言，若有问题请留言
+                    <div class="cart_btnBox">
+                        <input type="button"  class="cart_btn" type="submit" value="移除">
+                        <input type="button"  class="cart_btn" type="submit" value="购买">
+                    </div>
                 </div>
               </div>
               </div>
@@ -98,13 +109,20 @@
                             $ 500
                         </div>
                         <div class="cart_item t_return"> $0</div>
-                        <div class="cart_item t_num">1</div>
+                        <div class="cart_item t_num">
+                                <p class="p_num">
+                                    <span class="sy_minus" id="min2">-</span>
+                                    <input class="sy_num" id="text_box2" readonly="readonly" type="text" name="number1" value="1" />
+                                    <span class="sy_plus" id="add2" type="button">+</span>
+                                </p>
+                        </div>
                         <div class="cart_item t_subtotal t_red">$500</div>
                     </div>
                     <div class="cart_message">
                         若有问题请留言，若有问题请留言
                         <div class="cart_btnBox">
-                            <input type="button" class="cart_btn" value="确认提交">
+                            <input type="button"  class="cart_btn" type="submit" value="移除">
+                            <input type="button"  class="cart_btn" type="submit" value="购买">
                         </div>
                     </div>
                 </div>
@@ -112,5 +130,6 @@
         </div>
     </div>
 
-    </body>
-</html>
+        </body>
+
+        </html>
