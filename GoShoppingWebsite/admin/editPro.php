@@ -85,7 +85,7 @@ $proInfo=getProById($link,$id);
 	<tr>
 		<td align="right">商品图像</td>
 		<td>
-			<a href="javascript:void(0)" id="selectFileBtn">添加附件</a>
+			<a href="javascript:void(0)" id="selectFileBtn">添加图片</a>
 			<div id="attachList" class="clear"></div>
 		</td>
 	</tr>

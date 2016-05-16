@@ -6,6 +6,18 @@ $link = connect();
 if(isset($_GET["CId"]))
 	$cate=getOneCate($link,$_GET["CId"]);
 //print_r($cate);
+if(isset($_SESSION['userName']))
+{
+	$sql = "select * from go_cart where userName = '{$_SESSION['userName']}' and isCommit = 0";
+	$cartRows=getResultNum($link,$sql);
+}elseif(isset($_COOKIE['userName']))
+{
+	$sql = "select * from go_cart where userName = '{$_COOKIE['userName']}' and isCommit = 0";
+	$cartRows=getResultNum($link,$sql);
+}else
+{
+	$cartRows=0;
+}
 ?>
 
 <!doctype html>
@@ -24,10 +36,26 @@ if(isset($_GET["CId"]))
 			    <div class="leftArea">
 				 <B> <a class="collection"><img src="images/icon/collection.png">Crazy shopping</a></B>
 			    </div>
-			    <div class="rightArea">
-			    	<B><em>欢迎来到Gogo购！</em></B>
-			    	<B><a href="#">[登录]</a>&nbsp<a href="#">[注册]</a></B>
-			    </div>
+				<div class="rightArea">
+					<B><em>欢迎您
+							<?php
+							if(isset($_SESSION['userName'])){
+								echo $_SESSION['userName'];
+							}elseif(isset($_COOKIE['userName'])){
+								echo $_COOKIE['userName'];
+							}
+							?>
+						</em></B>
+					<B>
+						<?php
+						if(!(isset($_SESSION['userName'])||isset($_COOKIE['userName']))):
+							?>
+							<a href="login.php">[登录]</a>
+							<?php
+						endif
+						?>
+						&nbsp<a href="doUserAction.php?act=logout">[退出]</a></B>
+				</div>
 			</div>
 		</div>
 		<div class="logoBar">
@@ -37,19 +65,21 @@ if(isset($_GET["CId"]))
 			    </div>
 			<div class="search_box fl">
                   <span class="search_glass fl" > </span>
-				  <input type="text" class="search_text fl">
-				  <input type="button" value="搜 索" class="search_btn fr">
+					<form action="product.php" method="post">
+						<input type="text" name="product_name" class="search_text fl">
+						<input type="submit" value="搜 索" class="search_btn fr">
+					</form>
 			    </div>  
 			    <div class="shopCar fr">
-				<span class="shopText fl">购物车</span>
-				<span class="shopNum fl">0</span>
+					<span class="shopText fl"><a href="listCart.php">购物车</a></span>
+					<span class="shopNum fl"><?php echo $cartRows; ?></span>
 				</div>
 			</div>
 		</div>
 		<div class="navBox">
-			<div class="comWidth">
+			<div class="comWidth"  style="width:800px;">
 				<div class="shopClass fl">
-					<h3><i style="background: url()"></i></h3>
+					<h3 ><i></i></h3>
 
 				</div>
 				<ul class="nav fl">
@@ -58,7 +88,7 @@ if(isset($_GET["CId"]))
 					<li><a href="hot.php">热销</a></li>
 					<li><a href="#">健康知识</a></li>
 					<li><a href="#">质量管控</a></li>
-					<li><a href="#">名品会</a></li>
+					<li><a href="order.php">订单中心</a></li>
 				</ul>
 
 			</div>
@@ -69,11 +99,11 @@ if(isset($_GET["CId"]))
 
 	<div class="shopTit comWidth" style="margin-top:50px;">
 		<span class="icon"> </span><h3><?php echo $cate['name'];?></h3>
-		<a href="#" class="more">更多&gt;&gt;</a>
+<!--		<a href="#" class="more">更多&gt;&gt;</a>-->
 	</div>
-	<div class="shopList comWidth clearfix">
+	<div class="shopList comWidth clearfix" >
 
-        <div class="leftArea2" style="width:1000px;">
+        <div class="leftArea2" style="width:1000px;overflow:visible;height:auto;border:none;">
          	<div class="shopList_top clearfix">
 				<?php
 					$pros = getAllProByCId($link,$cate["id"]);
@@ -81,9 +111,9 @@ if(isset($_GET["CId"]))
 						foreach($pros as $pro):
 							$proImg = getProImgById($link,$pro["id"]);
 				?>
-         		<div class="shop_item">
+         		<div class="shop_item" style="margin-left: 40px;margin-top:15px;border:#999 solid 1px;">
          			<div class="shop_img">
-         				<a href="#"><img height="200" width="187" src="../image_220/<?php echo $proImg["albumPath"]?>" alt=""></a>
+         				<a href="goodsDetail.php?id=<?php echo $pro['id'];?>"><img height="200" width="187" src="../image_220/<?php echo $proImg["albumPath"]?>" alt=""></a>
          			</div>
          			<h3><?php echo $pro['pName'];?></h3>
          			<p><?php echo $pro['iPrice'];?>元</p>
@@ -98,12 +128,13 @@ if(isset($_GET["CId"]))
          	
         </div>
 	</div>
+	<div style="clear:both"></div>
 	
-    <br/>
+
 
 	
 
-    <div class="footer">
+    <div class="footer" style="margin-top:100px;">
     	<p><a href="#">同济大学</a><i>|</i><a href="#">软件学院</a><i>|</i><a href="#">2013级</a><i>|</i><a href="#">专业综合</a></p>
     	<p>BlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBla</p>
     	<p class="weblogo">

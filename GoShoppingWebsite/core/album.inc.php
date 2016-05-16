@@ -10,3 +10,9 @@ function getProImgById($link,$id){
 	return $rows;
 }
 
+function getAllProImgById($link,$id){
+	$sql="select albumPath from go_album where Pid={$id} ";
+	$rows=fetchAll($link,$sql);
+	return $rows;
+}
+

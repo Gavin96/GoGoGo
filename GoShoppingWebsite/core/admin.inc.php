@@ -173,3 +173,7 @@ function editUser($id){
     }
     return $mes;
 }
+
+function checkUser($link,$sql){
+    return fetchOne($link,$sql);
+}

@@ -67,8 +67,9 @@ function editPro($id){
 	}
 	$where="id={$id}";
 	$res=update($link,"go_product",$arr,$where);
+	//如果只编辑图片，那么$res=0
 	$pid=$id;
-	if($res&&$pid){
+	if(($res&&$pid)||(is_array($uploadFiles))){
 		if($uploadFiles &&is_array($uploadFiles)){
 			foreach($uploadFiles as $uploadFile){
 				$arr1['Pid']=$pid;
@@ -76,6 +77,7 @@ function editPro($id){
 				addAlbum($link,$arr1);
 			}
 		}
+
 		$mes="<p>编辑成功!</p><a href='listPro.php' target='mainFrame'>查看商品列表</a>";
 	}else{
 	if(is_array($uploadFiles)&&$uploadFiles){
@@ -196,6 +198,12 @@ function getAllProBYDes($link){
 
 function getHotPro($link){
 	$sql="select p.id,p.pName,p.pIndex,p.pNum,p.mPrice,p.iPrice,p.pDescription,p.pTime,p.isShow,p.isHot,c.name,p.cId from go_product as p join go_cate c on p.cId=c.id order by p.isHot DESC limit 1";
+	$rows=fetchAll($link,$sql);
+	return $rows;
+}
+
+function getAllProByName($link,$product_name){
+	$sql="select p.id,p.pName,p.pIndex,p.pNum,p.mPrice,p.iPrice,p.pDescription,p.pTime,p.isShow,p.isHot,c.name,p.cId from go_product as p join go_cate c on p.cId=c.id where p.pName like '%{$product_name}%'";
 	$rows=fetchAll($link,$sql);
 	return $rows;
 }

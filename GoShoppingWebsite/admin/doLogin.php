@@ -10,7 +10,8 @@ $username = $_POST['username'];
 $password = $_POST['password'];
 $verify = $_POST['verify'];
 $verify1 = $_SESSION['verify'];
-$autoFlag = $_POST['autoFlag'];
+if(isset($_POST['autoFlag']))
+    $autoFlag = $_POST['autoFlag'];
 $link = connect();
 if($verify==$verify1){
     $sql = "select * from go_admin where username='{$username}' and password='{$password}'";
@@ -18,7 +19,7 @@ if($verify==$verify1){
     if($result){
         $_SESSION['adminName'] = $result['username'];
         $_SESSION['adminId'] = $result['id'];
-        if($autoFlag){
+        if(isset($autoFlag)&&$autoFlag==1){
             setcookie("adminId",$result['id'],time()+7*24*3600);
             setcookie("adminName",$result['username'],time()+7*24*3600);
         }

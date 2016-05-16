@@ -14,6 +14,19 @@ if(!($cates&&is_array($cates))){
 	exit;
 }
 
+if(isset($_SESSION['userName']))
+{
+	$sql = "select * from go_cart where userName = '{$_SESSION['userName']}' and isCommit = 0";
+	$cartRows=getResultNum($link,$sql);
+}elseif(isset($_COOKIE['userName']))
+{
+	$sql = "select * from go_cart where userName = '{$_COOKIE['userName']}' and isCommit = 0";
+	$cartRows=getResultNum($link,$sql);
+}else
+{
+	$cartRows=0;
+}
+
 ?>
 
 <!doctype html>
@@ -36,8 +49,24 @@ if(!($cates&&is_array($cates))){
 				 <B> <a class="collection"><img src="images/icon/collection.png">Crazy shopping</a></B>
 			    </div>
 			    <div class="rightArea">
-			    	<B><em>欢迎来到Gogo购！</em></B>
-			    	<B><a href="#">[登录]</a>&nbsp<a href="#">[注册]</a></B>
+			    	<B><em>欢迎您
+							<?php
+							if(isset($_SESSION['userName'])){
+								echo $_SESSION['userName'];
+							}elseif(isset($_COOKIE['userName'])){
+								echo $_COOKIE['userName'];
+							}
+							?>
+						</em></B>
+			    	<B>
+						<?php
+							if(!(isset($_SESSION['userName'])||isset($_COOKIE['userName']))):
+						?>
+						<a href="login.php">[登录]</a>
+						<?php
+							endif
+						?>
+						&nbsp<a href="doUserAction.php?act=logout">[退出]</a></B>
 			    </div>
 			</div>
 		</div>
@@ -48,14 +77,14 @@ if(!($cates&&is_array($cates))){
 			    </div>
 			<div class="search_box fl">
                   <span class="search_glass fl" > </span>
-				  <form action="cateDetail.php" method="post">
-				  <input type="text" class="search_text fl">
+				  <form action="product.php" method="post">
+				  <input type="text" name="product_name" class="search_text fl">
 				  <input type="submit" value="搜 索" class="search_btn fr">
 				  </form>
 			    </div>  
 			    <div class="shopCar fr">
-				<span class="shopText fl">购物车</span>
-				<span class="shopNum fl">0</span>
+				<span class="shopText fl"><a href="listCart.php">购物车</a></span>
+				<span class="shopNum fl"><?php echo $cartRows; ?></span>
 				</div>
 			</div>
 		</div>
@@ -73,12 +102,12 @@ if(!($cates&&is_array($cates))){
 					</div>
 				</div>
 				<ul class="nav fl">
-					<li><a href="#" class="active">首页</a></li>
+					<li><a href="index.php" class="active">首页</a></li>
 					<li><a href="discount.php">优惠</a></li>
 					<li><a href="hot.php">热销</a></li>
 					<li><a href="#">健康知识</a></li>
 					<li><a href="#">质量管控</a></li>
-					<li><a href="#">名品会</a></li>
+					<li><a href="order.php">订单中心</a></li>
 				</ul>
 
 			</div>
@@ -125,7 +154,7 @@ if(!($cates&&is_array($cates))){
 				?>
          		<div class="shop_item">
          			<div class="shop_img">
-         				<a href="#"><img height="200" width="187" src="../image_220/<?php echo $proImg["albumPath"]?>" alt=""></a>
+         				<a href="goodsDetail.php?id=<?php echo $pro['id'];?>"><img height="200" width="187" src="../image_220/<?php echo $proImg["albumPath"]?>" alt=""></a>
          			</div>
          			<h3><?php echo $pro['pName'];?></h3>
          			<p><?php echo $pro['iPrice'];?>元</p>
@@ -146,7 +175,7 @@ if(!($cates&&is_array($cates))){
 				?>
          		<div class="shopItem_sm">
          			<div class="shopItem_smImg">
-         				<a href="#"><img height="95" width="95" src="../image_220/<?php echo $proSmallImg["albumPath"]?>" alt=""></a>
+         				<a href="goodsDetail.php?id=<?php echo $pro_small['id'];?>"><img height="95" width="95" src="../image_220/<?php echo $proSmallImg["albumPath"]?>" alt=""></a>
          			</div>
          			<div class="shopItem_text">
          				<p><?php echo $pro_small['pName'];?></p>
@@ -162,8 +191,10 @@ if(!($cates&&is_array($cates))){
          	</div>
         </div>
 	</div>
+	<br/>
 	<?php endforeach;?>
-    <br/>
+
+
 
 	
 

@@ -40,6 +40,7 @@ function update($link,$table,$array,$where=null){
         $str.=$sep.$key."='".$val."'";
     }
     $sql = "update {$table} set {$str} ".($where==null?null:"where ".$where);
+    //echo $sql;
     mysqli_query($link,$sql);
     return mysqli_affected_rows($link);
 }
