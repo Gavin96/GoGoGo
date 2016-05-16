@@ -109,8 +109,6 @@ if(isset($_SESSION['userName']))
 		<a href="cateDetail.php?CId=<?php echo $pro['cId']; ?>"><?php echo $pro['name'];?></a>
 		<span>&nbsp;&gt;&nbsp;</span>
 		<a href="goodsDetail.php?id=$pro["id"]"><?php echo $pro['pName'];?></a>
-<!--		<span>&nbsp;&gt;&nbsp;</span>-->
-<!--		<em>每日巴氏杀菌乳73度</em>-->
 	</div>
 
 <!-- <div class="border"> -->
@@ -119,16 +117,16 @@ if(isset($_SESSION['userName']))
     	    <div class="leftArea">
     		  <div class="description_imgs">
 				  <?php
-				  	$proImgs = getProImgById($link,$pro["id"]);
+				  	$proImgs = getAllProImgById($link,$pro["id"]);
 				  ?>
     			<div class="big">
-    			  <img src="../image_220/<?php echo end($proImgs);?>" alt="">
+    			  <img src="../image_220/<?php echo $proImgs[0]['albumPath'];?>" alt="">
     		    </div>
     		    <ul class="des_smimg clearfix">
 				<?php
 					foreach($proImgs as $proImg):
 				?>
-    		     <li><a href="#"><img src="../image_50/<?php echo $proImg;?>" class="active"  alt=""></a></li>
+    		     <li><a href="#"><img src="../image_50/<?php echo $proImg['albumPath'];?>" class="active"  alt=""></a></li>
     		     <?php
 				 	endforeach;
 				 ?>

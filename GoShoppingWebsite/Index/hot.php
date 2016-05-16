@@ -105,7 +105,7 @@ if(isset($_SESSION['userName']))
                     ?>
                     <div class="shop_item" style="margin-left: 40px;margin-top:15px;border:#999 solid 1px;">
                         <div class="shop_img">
-                            <a href="#"><img height="200" width="187" src="../image_220/<?php echo $proImg["albumPath"]?>" alt=""></a>
+                            <a href="goodsDetail.php?id=<?php echo $pro['id'];?>"><img height="200" width="187" src="../image_220/<?php echo $proImg["albumPath"]?>" alt=""></a>
                         </div>
                         <h3><?php echo $pro['pName'];?></h3>
                         <p><?php echo $pro['iPrice'];?>元</p>

@@ -11,11 +11,13 @@ $link = connect();
 clearUnSubmitCart($link);
 if(isset($_SESSION['userName']))
 {
+    $userName = $_SESSION['userName'];
     $sql = "select * from go_cart where userName = '{$_SESSION['userName']}' and isCommit = 0";
     $cartRows=getResultNum($link,$sql);
     $carts=getCartByUser($link,$_SESSION['userName']);
 }elseif(isset($_COOKIE['userName']))
 {
+    $userName = $_COOKIE['userName'];
     $sql = "select * from go_cart where userName = '{$_COOKIE['userName']}' and isCommit = 0";
     $cartRows=getResultNum($link,$sql);
     $carts=getCartByUser($link,$_COOKIE['userName']);
@@ -31,9 +33,12 @@ if(isset($_SESSION['userName']))
         <title>Shop Cards</title>
         <link href="style/reset.css" rel="stylesheet" type="text/css">
         <link href="style/main.css" rel="stylesheet" type="text/css">
+        <script language="JavaScript" src="JS/goodsNum.js"></script>
+        <script src="JS/jquery-2.2.3.min.js"></script>
     </head>
 
     <body>
+
     <div class="headerBar">
         <div class="topBar">
             <div class="comWidth">
@@ -117,7 +122,7 @@ if(isset($_SESSION['userName']))
             if(($pro&&is_array($pro))):
                 $proImg = getProImgById($link,$pro["id"]);
     ?>
-
+<form action="doUserAction.php" method="post">
     <div class="shoppingCart comWidth">
         <div class="shopping_item">
             <div class="shopping_cont pb_10">
@@ -132,7 +137,7 @@ if(isset($_SESSION['userName']))
                     <div class="cart_cont clearfix">
                         <div class="cart_item t_name">
                             <div class="cart_shopInfo clearfix">
-                                <img height="95" width="95" src="../image_220/<?php echo $proImg["albumPath"]?>" alt="">
+                                <a href="goodsDetail.php?id=<?php echo $pro['id'];?>"><img height="95" width="95" src="../image_220/<?php echo $proImg["albumPath"]?>" alt=""></a>
                                 <div class="cart_shopInfo_cont">
                                     <p class="cart_link"><a href="#"><?php echo $pro['pName'];?></a></p>
                                     <p class="cart_info"><?php echo $pro['pDescription'];?></p>
@@ -140,27 +145,38 @@ if(isset($_SESSION['userName']))
                             </div>
                         </div>
                         <div class="cart_item t_price">
-                            $ <?php echo $pro['iPrice'];?>
+                            <?php echo $pro['iPrice']?>元
                         </div>
-                        <div class="cart_item t_return"> $0</div>
-                        <div class="cart_item t_num">1</div>
-                        <div class="cart_item t_subtotal t_red">$500</div>
+                        <div class="cart_item t_return"> 0元</div>
+                        <div class="cart_item t_num">
+                            <p class="p_num">
+                                <span class="sy_minus" id="min1">-</span>
+                                <input class="sy_num" id="text_box1" readonly="readonly" type="text" name="number1" value="1" />
+                                <span class="sy_plus" id="add1" type="button">+</span>
+                            </p>
+                        </div>
+                        <div class="cart_item t_subtotal t_red">500元</div>
                     </div>
                     <div class="cart_message">
-                        若有问题请留言，若有问题请留言
-
+                        
+                        <div class="cart_btnBox">
+                            <input type="hidden" name="act" value="manipulateCart">
+                            <input type="hidden" name="userName" value="<?php echo $userName;?>">
+                            <input type="hidden" name="proID" value="<?php echo $pro['id'];?>">
+                            <input type="submit"  class="cart_btn" name="delete" value="移除">
+                            <input type="submit"  class="cart_btn" name="purchase" value="购买">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    </form>
     <?php
     endif;
     endforeach;
     ?>
 
-    <div class="cart_btnBox">
-        <input type="button" class="cart_btn" value="确认提交">
-    </div>
+    
     </body>
 </html>

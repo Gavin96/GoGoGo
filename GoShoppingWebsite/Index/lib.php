@@ -119,6 +119,7 @@ function addCart($userName,$proID,$isCommit=0,$amount=0){
             $insertId = insert($link, "go_cart", $arr);
             if ($insertId > 0) {
                 $mes = "添加成功!<br/><a href='index.php'>回到首页</a>";
+                header("location:listCart.php");
             } else {
                 $mes = "添加失败!<br/><a href='index.php'>回到首页</a>";
             }
@@ -131,6 +132,7 @@ function addCart($userName,$proID,$isCommit=0,$amount=0){
                 $arr['amount'] = $amount;
                 $where=" userName='{$userName}' and proID={$proID}";
                 $rows=update($link,"go_cart",$arr,$where);
+                //$mes="here";
                 header("location:CheckCart.php");
             }else{
                 $arr['userName'] = $userName;
@@ -166,15 +168,30 @@ function checkCartExist($link,$userName,$proID){
     return $rows;
 }
 
-function delCart($user,$proID){
+function delCart($userName,$proID){
     $link = connect();
 
+    $where="proID=".$proID." and userName='{$userName}'";
 
-    $where="proID=".$proID." and user=".$user;
     if(delete($link,"go_cart",$where)){
-        $mes="删除成功!<br/><a href='listCart.php'>查看购物车</a>";
+        //$mes="删除成功!<br/><a href='listCart.php'>查看购物车</a>";
+        header("location:listCart.php");
     }else{
         $mes="删除失败！<br/><a href='listCart.php'>请重新操作</a>";
+    }
+    return $mes;
+
+}
+
+function delOrder($userName,$proID){
+    $link = connect();
+
+    $where="proID=".$proID." and userName='{$userName}'";
+
+    if(delete($link,"go_cart",$where)){
+        header("location:order.php");
+    }else{
+        $mes="删除失败！<br/><a href='order.php'>请重新操作</a>";
     }
     return $mes;
 

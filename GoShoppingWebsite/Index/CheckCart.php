@@ -158,13 +158,13 @@ $totalPrice = 0;
                                 </div>
                             </div>
                         </div>
-                        <div class="cart_item t_price"><?php echo $pro['iPrice'];?></div>
-                        <div class="cart_item t_return">0</div>
+                        <div class="cart_item t_price"><?php echo $pro['iPrice'];?>元</div>
+                        <div class="cart_item t_return">0元</div>
                         <div class="cart_item t_num"><?php echo $cart['amount'];?></div>
-                        <div class="cart_item t_subtotal t_red"><?php $totalPrice+=$cart['amount']*$pro['iPrice'];echo $cart['amount']*$pro['iPrice'];?></div>
+                        <div class="cart_item t_subtotal t_red"><?php $totalPrice+=$cart['amount']*$pro['iPrice'];echo $cart['amount']*$pro['iPrice'];?>元</div>
                     </div>
                     <div class="cart_message">
-                        若有问题请留言，若有问题请留言
+                        
                     </div>
 
             </div>
@@ -182,7 +182,7 @@ $totalPrice = 0;
             <div class="shopping_cont padding_shop clearfix">
                 <div class="cart_count fr">
                     <div class="cart_rmb">
-                        <i>总计：</i><span><?php echo $totalPrice;?></span>
+                        <i>总计：</i><span><?php echo $totalPrice;?>元</span>
 
                     </div>
                     <div class="cart_btnBox">

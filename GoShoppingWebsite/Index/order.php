@@ -7,11 +7,13 @@ $link = connect();
 
 if(isset($_SESSION['userName']))
 {
+    $userName = $_SESSION['userName'];
     $sql = "select * from go_cart where userName = '{$_SESSION['userName']}' and isCommit = 0";
     $cartRows=getResultNum($link,$sql);
     $orders=getOrderByUser($link,$_SESSION['userName']);
 }elseif(isset($_COOKIE['userName']))
 {
+    $userName = $_COOKIE['userName'];
     $sql = "select * from go_cart where userName = '{$_COOKIE['userName']}' and isCommit = 0";
     $cartRows=getResultNum($link,$sql);
     $orders=getOrderByUser($link,$_COOKIE['userName']);
@@ -88,7 +90,7 @@ if(isset($_SESSION['userName']))
                 <li><a href="hot.php">热销</a></li>
                 <li><a href="#">健康知识</a></li>
                 <li><a href="#">质量管控</a></li>
-                <li><a href="order.php">订单中心</a></li>
+                <li><a href="order.php" class="active">订单中心</a></li>
             </ul>
 
         </div>
@@ -113,7 +115,7 @@ foreach($orders as $order):
     if(($pro&&is_array($pro))):
         $proImg = getProImgById($link,$pro["id"]);
         ?>
-
+<form action="doUserAction.php" method="post">
         <div class="shoppingCart comWidth">
             <div class="shopping_item">
                 <div class="shopping_cont pb_10">
@@ -128,7 +130,7 @@ foreach($orders as $order):
                         <div class="cart_cont clearfix">
                             <div class="cart_item t_name">
                                 <div class="cart_shopInfo clearfix">
-                                    <img height="95" width="95" src="../image_220/<?php echo $proImg["albumPath"]?>" alt="">
+                                    <a href="goodsDetail.php?id=<?php echo $pro['id'];?>"><img  src="../image_220/<?php echo $proImg["albumPath"]?>" alt=""></a>
                                     <div class="cart_shopInfo_cont">
                                         <p class="cart_link"><a href="#"><?php echo $pro['pName'];?></a></p>
                                         <p class="cart_info"><?php echo $pro['pDescription'];?></p>
@@ -136,27 +138,32 @@ foreach($orders as $order):
                                 </div>
                             </div>
                             <div class="cart_item t_price">
-                                $ <?php echo $pro['iPrice'];?>
+                                 <?php echo $pro['iPrice'];?>元
                             </div>
-                            <div class="cart_item t_return"> $0</div>
-                            <div class="cart_item t_num">1</div>
-                            <div class="cart_item t_subtotal t_red">$500</div>
+                            <div class="cart_item t_return"> 0元</div>
+                            <div class="cart_item t_num"><?php echo $order['amount']?></div>
+                            <div class="cart_item t_subtotal t_red">500元</div>
                         </div>
                         <div class="cart_message">
-                            若有问题请留言，若有问题请留言
-
+                           
+                            <div class="cart_btnBox">
+                                <input type="hidden" name="act" value="manipulateOrder">
+                                <input type="hidden" name="userName" value="<?php echo $userName;?>">
+                                <input type="hidden" name="proID" value="<?php echo $pro['id'];?>">
+                                <input type="submit"  class="cart_btn" name="check" value="查看物流">
+                                <input type="submit"  class="cart_btn" name="receive" value="确认收货">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+</form>
         <?php
-    endif;
-endforeach;
-?>
+         endif;
+         endforeach;
+        ?>
 
-<div class="cart_btnBox">
-    <input type="button" class="cart_btn" value="确认提交">
-</div>
+
 </body>
 </html>

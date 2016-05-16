@@ -14,12 +14,24 @@ if($act=="logout") {
     $mes=registerUser();
 }elseif($act=="addCart"){   //在商品详情页选择加入购物车
     $mes=addCart($_REQUEST['userName'],$_REQUEST['proID']);
-}elseif($act="checkCart"){  //在商品详情页选择购买
+}elseif($act=="checkCart"){  //在商品详情页选择购买
+   
     $mes=addCart($_REQUEST['userName'],$_REQUEST['proID'],1,$_REQUEST['amount']);
-}elseif($act="modifyCart"){
+}elseif($act=="modifyCart"){
     modifyCart();
-}elseif($act="delCart"){
-    $mes=delCart($_REQUEST['user'],$_REQUEST['proID']);
+}elseif($act=="manipulateCart"){
+    
+    if(isset($_POST['delete']))
+        $mes=delCart($_REQUEST['userName'],$_REQUEST['proID']);
+    elseif(isset($_POST['purchase']))
+        $mes=addCart($_REQUEST['userName'],$_REQUEST['proID'],1,$_REQUEST['number1']);
+}elseif($act="manipulateOrder"){
+    if(isset($_POST['check']))
+    {
+        header("location:order.php");
+    }
+    elseif(isset($_POST['receive']))
+        $mes=delOrder($_REQUEST['userName'],$_REQUEST['proID']);
 }
 
 ?>

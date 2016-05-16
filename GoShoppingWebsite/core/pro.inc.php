@@ -67,8 +67,9 @@ function editPro($id){
 	}
 	$where="id={$id}";
 	$res=update($link,"go_product",$arr,$where);
+	//如果只编辑图片，那么$res=0
 	$pid=$id;
-	if($res&&$pid){
+	if(($res&&$pid)||(is_array($uploadFiles))){
 		if($uploadFiles &&is_array($uploadFiles)){
 			foreach($uploadFiles as $uploadFile){
 				$arr1['Pid']=$pid;
@@ -76,6 +77,7 @@ function editPro($id){
 				addAlbum($link,$arr1);
 			}
 		}
+
 		$mes="<p>编辑成功!</p><a href='listPro.php' target='mainFrame'>查看商品列表</a>";
 	}else{
 	if(is_array($uploadFiles)&&$uploadFiles){
