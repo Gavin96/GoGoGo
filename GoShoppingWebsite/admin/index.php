@@ -67,9 +67,7 @@ checkLogined();
                     <li>
                         <h3><span  onclick="show('menu3','change3')" id="change3" >+</span>订单管理</h3>
                         <dl id="menu3" style="display:none;">
-                            <dd><a href="#">订单修改</a></dd>
-                            <dd><a href="#">订单修改</a></dd>
-                            <dd><a href="#">订单修改</a></dd>
+                            <dd><a href="listCart.php" target="mainFrame">订单列表</a></dd>
                         </dl>
                     </li>
                     <li>

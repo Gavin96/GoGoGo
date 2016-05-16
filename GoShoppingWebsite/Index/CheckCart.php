@@ -186,7 +186,7 @@ $totalPrice = 0;
 
                     </div>
                     <div class="cart_btnBox">
-                        <input type="button" class="cart_btn" value="提交订单">
+                        <a href="doUserAction.php?act=commitCart" class="cart_btn">提交订单</a>
                     </div>
                 </div>
             </div>

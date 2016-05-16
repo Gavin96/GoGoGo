@@ -103,6 +103,19 @@ function modifyCart(){
     header("location:listCart.php");
 }
 
+function commitCart(){
+    $link=connect();
+    $arr["isCommit"] = 3;
+    if(isset($_SESSION['userName']))
+    {
+        $mes = update($link,"go_cart",$arr,"userName='{$_SESSION['userName']}'");
+    }elseif(isset($_COOKIE['userName']))
+    {
+        $mes = update($link,"go_cart",$arr,"userName='{$_COOKIE['userName']}''");
+    }
+    header("location:index.php");
+}
+
 //商品添加进购物车
 function addCart($userName,$proID,$isCommit=0,$amount=0){
     if($userName=="none")
