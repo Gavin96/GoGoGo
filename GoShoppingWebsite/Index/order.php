@@ -7,12 +7,12 @@ $link = connect();
 
 if(isset($_SESSION['userName']))
 {
-    $sql = "select * from go_cart where userName = '{$_SESSION['userName']}'";
+    $sql = "select * from go_cart where userName = '{$_SESSION['userName']}' and isCommit = 0";
     $cartRows=getResultNum($link,$sql);
     $orders=getOrderByUser($link,$_SESSION['userName']);
 }elseif(isset($_COOKIE['userName']))
 {
-    $sql = "select * from go_cart where userName = '{$_COOKIE['userName']}'";
+    $sql = "select * from go_cart where userName = '{$_COOKIE['userName']}' and isCommit = 0";
     $cartRows=getResultNum($link,$sql);
     $orders=getOrderByUser($link,$_COOKIE['userName']);
 }else

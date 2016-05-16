@@ -6,7 +6,20 @@ $link = connect();
 if(isset($_POST["product_name"]))
     //print_r($_POST["product_name"]);
     $pros=getAllProByName($link,$_POST["product_name"]);
-
+if(isset($_SESSION['userName']))
+{
+    $sql = "select * from go_cart where userName = '{$_SESSION['userName']}' and isCommit = 0";
+    $cartRows=getResultNum($link,$sql);
+    $orders=getOrderByUser($link,$_SESSION['userName']);
+}elseif(isset($_COOKIE['userName']))
+{
+    $sql = "select * from go_cart where userName = '{$_COOKIE['userName']}' and isCommit = 0";
+    $cartRows=getResultNum($link,$sql);
+    $orders=getOrderByUser($link,$_COOKIE['userName']);
+}else
+{
+    $cartRows=0;
+}
 ?>
 
 <!doctype html>
@@ -60,8 +73,8 @@ if(isset($_POST["product_name"]))
                 </form>
             </div>
             <div class="shopCar fr">
-                <span class="shopText fl">购物车</span>
-                <span class="shopNum fl">0</span>
+                <span class="shopText fl"><a href="listCart.php">购物车</a></span>
+                <span class="shopNum fl"><?php echo $cartRows; ?></span>
             </div>
         </div>
     </div>

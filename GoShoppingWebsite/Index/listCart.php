@@ -8,15 +8,15 @@
 
 require_once '../include.php';
 $link = connect();
-
+clearUnSubmitCart($link);
 if(isset($_SESSION['userName']))
 {
-    $sql = "select * from go_cart where userName = '{$_SESSION['userName']}'";
+    $sql = "select * from go_cart where userName = '{$_SESSION['userName']}' and isCommit = 0";
     $cartRows=getResultNum($link,$sql);
     $carts=getCartByUser($link,$_SESSION['userName']);
 }elseif(isset($_COOKIE['userName']))
 {
-    $sql = "select * from go_cart where userName = '{$_COOKIE['userName']}'";
+    $sql = "select * from go_cart where userName = '{$_COOKIE['userName']}' and isCommit = 0";
     $cartRows=getResultNum($link,$sql);
     $carts=getCartByUser($link,$_COOKIE['userName']);
 }else

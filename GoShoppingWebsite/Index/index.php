@@ -16,11 +16,11 @@ if(!($cates&&is_array($cates))){
 
 if(isset($_SESSION['userName']))
 {
-	$sql = "select * from go_cart where userName = '{$_SESSION['userName']}'";
+	$sql = "select * from go_cart where userName = '{$_SESSION['userName']}' and isCommit = 0";
 	$cartRows=getResultNum($link,$sql);
 }elseif(isset($_COOKIE['userName']))
 {
-	$sql = "select * from go_cart where userName = '{$_COOKIE['userName']}'";
+	$sql = "select * from go_cart where userName = '{$_COOKIE['userName']}' and isCommit = 0";
 	$cartRows=getResultNum($link,$sql);
 }else
 {
@@ -154,7 +154,7 @@ if(isset($_SESSION['userName']))
 				?>
          		<div class="shop_item">
          			<div class="shop_img">
-         				<a href="#"><img height="200" width="187" src="../image_220/<?php echo $proImg["albumPath"]?>" alt=""></a>
+         				<a href="goodsDetail.php?id=<?php echo $pro['id'];?>"><img height="200" width="187" src="../image_220/<?php echo $proImg["albumPath"]?>" alt=""></a>
          			</div>
          			<h3><?php echo $pro['pName'];?></h3>
          			<p><?php echo $pro['iPrice'];?>元</p>
@@ -175,7 +175,7 @@ if(isset($_SESSION['userName']))
 				?>
          		<div class="shopItem_sm">
          			<div class="shopItem_smImg">
-         				<a href="#"><img height="95" width="95" src="../image_220/<?php echo $proSmallImg["albumPath"]?>" alt=""></a>
+         				<a href="goodsDetail.php?id=<?php echo $pro_small['id'];?>"><img height="95" width="95" src="../image_220/<?php echo $proSmallImg["albumPath"]?>" alt=""></a>
          			</div>
          			<div class="shopItem_text">
          				<p><?php echo $pro_small['pName'];?></p>

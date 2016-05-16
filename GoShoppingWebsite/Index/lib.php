@@ -68,8 +68,8 @@ function registerUser()
     return $mes;
 }
 
-//得到用户的所有未完成订单，此时isCommit = 2
-//得到用户的所有完成订单，此时isCommit = 3
+//得到用户的所有未收货订单，此时isCommit = 2
+//得到用户的所有收货订单，此时isCommit = 3
 function getOrderByUser($link,$userName){
 
     $sql="select * from go_cart where userName = '{$userName}' and isCommit = 2
@@ -79,13 +79,13 @@ function getOrderByUser($link,$userName){
     return $rows;
 }
 
+//isCommit=0,表示商品加入购物车
+//isCommit=1,表示商品已经生成待提交订单
 function getCartByUser($link,$userName){
 
-    $sql="select * from go_cart where userName = '{$userName}'";
+    $sql="select * from go_cart where userName = '{$userName}' and isCommit = 0";
     $rows=fetchAll($link,$sql);
 
-    //$sql="select p.id,p.pName,p.pIndex,p.pNum,p.mPrice,p.iPrice,p.pDescription,p.pTime,p.isShow,p.isHot,c.name,p.cId from go_product as p join go_cate c on p.cId=c.id where p.cId={$rows["proID"]}";
-    //$cart=fetchAll($link,$sql);
     return $rows;
 }
 
@@ -99,24 +99,71 @@ function getCommittedCartByUser($link,$userName){
 
 function modifyCart(){
     $link=connect();
-    $arr["isCommit"]=0;
-    $arr["amount"]=0;
-    $rows=update($link,"go_cart",$arr);
+    clearUnSubmitCart($link);
     header("location:listCart.php");
 }
 
 //商品添加进购物车
-function addCart(){
-    $link = connect();
-    $arr = $_POST;
-    unset($arr['act']);
-    $insertId = insert($link,"go_cart",$arr);
-    if($insertId>0){
-        $mes = "添加成功!<br/><a href='index.php'>回到首页</a>";
-    }else{
-        $mes = "添加失败!<br/><a href='index.php'>回到首页</a>";
+function addCart($userName,$proID,$isCommit=0,$amount=0){
+    if($userName=="none")
+        alertMes("请先登录","login.php");
+    else {
+        $link = connect();
+        if ($isCommit == 0) {
+
+
+            $arr['userName'] = $userName;
+            $arr['proID'] = $proID;
+            $arr['amount'] = 0;
+            $arr['isCommit'] = $isCommit;
+            $insertId = insert($link, "go_cart", $arr);
+            if ($insertId > 0) {
+                $mes = "添加成功!<br/><a href='index.php'>回到首页</a>";
+            } else {
+                $mes = "添加失败!<br/><a href='index.php'>回到首页</a>";
+            }
+        }elseif($isCommit == 1){
+            clearUnSubmitCart($link);
+            $res=checkCartExist($link,$userName,$proID);
+            if($res){
+
+                $arr['isCommit'] = $isCommit;
+                $arr['amount'] = $amount;
+                $where=" userName='{$userName}' and proID={$proID}";
+                $rows=update($link,"go_cart",$arr,$where);
+                header("location:CheckCart.php");
+            }else{
+                $arr['userName'] = $userName;
+                $arr['proID'] = $proID;
+                $arr['amount'] = $amount;
+                $arr['isCommit'] = $isCommit;
+                $insertId = insert($link, "go_cart", $arr);
+                if ($insertId > 0) {
+                    $mes = "添加成功!<br/><a href='index.php'>回到首页</a>";
+                    header("location:CheckCart.php");
+                } else {
+
+                    $mes = "添加失败!<br/><a href='index.php'>回到首页</a>";
+                }
+            }
+        }
+        return $mes;
+
     }
-    return mes;
+}
+
+//将iscommit=1但为提交订单的cart，isCommit设为0
+function clearUnSubmitCart($link){
+    $arr['isCommit'] = 0;
+    $where=" isCommit=1";
+    $rows=update($link,"go_cart",$arr,$where);
+}
+
+function checkCartExist($link,$userName,$proID){
+    $sql="select * from go_cart where userName='{$userName}' and proID={$proID}";
+
+    $rows=fetchAll($link,$sql);
+    return $rows;
 }
 
 function delCart($user,$proID){

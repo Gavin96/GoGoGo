@@ -109,7 +109,7 @@
 .footer{margin-top: 450px;height: 200px; text-align: center;background-color: #D4D4D4;line-height: 24px;padding: 50px 0;}
 .footer i{font-style: normal;margin: 0 5px;}
 .footer a{color: #000;}
-.footer a:hover{color: #F60;};
+.footer a:hover{color: #F60;}
 
 /*购物车用*/
 /*1.topBar*/
@@ -137,7 +137,7 @@
 .input_s{width:64px;}
 .input_s2{width:84px;}
 .jian{padding:0 3px;}
-.affirm{width:114px; height:28px;  background:url(../images/sh_btn.jpg) left top no-repeat;}
+.affirm{width:114px; height:28px;   }
 .radio{position:relative; top:3px; margin-right:4px;}
 .backCar{float:right; font-size:12px; font-family:"宋体"; margin-right:33px; color:#3377FF;}
 .backCar:hover{text-decoration:underline;}
@@ -156,7 +156,7 @@
 .cart_cont .t_price,
 .cart_cont .t_return,
 .cart_cont .t_num,
-.cart_cont .t_subtotal{line-height:37px;}
+.cart_cont .t_subtotal{line-height:40px;}
 .cart_shopInfo img{width:90px; height:100px; display:block; float:left;}
 .cart_shopInfo_cont{padding-left:90px; font-size:12px;}
 .cart_link{line-height:37px; margin-bottom:30px;}
@@ -171,6 +171,132 @@
 .cart_rmb i{font-size:14px; color:#999; font-style:normal;}
 .cart_rmb span{font:bold 24px/1 Verdana; color:red;}
 .cart_btnBox{text-align:right;}
-.cart_btn{width:165px; height:33px; background-color:#E50007; font:18px/33px "Microsoft YaHei", "微软雅黑"; color:#FFF;}
+.cart_btn{width:80px; height:33px; background-color:
+        #7fffd4; font:18px/33px "Microsoft YaHei", "微软雅黑"; color:#FFF;}
 
 .hr_25{height:25px;}
+
+/*商品数量控制部分*/
+p.p_num {
+    width: 78px;
+    height: 24px;
+    border-top: solid 1px #d0d0d0;
+    position: relative;
+    border-bottom: solid 1px #d0d0d0;
+    margin-top: 10px;
+}
+
+span.sy_minus,span.sy_plus {
+    width: 15px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    display: block;
+    position: absolute;
+    top: 0px;
+    font-size: 14px;
+    border: solid 1px #d0d0d0;
+    background: #ebebeb;
+    cursor: pointer;
+    border-top: none;
+    border-bottom: none;
+}
+
+span.sy_minus {
+    left: 0px;
+}
+
+span.sy_plus {
+    right: 0px;
+}
+
+input.sy_num {
+    width: 44px;
+    height: 18px;
+    line-height: 24px;
+    text-align: center;
+    position: absolute;
+    top: 0px;
+    left: 17px;
+}
+
+span.sy_num {
+    padding: 5px 8px;
+    border: solid 1px #d0d0d0;
+    border-left: none;
+    border-right: none;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+/*商品详情页*/
+/*商品详情*/
+.grey{background-color: #FFEFD5;}
+/*.userPosition{font-family:"Microsoft YaHei","微软雅黑";font-size: 12px;}*/
+.userPosition{font-size: 0;font-family: Verdana;margin-top: 25px;margin-bottom: 15px;}
+.userPosition em,
+.userPosition span,
+.userPosition strong,
+.userPosition a{font-size: 12px;}
+.userPosition em{font-style:normal;}
+.userPosition a:hover{text-decoration: underline;}
+.description_info{background-color:#FFF;height: 558px;}
+.description_info{border:#CCC solid 1px;}
+/*.description_info .des_smimg{border:#CCC solid 1px;}*/
+.description .leftArea{width: 307px;}
+/*.description .leftArea .des_smimg{border:#CCC solid 1px;}*/
+.description .rightArea{width: 688px;border-left:#CCC solid 1px;}
+
+/*图片展示*/
+.description_imgs .big{height: 310px; text-align: center;}
+.description img{margin-top: 10px;margin-right: 0px;}
+.des_smimg{height:50px;padding-left: 1px;width: 265px;margin: 0 auto;}
+.des_smimg li{float: left;margin-left: -1px;}
+.des_smimg img{border: #CCC solid 1px;}
+.des_smimg .active{border-color: #317EE7;position: relative;}
+.des_content{padding: 10px;}
+.des_content .dise{background-color: #F2F2F2;}
+.des_content h3{font-family:"Microsoft YaHei","微软雅黑";font-size: 16px;line-height: 22px;padding: 13px 25px;}
+.des_content .dl{margin-bottom: 8px;background-color: #F2F2F2;}
+.des_content .dt{width: 100px;color: #666;text-indent: 25px;line-height: 28px;font-family:"Microsoft YaHei","微软雅黑";}
+.des_content .dd{/*float:auto;*/padding-left: 75px;font-size: 18px;/*line-height: 25px;*/}
+.des_content .dd1{/*float:auto;*/padding-left: 100px;font-size: 18px;/*line-height: 25px;*/}
+.des_content .dd2{/*float:auto;*/padding-left: 100px;font-size: 18px;/*line-height: 25px;*/}
+.des_content .k1{float: left; line-height: 28px;}
+.des_money{font-size: 18px;color: #F30;font-family:Verdana;}
+.des_money em{font-style: normal; font-size: 12px;}
+/*.des_content .dd{float: left;color: #666;text-indent: 25px;line-height: 28px;}*/
+/*送货*/
+.des_position{margin-top: -8px;/*background-color: #F2F2F2;*/padding: 15px 0; }
+.theGoods{line-height: 24px;padding-left: 20px;font-size: 12px;font-family:Verdana;}
+.des_content .colorSelect{float: left; line-height: 35px;}
+.des_item{float: left;color: #666;padding: 3px 10px;border: #CCC solid 1px;background-color: #FFF;margin-right: 10px;}
+.des_item_active{border-color: #317EE7;color: #333;}
+.des_content .typeSelect{line-height: 35px;}
+.des_item_sm{float: left;padding: 0px 0px;margin-bottom: 8px;}
+/*数量*/
+.des_number{/*padding-left: 20px;*/border:#B2B2B2 solid 1px;height: 32px;width: 82px;}
+.des_number div{height: 100%;float: left;}
+.reduction,.plus{width:15px;background-color: #79CDCD;line-height: 32px;text-align: center;color: #333;}
+/*.reduction{border-left: #CCC solid 1px;margin-left: -1px;}*/
+/*.plus{border-right: #CCC solid 1px;/*margin-left: -1px;} */
+.des_input{/*margin-left: 10px;*/width: 40px;border-right: #CCC solid 1px;border-left: #CCC solid 1px;padding:0 5px;}
+.des_input input{width: 100%;height: 100%;line-height: 32px\9;text-align: center; }
+.des_content .des_num{width: 140px;line-height: 32px;}
+/*已选择*/
+.des_select{font-weight: bold;margin-bottom:12px;margin-top: 22px;text-indent: 17px;}
+.des_select span{color: #0479C9;}
+.shop_buy{text-align: center;}
+.shopping_btn{display: inline-block;width: 180px;height: 35px;background: url(../images/icon/shopping_btn.png)
+  left top no-repeat;}
+.buy_btn{display: inline-block;width: 180px;height: 35px;background: url(../images/icon/buy_btn.png)
+  left top no-repeat;}
+.line{width: 1px; height: 90px;overflow: hidden;background-color: #CCC;display: inline-block;margin:0 80px;}
+.line,.shopping_btn,.buy_btn{vertical-align: middle;}

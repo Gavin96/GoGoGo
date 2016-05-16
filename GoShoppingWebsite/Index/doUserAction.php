@@ -12,8 +12,10 @@ if($act=="logout") {
     logoutUser();
 }elseif($act=="addUser"){
     $mes=registerUser();
-}elseif($act=="addCart"){
-    $mes=addCart();
+}elseif($act=="addCart"){   //在商品详情页选择加入购物车
+    $mes=addCart($_REQUEST['userName'],$_REQUEST['proID']);
+}elseif($act="checkCart"){  //在商品详情页选择购买
+    $mes=addCart($_REQUEST['userName'],$_REQUEST['proID'],1,$_REQUEST['amount']);
 }elseif($act="modifyCart"){
     modifyCart();
 }elseif($act="delCart"){
