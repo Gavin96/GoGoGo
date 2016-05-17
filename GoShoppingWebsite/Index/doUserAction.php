@@ -19,6 +19,8 @@ if($act=="logout") {
     $mes=addCart($_REQUEST['userName'],$_REQUEST['proID'],1,$_REQUEST['amount']);
 }elseif($act=="modifyCart"){
     modifyCart();
+}elseif($act=="commitCart"){
+    commitCart();
 }elseif($act=="manipulateCart"){
     
     if(isset($_POST['delete']))

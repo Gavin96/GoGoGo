@@ -177,3 +177,13 @@ function editUser($id){
 function checkUser($link,$sql){
     return fetchOne($link,$sql);
 }
+
+function finishCart($id){
+    $link = connect();
+    $sql = "update go_cart set isCommit=4 where id ={$id}";
+    $url = "../admin/listCart.php";
+    if(mysqli_query($link,$sql))
+        echo '<script>alert("提交成功！");location.href="'.$url.'"</script>';
+    else
+        echo '<script>alert("修改失败！");location.href="'.$url.'"</script>';
+}
