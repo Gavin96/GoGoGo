@@ -170,7 +170,7 @@ $totalPrice = 0;
             </div>
         </div>
 
-        <div class="hr_25"></div>
+        <div class="hr_25" style="clear:both;"></div>
 
         <?php
             endif;
@@ -195,7 +195,6 @@ $totalPrice = 0;
 
 </form>
 <div class="hr_25"></div>
-
 
 
 

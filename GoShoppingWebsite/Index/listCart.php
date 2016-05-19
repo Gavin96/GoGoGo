@@ -137,7 +137,7 @@ if(isset($_SESSION['userName']))
                     <div class="cart_cont clearfix">
                         <div class="cart_item t_name">
                             <div class="cart_shopInfo clearfix">
-                                <a href="goodsDetail.php?id=<?php echo $pro['id'];?>"><img height="95" width="95" src="../image_220/<?php echo $proImg["albumPath"]?>" alt=""></a>
+                                <a href="goodsDetail.php?id=<?php echo $pro['id'];?>"><img src="../image_220/<?php echo $proImg["albumPath"]?>" alt=""></a>
                                 <div class="cart_shopInfo_cont">
                                     <p class="cart_link"><a href="#"><?php echo $pro['pName'];?></a></p>
                                     <p class="cart_info"><?php echo $pro['pDescription'];?></p>
@@ -150,9 +150,9 @@ if(isset($_SESSION['userName']))
                         <div class="cart_item t_return"> 0元</div>
                         <div class="cart_item t_num">
                             <p class="p_num">
-                                <span class="sy_minus" id="min1">-</span>
+                                <span class="sy_minus" id="min1" onclick="decrease(this)">-</span>
                                 <input class="sy_num" id="text_box1" readonly="readonly" type="text" name="number1" value="1" />
-                                <span class="sy_plus" id="add1" type="button">+</span>
+                                <span class="sy_plus" id="add1"  onclick="increase(this)">+</span>
                             </p>
                         </div>
                         <div class="cart_item t_subtotal t_red">500元</div>
@@ -177,6 +177,18 @@ if(isset($_SESSION['userName']))
     endforeach;
     ?>
 
+    <div class="footer" style="margin-top:100px;">
+        <p><a href="#">Go简介</a><i>|</i><a href="#">招贤纳士</a><i>|</i><a href="#">联系我们</a><i>|</i>客服热线：021-8888-8888</p>
+        <p>Copyright &copy; 2016 - 2020 同济大学版权所有</p>
+        <p class="weblogo">
+            <br/> <br/>
+            <a href="#"><img src="images/banner/weblogo.png" alt="logo"></a>&nbsp;
+<!--            <a href="#"><img src="images/banner/weblogo.png" alt="logo"></a>&nbsp;-->
+<!--            <a href="#"><img src="images/banner/weblogo.png" alt="logo"></a>&nbsp;-->
+<!--            <a href="#"><img src="images/banner/weblogo.png" alt="logo"></a>-->
+        </p>
+
+    </div>
     
     </body>
 </html>
