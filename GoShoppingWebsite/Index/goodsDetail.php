@@ -3,7 +3,7 @@
 
 require_once '../include.php';
 $link = connect();
-
+$pro = null;
 if(isset($_GET["id"]))
 	$pro=getProById($link,$_GET["id"]);
 if(isset($_SESSION['userName']))
@@ -34,6 +34,8 @@ if(isset($_SESSION['userName']))
 <title>产品详情</title>
 <link href="style/reset.css" rel="stylesheet" type="text/css">
 <link href="style/main.css" rel="stylesheet" type="text/css">
+<script language="JavaScript" src="JS/goodsNum.js"></script>
+<script src="JS/jquery-2.2.3.min.js"></script>
 </head>
 
 <body class="grey">
@@ -108,7 +110,7 @@ if(isset($_SESSION['userName']))
 		<span>&nbsp;&gt;&nbsp;</span>
 		<a href="cateDetail.php?CId=<?php echo $pro['cId']; ?>"><?php echo $pro['name'];?></a>
 		<span>&nbsp;&gt;&nbsp;</span>
-		<a href="goodsDetail.php?id=$pro["id"]"><?php echo $pro['pName'];?></a>
+		<a href="goodsDetail.php?id=$pro['id']"><?php echo $pro['pName'];?></a>
 	</div>
 
 <!-- <div class="border"> -->
@@ -120,7 +122,7 @@ if(isset($_SESSION['userName']))
 				  	$proImgs = getAllProImgById($link,$pro["id"]);
 				  ?>
     			<div class="big">
-    			  <img src="../image_220/<?php echo $proImgs[0]['albumPath'];?>" alt="">
+    			  <img height="280" width="240" src="../image_220/<?php echo $proImgs[0]['albumPath'];?>" alt="">
     		    </div>
     		    <ul class="des_smimg clearfix">
 				<?php
@@ -133,13 +135,16 @@ if(isset($_SESSION['userName']))
     		    </ul>
     	      </div>
             </div>           
-s    		<form action="doUserAction.php" method="post">
+    		<form action="doUserAction.php" method="post">
     	      <div class="rightArea">
     	         <div class="des_content">
     	         <div class="dise">
-    	         	<h3>
-						<?php echo $pro['pName'];?>
-    	         	</h3>
+
+					 <div class="dl clearfix">
+						 <div class="dt k1">商品名称：</div>
+						 <div class="dd clearfix"><?php echo $pro['pName'];?></div>
+					 </div>
+
     	         	<div class="dl clearfix">
     	         		<div class="dt k1">价格：</div>
     	         		<div class="dd"><span class="des_money"><em>¥</em><?php echo $pro['iPrice'];?></span></div>
@@ -156,10 +161,10 @@ s    		<form action="doUserAction.php" method="post">
 					 </div>
 
     	         	<div class="des_position">
-<!--    	         	    <div class="dl clearfix">-->
-<!--    	         			<div class="dt k1">送到：</div>-->
-<!--    	         			<div class="dd clearfix">地址待定<span class="theGoods">【有货，可当日出货】</span></div>-->
-<!--    	         		</div>-->
+    	         	    <div class="dl clearfix">
+    	         			<div class="dt k1">库存：</div>
+    	         			<div class="dd clearfix"><?php echo $pro['pNum'];?>件<span class="theGoods"></span></div>
+    	         		</div>
 <!--    	         		<div class="dl clearfix">-->
 <!--    	         			<div class="dt colorSelect">选择颜色：</div>-->
 <!--    	         			<div class="dd">-->
@@ -203,11 +208,11 @@ s    		<form action="doUserAction.php" method="post">
     	         			<div class="dt des_num">已选择数量：</div>
     	         			<div class="dd dd2 clearfix">
     	         				<div class="des_number">
-    	         					<div class="reduction">-</div>
+    	         					<div class="reduction"><span onclick="decrease2(this)" >-</span></div>
     	         					<div class="des_input">
-    	         					  <input type="text" name="amount" id="amount"/>
+    	         					  <input type="text" name="amount" id="amount" value="0"/>
     	         					</div>
-    	         					<div class="plus">+</div>
+    	         					<div class="plus" ><span onclick="increase2(this)">+</span></div>
     	         				</div>
     	         			</div>
     	         		</div>
@@ -215,7 +220,7 @@ s    		<form action="doUserAction.php" method="post">
 
                 </div>
     	         	<div class="des_select">
-    	         		已选择 <span><?php echo $pro['pName'];?></span>
+    	         		已选择 <span><?php echo $pro['pName'];?>：<span class="span_amount">0</span>件</span>
     	         	</div>
     	         	<div class="shop_buy">
     	         		<a href="doUserAction.php?act=addCart&userName=<?php echo $userName;?>&proID=<?php echo $pro['id'];?>" class="shopping_btn"></a>
@@ -234,15 +239,15 @@ s    		<form action="doUserAction.php" method="post">
         </div>
 	</div>
 <!-- <div> -->
-    <div class="footer">
-    	<p><a href="#">同济大学</a><i>|</i><a href="#">软件学院</a><i>|</i><a href="#">2013级</a><i>|</i><a href="#">专业综合</a></p>
-    	<p>BlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBla</p>
+    <div class="footer" style="margin-top:100px;">
+		<p><a href="#">Go简介</a><i>|</i><a href="#">招贤纳士</a><i>|</i><a href="#">联系我们</a><i>|</i>客服热线：021-8888-8888</p>
+		<p>Copyright &copy; 2016 - 2020 同济大学版权所有</p>
     	<p class="weblogo">
     	   <br/> <br/>
     	   <a href="#"><img src="images/banner/weblogo.png" alt="logo"></a>&nbsp;
-    	   <a href="#"><img src="images/banner/weblogo.png" alt="logo"></a>&nbsp;
-           <a href="#"><img src="images/banner/weblogo.png" alt="logo"></a>&nbsp;
-           <a href="#"><img src="images/banner/weblogo.png" alt="logo"></a>
+<!--    	   <a href="#"><img src="images/banner/weblogo.png" alt="logo"></a>&nbsp;-->
+<!--           <a href="#"><img src="images/banner/weblogo.png" alt="logo"></a>&nbsp;-->
+<!--           <a href="#"><img src="images/banner/weblogo.png" alt="logo"></a>-->
        </p>
 
     </div>

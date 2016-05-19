@@ -136,8 +136,8 @@ if(isset($_SESSION['userName']))
 		<div class="leftArea">
          <div class="banner_bar banner_sm">
 			<ul class="imgBox">
-				<li><a href="#"><img src="images/banner/banner_sm_01.png" alt="banner"></a></li>
-				<li><a href="#"><img src="images/banner/banner_sm_02.png" alt="banner"></a></li>
+				<li><a href="cateDetail.php?CId=<?php echo $cate["id"]; ?>"><img src="images/banner/banner_sm_01.png" alt="banner"></a></li>
+				<li><a href="cateDetail.php?CId=<?php echo $cate["id"]; ?>"><img src="images/banner/banner_sm_02.png" alt="banner"></a></li>
 			</ul>
 			<div class="imgNum">
 				<a href="#" class="active"></a> <a href="#"></a>
@@ -175,11 +175,11 @@ if(isset($_SESSION['userName']))
 				?>
          		<div class="shopItem_sm">
          			<div class="shopItem_smImg">
-         				<a href="goodsDetail.php?id=<?php echo $pro_small['id'];?>"><img height="95" width="95" src="../image_220/<?php echo $proSmallImg["albumPath"]?>" alt=""></a>
+         				<a href="goodsDetail.php?id=<?php echo $pro_small['id'];?>"><img height="114" width="95" src="../image_220/<?php echo $proSmallImg["albumPath"]?>" alt=""></a>
          			</div>
          			<div class="shopItem_text">
          				<p><?php echo $pro_small['pName'];?></p>
-         				<h3>￥<?php echo $pro_small['iPrice'];?>.00</h3>
+         				<h3><?php echo $pro_small['iPrice'];?>元</h3>
          			</div>
          		</div>
 				<?php
@@ -199,14 +199,14 @@ if(isset($_SESSION['userName']))
 	
 
     <div class="footer">
-    	<p><a href="#">同济大学</a><i>|</i><a href="#">软件学院</a><i>|</i><a href="#">2013级</a><i>|</i><a href="#">专业综合</a></p>
-    	<p>BlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBla</p>
+    	<p><a href="#">Go简介</a><i>|</i><a href="#">招贤纳士</a><i>|</i><a href="#">联系我们</a><i>|</i>客服热线：021-8888-8888</p>
+    	<p>Copyright &copy; 2016 - 2020 同济大学版权所有</p>
     	<p class="weblogo">
     	   <br/> <br/>
     	   <a href="#"><img src="images/banner/weblogo.png" alt="logo"></a>&nbsp;
-    	   <a href="#"><img src="images/banner/weblogo.png" alt="logo"></a>&nbsp;
-           <a href="#"><img src="images/banner/weblogo.png" alt="logo"></a>&nbsp;
-           <a href="#"><img src="images/banner/weblogo.png" alt="logo"></a>
+<!--    	   <a href="#"><img src="images/banner/weblogo.png" alt="logo"></a>&nbsp;-->
+<!--           <a href="#"><img src="images/banner/weblogo.png" alt="logo"></a>&nbsp;-->
+<!--           <a href="#"><img src="images/banner/weblogo.png" alt="logo"></a>-->
        </p>
 
     </div>

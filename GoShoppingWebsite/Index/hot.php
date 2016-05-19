@@ -124,14 +124,14 @@ if(isset($_SESSION['userName']))
 
 
 <div class="footer">
-    <p><a href="#">同济大学</a><i>|</i><a href="#">软件学院</a><i>|</i><a href="#">2013级</a><i>|</i><a href="#">专业综合</a></p>
-    <p>BlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBlaBla</p>
+    <p><a href="#">Go简介</a><i>|</i><a href="#">招贤纳士</a><i>|</i><a href="#">联系我们</a><i>|</i>客服热线：021-8888-8888</p>
+    <p>Copyright &copy; 2016 - 2020 同济大学版权所有</p>
     <p class="weblogo">
         <br/> <br/>
         <a href="#"><img src="images/banner/weblogo.png" alt="logo"></a>&nbsp;
-        <a href="#"><img src="images/banner/weblogo.png" alt="logo"></a>&nbsp;
-        <a href="#"><img src="images/banner/weblogo.png" alt="logo"></a>&nbsp;
-        <a href="#"><img src="images/banner/weblogo.png" alt="logo"></a>
+<!--        <a href="#"><img src="images/banner/weblogo.png" alt="logo"></a>&nbsp;-->
+<!--        <a href="#"><img src="images/banner/weblogo.png" alt="logo"></a>&nbsp;-->
+<!--        <a href="#"><img src="images/banner/weblogo.png" alt="logo"></a>-->
     </p>
 
 </div>
