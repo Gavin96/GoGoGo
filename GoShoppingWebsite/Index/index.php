@@ -107,7 +107,7 @@ if(isset($_SESSION['userName']))
 					<li><a href="hot.php">热销</a></li>
 					<li><a href="#">健康知识</a></li>
 					<li><a href="#">质量管控</a></li>
-					<li><a href="order.php">订单中心</a></li>
+					<li><a href="listOrder.php">订单中心</a></li>
 				</ul>
 
 			</div>

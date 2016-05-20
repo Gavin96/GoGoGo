@@ -8,13 +8,13 @@ $link = connect();
 if(isset($_SESSION['userName']))
 {
     $userName = $_SESSION['userName'];
-    $sql = "select * from go_cart where userName = '{$_SESSION['userName']}' and isCommit = 0";
+    $sql = "select * from go_cart where userName = '{$_SESSION['userName']}' and isCommit = 4";
     $cartRows=getResultNum($link,$sql);
     $orders=getOrderByUser($link,$_SESSION['userName']);
 }elseif(isset($_COOKIE['userName']))
 {
     $userName = $_COOKIE['userName'];
-    $sql = "select * from go_cart where userName = '{$_COOKIE['userName']}' and isCommit = 0";
+    $sql = "select * from go_cart where userName = '{$_COOKIE['userName']}' and isCommit = 4";
     $cartRows=getResultNum($link,$sql);
     $orders=getOrderByUser($link,$_COOKIE['userName']);
 }else
@@ -90,7 +90,7 @@ if(isset($_SESSION['userName']))
                 <li><a href="hot.php">热销</a></li>
                 <li><a href="#">健康知识</a></li>
                 <li><a href="#">质量管控</a></li>
-                <li><a href="order.php" class="active">订单中心</a></li>
+                <li><a href="listOrder.php" class="active">订单中心</a></li>
             </ul>
 
         </div>

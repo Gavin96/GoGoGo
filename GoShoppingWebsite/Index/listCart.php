@@ -97,7 +97,7 @@ if(isset($_SESSION['userName']))
                     <li><a href="hot.php">热销</a></li>
                     <li><a href="#">健康知识</a></li>
                     <li><a href="#">质量管控</a></li>
-                    <li><a href="order.php">订单中心</a></li>
+                    <li><a href="listOrder.php">订单中心</a></li>
                 </ul>
 
             </div>
@@ -145,7 +145,7 @@ if(isset($_SESSION['userName']))
                             </div>
                         </div>
                         <div class="cart_item t_price">
-                            <?php echo $pro['iPrice']?>元
+                            <span class="show_per_price"><?php echo $pro['iPrice']?></span>元
                         </div>
                         <div class="cart_item t_return"> 0元</div>
                         <div class="cart_item t_num">
@@ -155,7 +155,7 @@ if(isset($_SESSION['userName']))
                                 <span class="sy_plus" id="add1"  onclick="increase(this)">+</span>
                             </p>
                         </div>
-                        <div class="cart_item t_subtotal t_red">500元</div>
+                        <div class="cart_item t_subtotal t_red"><span class="show_total_price"><?php echo $pro['iPrice']?></span>元</div>
                     </div>
                     <div class="cart_message">
                         

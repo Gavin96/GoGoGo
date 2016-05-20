@@ -1,7 +1,7 @@
 <?php
 require_once '../include.php';
 $link = connect();
-//$rows=getAllAdmin($link);
+$rows=getAllAdmin($link);
 $pageSize=2;
 $page=$_REQUEST['page']?(int)$_REQUEST['page']:1;
 $rows=getAdminByPage($page,$pageSize);
@@ -51,11 +51,11 @@ ob_clean();
             </tr>
         <?php endforeach;?>
 <!--        全局变量，定义在admin.inc.php中-->
-<!--        --><?php //if($totalRows>$pageSize):?>
-<!--            <tr>-->
-<!--                <td colspan="4">--><?php //echo showPage($page, $totalPage);?><!--</td>-->
-<!--            </tr>-->
-<!--        --><?php //endif;?>
+        <?php if($totalRows>$pageSize):?>
+            <tr>
+                <td colspan="4"><?php echo showPage($page, $totalPage);?></td>
+            </tr>
+        <?php endif;?>
         </tbody>
     </table>
 </div>

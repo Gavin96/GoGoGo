@@ -72,8 +72,8 @@ function registerUser()
 //得到用户的所有收货订单，此时isCommit = 3
 function getOrderByUser($link,$userName){
 
-    $sql="select * from go_cart where userName = '{$userName}' and isCommit = 2
-          union select * from go_cart where userName = '{$userName}' and isCommit = 3";
+    $sql="select * from go_cart where userName = '{$userName}' and isCommit = 3
+          union select * from go_cart where userName = '{$userName}' and isCommit = 4";
     $rows=fetchAll($link,$sql);
     
     return $rows;
@@ -202,9 +202,9 @@ function delOrder($userName,$proID){
     $where="proID=".$proID." and userName='{$userName}'";
 
     if(delete($link,"go_cart",$where)){
-        header("location:order.php");
+        header("location:listOrder.php");
     }else{
-        $mes="删除失败！<br/><a href='order.php'>请重新操作</a>";
+        $mes= "删除失败！<br/><a href='listOrder.php'>请重新操作</a>";
     }
     return $mes;
 
