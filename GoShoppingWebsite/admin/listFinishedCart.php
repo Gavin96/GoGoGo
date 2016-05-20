@@ -10,7 +10,7 @@ $page=isset($_REQUEST['page'])?(int)$_REQUEST['page']:1;
 if($page<1||$page==null||!is_numeric($page))$page=1;
 if($page>$totalPage)$page=$totalPage;
 $offset=($page-1)*$pageSize;
-$sql="select c.id,c.userName,p.pName,p.iPrice,c.amount,c.isCommit from go_cart as c join go_product as p where c.proID=p.id and c.isCommit=3";
+$sql="select c.id,c.userName,p.pName,p.iPrice,c.amount,c.isCommit from go_cart as c join go_product as p where c.proID=p.id and (c.isCommit =4 or c.isCommit=5)";
 $rows=fetchAll($link,$sql);
 
 ?>
@@ -34,7 +34,6 @@ $rows=fetchAll($link,$sql);
             <th>商品名</th>
             <th>订单总价</th>
             <th>订单状态</th>
-            <th>操作</th>
         </tr>
         </thead>
         <tbody>
@@ -44,10 +43,8 @@ $rows=fetchAll($link,$sql);
                 <td><?php echo $row['userName'];?></td>
                 <td><?php echo $row['pName'];?></td>
                 <td><?php echo $row['iPrice']*$row['amount'];?></td>
-                <td>审核中</td>
-                <td align="center">
-                    <input type="button" value="完成订单" class="btn" onclick="finishCart(<?php echo $row['id'];?>)">
-                </td>
+                <td><?php if($row['isCommit']==4) echo '已发货';
+                    else echo '已完成';?></td>
             </tr>
         <?php endforeach;?>
         <?php if($totalRows>$pageSize):?>
@@ -59,7 +56,7 @@ $rows=fetchAll($link,$sql);
     </table>
 </div>
 <script type="text/javascript">
-    function finishCart(id){        
+    function finishCart(id){
         if(window.confirm("您确定要完成订单吗？")){
             window.location="doAdminAction.php?act=emitCart&id="+id;
         }
