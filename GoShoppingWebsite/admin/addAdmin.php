@@ -19,6 +19,17 @@
             <td><input type="password" name="password" placehoder="请输入管理员密码"></td>
         </tr>
         <tr>
+            <td align="right">管理员类型</td>
+            <td>
+                <div class="bui_select">
+                    <select name="admType" class="select">
+                        <option value="1" >网站管理员</option>
+                        <option value="2">运输管理员</option>
+                    </select>
+                </div>
+            </td>
+        </tr>
+        <tr>
             <td colspan="2" align="center"><input type="submit" value="添加管理员"></td>
         </tr>
     </table>

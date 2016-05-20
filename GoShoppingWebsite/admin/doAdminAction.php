@@ -32,8 +32,8 @@ if($act=="logout"){
     $mes = editUser($_REQUEST['id']);
 }elseif($act=='verify'){
     $mes = verify($_REQUEST['verify']);
-}elseif($act=='finishCart'){
-    $mes = finishCart($_REQUEST['id']);
+}elseif($act=='emitCart'){
+    $mes = emitCart($_REQUEST['id']);
 }
 ?>
 

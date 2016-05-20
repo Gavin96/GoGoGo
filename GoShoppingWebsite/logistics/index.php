@@ -1,6 +1,8 @@
 <?php
 require_once '../include.php';
-checkLogined();
+if(!isset($_SESSION['adminId'])&&$_COOKIE['adminId']==""){
+    alertMes("请先登录","login.php");
+}
 $link = connect();
 $sql="select c.id,userName,p.pName,p.iPrice,c.amount,c.isCommit from go_cart as c join go_product as p where c.proID=p.id";
 $totalRows=getResultNum($link,$sql);
@@ -10,7 +12,7 @@ $page=isset($_REQUEST['page'])?(int)$_REQUEST['page']:1;
 if($page<1||$page==null||!is_numeric($page))$page=1;
 if($page>$totalPage)$page=$totalPage;
 $offset=($page-1)*$pageSize;
-$sql="select c.id,c.userName,p.pName,p.iPrice,c.amount,c.isCommit from go_cart as c join go_product as p where c.proID=p.id and c.isCommit=3";
+$sql="select c.id,c.userName,p.pName,p.iPrice,c.amount,c.isCommit from go_cart as c join go_product as p where c.proID=p.id and c.isCommit=4";
 $rows=fetchAll($link,$sql);
 
 ?>
@@ -19,9 +21,34 @@ $rows=fetchAll($link,$sql);
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Insert title here</title>
-    <link rel="stylesheet" href="styles/backstage.css">
+    <link rel="stylesheet" href="../admin/styles/backstage.css">
 </head>
 <body>
+<div class="head">
+    <div class="logo fl"><a href="#"></a></div>
+    <h3 class="head_text fr">GOGO购物流管理系统</h3>
+</div>
+<div class="operation_user clearfix">
+
+    <div class="link fr">
+        <b>欢迎您
+            <?php
+            if(isset($_SESSION['adminName'])){
+                echo $_SESSION['adminName'];
+            }elseif(isset($_COOKIE['adminName'])){
+                echo $_COOKIE['adminName'];
+            }
+            ?>
+
+        </b>&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.php" class="icon icon_i">首页</a>
+        <span></span><a href="javascript:void(0);" class="icon icon_j" onclick="back()">后退</a>
+        <span></span><a href="javascript:void(0);" class="icon icon_t" onclick="forward()">前进</a>
+        <span></span><a href="javascript:void(0);" class="icon icon_n" onclick="reload()">刷新</a>
+        <span></span><a href="doLogAction.php?act=logout" class="icon icon_e">退出</a>
+
+    </div>
+</div>
+
 <div class="details">
     <div class="details_operation clearfix">
     </div>
@@ -44,7 +71,7 @@ $rows=fetchAll($link,$sql);
                 <td><?php echo $row['userName'];?></td>
                 <td><?php echo $row['pName'];?></td>
                 <td><?php echo $row['iPrice']*$row['amount'];?></td>
-                <td>审核中</td>
+                <td>已发送</td>
                 <td align="center">
                     <input type="button" value="完成订单" class="btn" onclick="finishCart(<?php echo $row['id'];?>)">
                 </td>
@@ -59,10 +86,19 @@ $rows=fetchAll($link,$sql);
     </table>
 </div>
 <script type="text/javascript">
-    function finishCart(id){        
+    function finishCart(id){
         if(window.confirm("您确定要完成订单吗？")){
-            window.location="doAdminAction.php?act=emitCart&id="+id;
+            window.location="doLogAction.php?act=finishCart&id="+id;
         }
+    }
+    function reload(){
+        window.frames.mainFrame.location.reload();
+    }
+    function back(){
+        window.frames.mainFrame.history.back();
+    }
+    function forward(){
+        window.frames.mainFrame.history.forward();
     }
 </script>
 </body>

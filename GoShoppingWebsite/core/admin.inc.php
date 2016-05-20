@@ -13,7 +13,6 @@ function checkLogined(){
     if(!isset($_SESSION['adminId'])&&$_COOKIE['adminId']==""){
         alertMes("请先登录","login.php");
     }
-
 }
 
 function logout(){
@@ -47,7 +46,7 @@ function addAdmin(){
 
 function getAllAdmin($link){
 
-    $sql="select id,username from go_admin order by id";
+    $sql="select id,username,admType from go_admin order by id";
     $rows=fetchAll($link,$sql);
     return $rows;
 }
@@ -64,7 +63,7 @@ function getAdminByPage($page,$pageSize=2){
     }
     if($page>=$totalPage)$page=$totalPage;
     $offset=($page-1)*$pageSize;
-    $sql="select id,username from go_admin order by id limit {$offset},{$pageSize} ";
+    $sql="select id,username,admType from go_admin order by id limit {$offset},{$pageSize} ";
     $rows=fetchAll($link,$sql);
     return $rows;
 }
@@ -178,7 +177,7 @@ function checkUser($link,$sql){
     return fetchOne($link,$sql);
 }
 
-function finishCart($id){
+function emitCart($id){
     $link = connect();
     $sql = "update go_cart set isCommit=4 where id ={$id}";
     $url = "../admin/listCart.php";

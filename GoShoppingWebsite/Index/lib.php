@@ -108,10 +108,10 @@ function commitCart(){
     $arr["isCommit"] = 3;
     if(isset($_SESSION['userName']))
     {
-        $mes = update($link,"go_cart",$arr,"userName='{$_SESSION['userName']}'");
+        $mes = update($link,"go_cart",$arr,"userName='{$_SESSION['userName']}' and isCommit = 1");
     }elseif(isset($_COOKIE['userName']))
     {
-        $mes = update($link,"go_cart",$arr,"userName='{$_COOKIE['userName']}''");
+        $mes = update($link,"go_cart",$arr,"userName='{$_COOKIE['userName']}' and isCommit = 1");
     }
     header("location:index.php");
 }

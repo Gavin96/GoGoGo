@@ -1,7 +1,7 @@
 <?php
 require_once '../include.php';
 $link = connect();
-$rows=getAllAdmin($link);
+//$rows=getAllAdmin($link);
 $pageSize=2;
 $page=$_REQUEST['page']?(int)$_REQUEST['page']:1;
 $rows=getAdminByPage($page,$pageSize);
@@ -32,8 +32,9 @@ ob_clean();
     <table class="table" cellspacing="0" cellpadding="0">
         <thead>
         <tr>
-            <th width="30%">编号</th>
-            <th width="30%">管理员名称</th>
+            <th width="20%">编号</th>
+            <th width="20%">管理员名称</th>
+            <th width="20%">管理员类型</th>
             <th>操作</th>
         </tr>
         </thead>
@@ -42,15 +43,19 @@ ob_clean();
             <tr>
                 <td><input type="checkbox" id="c1" class="check"><label for="c1" class="label"><?php echo $row['id'];?></label></td>
                 <td><?php echo $row['username'];?></td>
+                <td><?php
+                    $name[1] = '网站管理员';$name[2] = '运输管理员';
+                    echo $name[$row['admType']];
+                    ?>
                 <td align="center"><input type="button" value="删除" class="btn"  onclick="delAdmin(<?php echo $row['id'];?>)"></td>
             </tr>
         <?php endforeach;?>
 <!--        全局变量，定义在admin.inc.php中-->
-        <?php if($totalRows>$pageSize):?>
-            <tr>
-                <td colspan="4"><?php echo showPage($page, $totalPage);?></td>
-            </tr>
-        <?php endif;?>
+<!--        --><?php //if($totalRows>$pageSize):?>
+<!--            <tr>-->
+<!--                <td colspan="4">--><?php //echo showPage($page, $totalPage);?><!--</td>-->
+<!--            </tr>-->
+<!--        --><?php //endif;?>
         </tbody>
     </table>
 </div>
