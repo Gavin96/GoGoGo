@@ -92,7 +92,7 @@ function getCartByUser($link,$userName){
 function getCommittedCartByUser($link,$userName){
 
     $sql="select * from go_cart where userName = '{$userName}' and isCommit = 1";
-    $rows=fetchAll($link,$sql);
+    $rows=fetchOne($link,$sql);
 
     return $rows;
 }
@@ -103,8 +103,9 @@ function modifyCart(){
     header("location:listCart.php");
 }
 
-function commitCart(){
+function commitCart($proID,$amount){
     $link=connect();
+    
     $arr["isCommit"] = 3;
     if(isset($_SESSION['userName']))
     {
@@ -113,10 +114,22 @@ function commitCart(){
     {
         $mes = update($link,"go_cart",$arr,"userName='{$_COOKIE['userName']}' and isCommit = 1");
     }
+
+
+    updateProAmount($link,$proID,$amount);
     header("location:index.php");
 }
 
-//商品添加进购物车
+function updateProAmount($link,$proID,$amount){
+    $arr = getProById($link,$proID);
+    $newAmount = $arr['pNum'] - $amount;
+    $row['pNum'] = $newAmount;
+
+    $where=" id={$proID}";
+    //echo $newAmount.$proID;
+    $rows=update($link,"go_product",$row,$where);
+}
+//商品添加进购物车以及购买
 function addCart($userName,$proID,$isCommit=0,$amount=0){
     if($userName=="none")
         alertMes("请先登录","login.php");
@@ -139,12 +152,14 @@ function addCart($userName,$proID,$isCommit=0,$amount=0){
         }elseif($isCommit == 1){
             clearUnSubmitCart($link);
             $res=checkCartExist($link,$userName,$proID);
+            
             if($res){
 
                 $arr['isCommit'] = $isCommit;
                 $arr['amount'] = $amount;
                 $where=" userName='{$userName}' and proID={$proID}";
                 $rows=update($link,"go_cart",$arr,$where);
+                
                 //$mes="here";
                 header("location:CheckCart.php");
             }else{

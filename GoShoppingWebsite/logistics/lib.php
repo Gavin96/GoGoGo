@@ -16,7 +16,7 @@ function login(){
         $autoFlag = $_POST['autoFlag'];
     $link = connect();
     if($verify==$verify1){
-        $sql = "select * from go_admin where username='{$username}' and password='{$password}'";
+        $sql = "select * from go_admin where username='{$username}' and password='{$password}'  and admType=2";
         $result = checkAdmin($link,$sql);
         if($result&&$result['admType'] == 2) {
             $_SESSION['adminName'] = $result['username'];

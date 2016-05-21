@@ -204,13 +204,14 @@ if(isset($_SESSION['userName']))
 <!--    	         		</div>-->
 
 
+						<input class="total_amount_left" type="hidden" value="<?php echo $pro['pNum'];?>">
     	         		<div class="dl clearfix">
     	         			<div class="dt des_num">已选择数量：</div>
     	         			<div class="dd dd2 clearfix">
     	         				<div class="des_number">
     	         					<div class="reduction"><span onclick="decrease2(this)" >-</span></div>
     	         					<div class="des_input">
-    	         					  <input type="text" name="amount" id="amount" value="0"/>
+    	         					  <input type="text" name="amount" id="amount" value="1"/>
     	         					</div>
     	         					<div class="plus" ><span onclick="increase2(this)">+</span></div>
     	         				</div>
@@ -220,7 +221,7 @@ if(isset($_SESSION['userName']))
 
                 </div>
     	         	<div class="des_select">
-    	         		已选择 <span><?php echo $pro['pName'];?>：<span class="span_amount">0</span>件</span>
+    	         		已选择 <span><?php echo $pro['pName'];?>：<span class="span_amount">1</span>件</span>
     	         	</div>
     	         	<div class="shop_buy">
     	         		<a href="doUserAction.php?act=addCart&userName=<?php echo $userName;?>&proID=<?php echo $pro['id'];?>" class="shopping_btn"></a>
@@ -251,17 +252,7 @@ if(isset($_SESSION['userName']))
        </p>
 
     </div>
-<script type="text/javascript">
 
-	
-
-	function checkCart(userName,proID){
-		alert("d");
-		var amount= document.getElementById('amount').value;
-
-		window.location="doUserAction.php?act=checkCart&userName="+userName+"&proID="+proID+"&amount="+amount;
-	}
-</script>
 </body>
 
 </html>

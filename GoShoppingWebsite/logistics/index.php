@@ -44,9 +44,9 @@ if($totalPage!=0)
             ?>
 
         </b>&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.php" class="icon icon_i">首页</a>
-        <span></span><a href="javascript:void(0);" class="icon icon_j" onclick="back()">后退</a>
-        <span></span><a href="javascript:void(0);" class="icon icon_t" onclick="forward()">前进</a>
-        <span></span><a href="javascript:void(0);" class="icon icon_n" onclick="reload()">刷新</a>
+        <span></span>
+        <span></span>
+        <span></span>
         <span></span><a href="doLogAction.php?act=logout" class="icon icon_e">退出</a>
 
     </div>

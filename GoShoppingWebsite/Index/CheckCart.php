@@ -12,14 +12,16 @@ if(isset($_SESSION['userName']))
 {
     $sql = "select * from go_cart where userName = '{$_SESSION['userName']}' and isCommit = 0";
     $cartRows=getResultNum($link,$sql);
-    $carts=getCommittedCartByUser($link,$_SESSION['userName']);
+    $cart=getCommittedCartByUser($link,$_SESSION['userName']);
 }elseif(isset($_COOKIE['userName']))
 {
     $sql = "select * from go_cart where userName = '{$_COOKIE['userName']}' and isCommit = 0";
     $cartRows=getResultNum($link,$sql);
-    $carts=getCommittedCartByUser($link,$_COOKIE['userName']);
+    $cart=getCommittedCartByUser($link,$_COOKIE['userName']);
 }
 $totalPrice = 0;
+if($cart['amount']==0)
+    alertMes("商品数量不能为零！","index.php")
 ?>
 <!doctype html>
 <html>
@@ -134,8 +136,8 @@ $totalPrice = 0;
         <div class="shopping_item">
             <h3 class="shopping_tit">送货清单<a href="doUserAction.php?act=modifyCart" class="backCar">返回购物车修改</a></h3>
             <?php
-                foreach($carts as $cart):
-                    $pro = getProById($link,$cart["proID"]);
+
+                $pro = getProById($link,$cart["proID"]);
                 if(($pro&&is_array($pro))):
                     $proImg = getProImgById($link,$pro["id"]);
             ?>
@@ -174,7 +176,7 @@ $totalPrice = 0;
 
         <?php
             endif;
-            endforeach;
+
         ?>
 
         <div class="shopping_item">
@@ -186,7 +188,7 @@ $totalPrice = 0;
 
                     </div>
                     <div class="cart_btnBox">
-                        <a href="doUserAction.php?act=commitCart" class="cart_btn">提交订单</a>
+                        <a href="doUserAction.php?act=commitCart&proID=<?php echo $pro['id'];?>&amount=<?php echo $cart['amount'];?>" class="cart_btn">提交订单</a>
                     </div>
                 </div>
             </div>

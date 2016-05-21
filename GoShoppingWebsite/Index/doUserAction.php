@@ -20,14 +20,14 @@ if($act=="logout") {
 }elseif($act=="modifyCart"){
     modifyCart();
 }elseif($act=="commitCart"){
-    commitCart();
+    commitCart($_REQUEST['proID'],$_REQUEST['amount']);
 }elseif($act=="manipulateCart"){
     
     if(isset($_POST['delete']))
         $mes=delCart($_REQUEST['userName'],$_REQUEST['proID']);
     elseif(isset($_POST['purchase']))
         $mes=addCart($_REQUEST['userName'],$_REQUEST['proID'],1,$_REQUEST['number1']);
-}elseif($act="manipulateOrder"){
+}elseif($act=="manipulateOrder"){
     if(isset($_POST['check']))
     {
         header("location:order.php");

@@ -148,6 +148,7 @@ if(isset($_SESSION['userName']))
                             <span class="show_per_price"><?php echo $pro['iPrice']?></span>元
                         </div>
                         <div class="cart_item t_return"> 0元</div>
+                        <input class="total_amount_left" type="hidden" value="<?php echo $pro['pNum'];?>">
                         <div class="cart_item t_num">
                             <p class="p_num">
                                 <span class="sy_minus" id="min1" onclick="decrease(this)">-</span>
