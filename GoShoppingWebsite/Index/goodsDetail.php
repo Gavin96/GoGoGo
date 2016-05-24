@@ -239,19 +239,135 @@ if(isset($_SESSION['userName']))
 
         </div>
 	</div>
+
+
+<div class="hr_15"></div>
+
+<div class="des_info comWidth clearfix">
+	<div class="leftArea">
+		<div class="recommend">
+			<h3 class="tit">类似产品</h3>
+
+			<?php
+				$similarPros = getSimilarProByCId($link,$pro["cId"],$pro['id']);
+				if(($similarPros&&is_array($similarPros))):
+					foreach($similarPros as $similarPro):
+						$similarProImg = getProImgById($link,$similarPro["id"]);
+			?>
+			<div class="item">
+				<div class="item_cont">
+					<div class="img_item">
+						<a href="goodsDetail.php?id=<?php echo $similarPro['id'];?>"><img  height="180" width="187" src="../image_220/<?php echo $similarProImg['albumPath'];?>"></a>
+					</div>
+					<center>
+					<p><a href="#"><?php echo $similarPro['pName'];?></a></p>
+					<p class="money"><?php echo $similarPro['iPrice'];?>元</p>
+					</center>
+				</div>
+			</div>
+			<?php
+				endforeach;
+				endif;
+			?>
+
+			<h3 class="tit2">推荐一下</h3>
+			<?php
+			    $recommendPros = getRecommendPro($link);
+				if(($recommendPros&&is_array($recommendPros))):
+					foreach($recommendPros as $recommendPro):
+						$recommendProImg = getProImgById($link,$recommendPro["id"]);
+			?>
+			<div class="item">
+				<div class="item_cont">
+					<div class="img_item">
+						<a href="goodsDetail.php?id=<?php echo $recommendPro['id'];?>"><img  height="180" width="187" src="../image_220/<?php echo $recommendProImg['albumPath'];?>"></a>
+					</div>
+					<center>
+						<p><a href="#"><?php echo $recommendPro['pName'];?></a></p>
+						<p class="money"><?php echo $recommendPro['iPrice'];?>元</p>
+					</center>
+				</div>
+			</div>
+			<?php
+				endforeach;
+				endif;
+			?>
+			
+		</div>
+	</div>
+	<div class="rightArea">
+		<div class="des_infoContent">
+			<ul class="des_tit">
+				<li class="active"><span class="a">产品介绍</span> </li>
+				<li class="x"><span class="b">商品评价(10001)</span> </li>
+			</ul>
+
+			<div class="ad">
+				<a href="#"><img src="images/banner/ad.png"></a>
+			</div>
+			<div class="info_text">
+				<div class="info_tit">
+					<h3>强烈推荐</h3><h4>吹一波</h4>
+				</div>
+				<p>&nbsp&nbsp5月12日，美国正式启动在罗马尼亚南部德韦塞卢空军基地部署的反导系统，并随时准备与北约在欧洲的反导系统并网接轨。13日，美又在波兰破土动工东欧第二处反导系统陆基站点，该项建设任务预计将于2018年底全面完工。
+
+					虽然北约秘书长斯托尔滕贝格等多位高级官员宣称反导系统并非针对俄罗斯，但消息一经播出立即在俄国内激起千层浪。俄外交部发言人扎哈罗娃在新闻发布会上对北约此举表达强烈抗议。此前俄战略火箭部队司令卡拉卡耶夫5月10日表示，针对美国现有和未来布设的反导系统，俄将采取包括换装、研制新型导弹在内的多种反制手段加以应对。</p>
+				<div class="hr_45"></div>
+				<div class="info_tit">
+					<h3>强烈推荐</h3><h4>吹一波</h4>
+				</div>
+				<p>&nbsp&nbsp5月12日，美国正式启动在罗马尼亚南部德韦塞卢空军基地部署的反导系统，并随时准备与北约在欧洲的反导系统并网接轨。13日，美又在波兰破土动工东欧第二处反导系统陆基站点，该项建设任务预计将于2018年底全面完工。
+
+					虽然北约秘书长斯托尔滕贝格等多位高级官员宣称反导系统并非针对俄罗斯，但消息一经播出立即在俄国内激起千层浪。俄外交部发言人扎哈罗娃在新闻发布会上对北约此举表达强烈抗议。此前俄战略火箭部队司令卡拉卡耶夫5月10日表示，针对美国现有和未来布设的反导系统，俄将采取包括换装、研制新型导弹在内的多种反制手段加以应对。</p>
+				<div class="hr_45"></div>
+			</div>
+		</div>
+
+		<div class="hr_15"></div>
+		<div class="des_infoContent">
+			<h3 class="shopDes_tit">商品评价</h3>
+			<div class="score_box clearfix">
+				<div class="score">
+					<span>4.7</span><em>分</em>
+				</div>
+				<div class="score_speed">
+					<ul class="score_speed_text">
+						<li class="speed_01">非常不满意</li>
+						<li class="speed_02">不满意</li>
+						<li class="speed_03">一般</li>
+						<li class="speed_04">满意</li>
+						<li>非常满意</li>
+					</ul>
+					<div class="score_num">
+						4.7<i></i>
+					</div>
+					<p>共有1999位顾客参与此项评分</p>
+				</div>
+
+			</div>
+		</div>
+
+
+
+
+	</div>
+</div>
+
+
+<div class="hr_15" style="clear:both;"></div>
 <!-- <div> -->
-    <div class="footer" style="margin-top:100px;">
-		<p><a href="#">Go简介</a><i>|</i><a href="#">招贤纳士</a><i>|</i><a href="#">联系我们</a><i>|</i>客服热线：021-8888-8888</p>
-		<p>Copyright &copy; 2016 - 2020 同济大学版权所有</p>
-    	<p class="weblogo">
-    	   <br/> <br/>
-    	   <a href="#"><img src="images/banner/weblogo.png" alt="logo"></a>&nbsp;
+<div class="footer" style="margin-top:100px;">
+	<p><a href="#">Go简介</a><i>|</i><a href="#">招贤纳士</a><i>|</i><a href="#">联系我们</a><i>|</i>客服热线：021-8888-8888</p>
+	<p>Copyright &copy; 2016 - 2020 同济大学版权所有</p>
+	<p class="weblogo">
+	   <br/> <br/>
+	   <a href="#"><img src="images/banner/weblogo.png" alt="logo"></a>&nbsp;
 <!--    	   <a href="#"><img src="images/banner/weblogo.png" alt="logo"></a>&nbsp;-->
 <!--           <a href="#"><img src="images/banner/weblogo.png" alt="logo"></a>&nbsp;-->
 <!--           <a href="#"><img src="images/banner/weblogo.png" alt="logo"></a>-->
-       </p>
+   </p>
 
-    </div>
+</div>
 
 </body>
 

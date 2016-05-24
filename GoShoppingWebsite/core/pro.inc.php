@@ -197,13 +197,25 @@ function getAllProBYDes($link){
 }
 
 function getHotPro($link){
-	$sql="select p.id,p.pName,p.pIndex,p.pNum,p.mPrice,p.iPrice,p.pDescription,p.pTime,p.isShow,p.isHot,c.name,p.cId from go_product as p join go_cate c on p.cId=c.id where p.pNum>0 order by p.isHot DESC limit 1";
+	$sql="select p.id,p.pName,p.pIndex,p.pNum,p.mPrice,p.iPrice,p.pDescription,p.pTime,p.isShow,p.isHot,c.name,p.cId from go_product as p join go_cate c on p.cId=c.id where p.pNum>0 and p.isHot>0 order by p.isHot DESC limit 10";
 	$rows=fetchAll($link,$sql);
 	return $rows;
 }
 
 function getAllProByName($link,$product_name){
 	$sql="select p.id,p.pName,p.pIndex,p.pNum,p.mPrice,p.iPrice,p.pDescription,p.pTime,p.isShow,p.isHot,c.name,p.cId from go_product as p join go_cate c on p.cId=c.id where p.pNum>0 and p.pName like '%{$product_name}%'";
+	$rows=fetchAll($link,$sql);
+	return $rows;
+}
+
+function getSimilarProByCId($link,$cId,$proID){
+	$sql="select p.id,p.pName,p.pIndex,p.pNum,p.mPrice,p.iPrice,p.pDescription,p.pTime,p.isShow,p.isHot,c.name,p.cId from go_product as p join go_cate c on p.cId=c.id where c.id = {$cId} and p.cId!={$proID} limit 3";
+	$row=fetchAll($link,$sql);
+	return $row;
+}
+
+function getRecommendPro($link){
+	$sql="select p.id,p.pName,p.pIndex,p.pNum,p.mPrice,p.iPrice,p.pDescription,p.pTime,p.isShow,p.isHot,c.name,p.cId from go_product as p join go_cate c on p.cId=c.id where p.pNum>0 and p.isHot>0 order by p.isHot DESC limit 1";
 	$rows=fetchAll($link,$sql);
 	return $rows;
 }
