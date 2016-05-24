@@ -68,12 +68,13 @@ function registerUser()
     return $mes;
 }
 
-//得到用户的所有未收货订单，此时isCommit = 2
-//得到用户的所有收货订单，此时isCommit = 3
+//得到用户的所有未接受订单，此时isCommit = 3
+//得到用户的所有正在发货订单，此时isCommit = 4
+//得到用户的所有完成订单，此时isCommit = 5
 function getOrderByUser($link,$userName){
 
-    $sql="select * from go_cart where userName = '{$userName}' and isCommit = 3
-          union select * from go_cart where userName = '{$userName}' and isCommit = 4";
+    $sql="select * from go_cart where userName = '{$userName}' and (isCommit = 3 or isCommit = 4 or isCommit = 5)";
+
     $rows=fetchAll($link,$sql);
     
     return $rows;
@@ -117,7 +118,8 @@ function commitCart($proID,$amount){
 
 
     updateProAmount($link,$proID,$amount);
-    header("location:index.php");
+    updateIsHot($link,$proID,$amount);
+    header("location:listOrder.php");
 }
 
 function updateProAmount($link,$proID,$amount){
@@ -129,6 +131,16 @@ function updateProAmount($link,$proID,$amount){
     //echo $newAmount.$proID;
     $rows=update($link,"go_product",$row,$where);
 }
+
+function updateIsHot($link,$proID,$amount){
+    $arr = getProById($link,$proID);
+    $newAmount = $arr['isHot'] + $amount;
+    $row['isHot'] = $newAmount;
+
+    $where=" id={$proID}";
+    $rows=update($link,"go_product",$row,$where);
+}
+
 //商品添加进购物车以及购买
 function addCart($userName,$proID,$isCommit=0,$amount=0){
     if($userName=="none")

@@ -48,7 +48,7 @@ if($totalPage!=0)
                 <td><?php echo $row['iPrice']*$row['amount'];?></td>
                 <td>审核中</td>
                 <td align="center">
-                    <input type="button" value="完成订单" class="btn" onclick="finishCart(<?php echo $row['id'];?>)">
+                    <input type="button" value="接受订单" class="btn" onclick="finishCart(<?php echo $row['id'];?>)">
                 </td>
             </tr>
         <?php endforeach;?>
@@ -62,7 +62,7 @@ if($totalPage!=0)
 </div>
 <script type="text/javascript">
     function finishCart(id){        
-        if(window.confirm("您确定要完成订单吗？")){
+        if(window.confirm("您确定要接受订单吗？")){
             window.location="doAdminAction.php?act=emitCart&id="+id;
         }
     }

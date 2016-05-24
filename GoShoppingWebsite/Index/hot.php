@@ -123,7 +123,7 @@ if(isset($_SESSION['userName']))
 
 
 
-<div class="footer">
+<div class="footer" style="margin-top:100px;">
     <p><a href="#">Go简介</a><i>|</i><a href="#">招贤纳士</a><i>|</i><a href="#">联系我们</a><i>|</i>客服热线：021-8888-8888</p>
     <p>Copyright &copy; 2016 - 2020 同济大学版权所有</p>
     <p class="weblogo">

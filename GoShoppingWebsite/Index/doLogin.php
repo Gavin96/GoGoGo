@@ -10,7 +10,8 @@ $email = $_POST['email'];
 $password = $_POST['password'];
 $verify = $_POST['verify'];
 $verify1 = $_SESSION['verify'];
-$autoFlag = $_POST['autoFlag'];
+if(isset($_POST['autoFlag']))
+    $autoFlag = $_POST['autoFlag'];
 $link = connect();
 if($verify==$verify1){
     $sql = "select * from go_user where email='{$email}' and password='{$password}'";

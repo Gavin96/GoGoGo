@@ -36,17 +36,15 @@ if($totalPage!=0)
     <div class="link fr">
         <b>欢迎您
             <?php
-            if(isset($_SESSION['adminName'])){
-                echo $_SESSION['adminName'];
-            }elseif(isset($_COOKIE['adminName'])){
-                echo $_COOKIE['adminName'];
+            if(isset($_SESSION['admin2Name'])){
+                echo $_SESSION['admin2Name'];
+            }elseif(isset($_COOKIE['admin2Name'])){
+                echo $_COOKIE['admin2Name'];
             }
             ?>
 
         </b>&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.php" class="icon icon_i">首页</a>
-        <span></span>
-        <span></span>
-        <span></span>
+        
         <span></span><a href="doLogAction.php?act=logout" class="icon icon_e">退出</a>
 
     </div>

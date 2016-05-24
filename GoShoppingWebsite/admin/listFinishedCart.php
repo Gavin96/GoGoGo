@@ -2,7 +2,7 @@
 require_once '../include.php';
 checkLogined();
 $link = connect();
-$sql="select c.id,userName,p.pName,p.iPrice,c.amount,c.isCommit from go_cart as c join go_product as p where c.proID=p.id and (c.isCommit =4 or c.isCommit=5) ";
+$sql="select c.id,userName,p.pName,p.iPrice,c.amount,c.isCommit from go_cart as c join go_product as p where c.proID=p.id and c.isCommit=5 ";
 $totalRows=getResultNum($link,$sql);
 $pageSize=2;
 $totalPage=ceil($totalRows/$pageSize);
@@ -10,7 +10,7 @@ $page=isset($_REQUEST['page'])?(int)$_REQUEST['page']:1;
 if($page<1||$page==null||!is_numeric($page))$page=1;
 if($page>$totalPage)$page=$totalPage;
 $offset=($page-1)*$pageSize;
-$sql="select c.id,c.userName,p.pName,p.iPrice,c.amount,c.isCommit from go_cart as c join go_product as p where c.proID=p.id and (c.isCommit =4 or c.isCommit=5) limit {$offset},{$pageSize}";
+$sql="select c.id,c.userName,p.pName,p.iPrice,c.amount,c.isCommit from go_cart as c join go_product as p where c.proID=p.id and c.isCommit=5 limit {$offset},{$pageSize}";
 $rows=array();
 if($totalPage!=0)
     $rows=fetchAll($link,$sql);
