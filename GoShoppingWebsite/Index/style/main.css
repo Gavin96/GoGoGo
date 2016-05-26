@@ -313,7 +313,7 @@ background-color: #F3F3F3;}
 /*详细介绍*/
 .des_infoContent{border: #CCC solid 1px; background-color: #FFF;}
 .des_tit{height: 39px;/*border-top: #CCC solid 1px;*/background: url(../images/icon/des_title.png)left top repeat-x;}
-.des_tit li{float: left;width: 50%;/*font-size: 14px;line-height: 39px;*/font:16px/39px "宋体";
+.des_tit li{float: left;width: 100%;/*font-size: 14px;line-height: 39px;*/font:16px/39px "宋体";
 text-align: center;border-left: solid 1px #CCC;margin-left: -1px;}
 /*.des_tit .x{border-left: solid 2px;}*/
 .des_tit .active{background-color: #83B842;font-weight: bold;color: #FFF;position: relative;}

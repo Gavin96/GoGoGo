@@ -8,20 +8,12 @@
 
 require_once '../include.php';
 $link = connect();
-if(isset($_SESSION['userName']))
-{
-    $sql = "select * from go_cart where userName = '{$_SESSION['userName']}' and isCommit = 0";
-    $cartRows=getResultNum($link,$sql);
-    $cart=getCommittedCartByUser($link,$_SESSION['userName']);
-}elseif(isset($_COOKIE['userName']))
-{
-    $sql = "select * from go_cart where userName = '{$_COOKIE['userName']}' and isCommit = 0";
-    $cartRows=getResultNum($link,$sql);
-    $cart=getCommittedCartByUser($link,$_COOKIE['userName']);
-}
+$loggedUserName = getUserName();
+$cartRows = getCartNum($link);
+$cart=getCommittedCartByUser($link,$loggedUserName);
 $totalPrice = 0;
 if($cart['amount']==0)
-    alertMes("商品数量不能为零！","index.php")
+    alertMes("商品数量不能为零！","index.php");
 ?>
 <!doctype html>
 <html>
@@ -42,11 +34,7 @@ if($cart['amount']==0)
             <div class="rightArea">
                 <B><em>欢迎您
                         <?php
-                        if(isset($_SESSION['userName'])){
-                            echo $_SESSION['userName'];
-                        }elseif(isset($_COOKIE['userName'])){
-                            echo $_COOKIE['userName'];
-                        }
+                        echo $loggedUserName;
                         ?>
                     </em></B>
                 <B>

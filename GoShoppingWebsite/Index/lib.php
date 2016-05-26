@@ -22,6 +22,26 @@ function logoutUser(){
 
 }
 
+function getUserName(){
+    $userName = null;
+    if(isset($_SESSION['userName'])){
+        $userName = $_SESSION['userName'];
+    }elseif(isset($_COOKIE['userName'])){
+        $userName = $_COOKIE['userName'];
+    }
+    return $userName;
+}
+function getCartNum($link)
+{
+    $userName = getUserName();
+    if ($userName == null)
+        $cartRows = 0;
+    else {
+        $sql = "select * from go_cart where userName = '{$userName}' and isCommit = 0";
+        $cartRows = getResultNum($link, $sql);
+    }
+    return $cartRows;
+}
 function registerUser()
 {
 
@@ -148,23 +168,27 @@ function addCart($userName,$proID,$isCommit=0,$amount=0){
     else {
         $link = connect();
         if ($isCommit == 0) {
-
-
-            $arr['userName'] = $userName;
-            $arr['proID'] = $proID;
-            $arr['amount'] = 0;
-            $arr['isCommit'] = $isCommit;
-            $insertId = insert($link, "go_cart", $arr);
-            if ($insertId > 0) {
-                $mes = "添加成功!<br/><a href='index.php'>回到首页</a>";
+            $res = checkCartExist($link, $userName, $proID);
+            if ($res)
                 header("location:listCart.php");
-            } else {
-                $mes = "添加失败!<br/><a href='index.php'>回到首页</a>";
+            else {
+
+                $arr['userName'] = $userName;
+                $arr['proID'] = $proID;
+                $arr['amount'] = 0;
+                $arr['isCommit'] = $isCommit;
+                $insertId = insert($link, "go_cart", $arr);
+                if ($insertId > 0) {
+                    $mes = "添加成功!<br/><a href='index.php'>回到首页</a>";
+                    header("location:listCart.php");
+                } else {
+                    $mes = "添加失败!<br/><a href='index.php'>回到首页</a>";
+                }
             }
         }elseif($isCommit == 1){
             clearUnSubmitCart($link);
             $res=checkCartExist($link,$userName,$proID);
-            
+           // print_r($res);
             if($res){
 
                 $arr['isCommit'] = $isCommit;
@@ -182,7 +206,7 @@ function addCart($userName,$proID,$isCommit=0,$amount=0){
                 $insertId = insert($link, "go_cart", $arr);
                 if ($insertId > 0) {
                     $mes = "添加成功!<br/><a href='index.php'>回到首页</a>";
-                    header("location:CheckCart.php");
+                    //header("location:CheckCart.php");
                 } else {
 
                     $mes = "添加失败!<br/><a href='index.php'>回到首页</a>";
@@ -229,10 +253,56 @@ function delOrder($userName,$proID){
     $where="proID=".$proID." and userName='{$userName}'";
 
     if(delete($link,"go_cart",$where)){
-        header("location:listOrder.php");
+        header("location:review.php?proID={$proID}&userName={$userName}");//转到评价页
     }else{
         $mes= "删除失败！<br/><a href='listOrder.php'>请重新操作</a>";
     }
     return $mes;
 
+}
+
+function getAllReviewsByPro($link,$proID){
+    $sql = "select * from go_review where proID = {$proID} order by reviewTime desc";
+    $rows = fetchAll($link,$sql);
+    return $rows;
+}
+
+function getReviewNumByPro($link,$proID){
+    $sql = "select * from go_review where proID = {$proID}";
+    $num=getResultNum($link,$sql);
+    return $num;
+}
+
+function getReviewScoreByPro($link,$proID)
+{
+    $num = getReviewNumByPro($link, $proID);
+    $totalScore = 0;
+    $rows = getAllReviewsByPro($link, $proID);
+    if ($num != 0) {
+        foreach ($rows as $row):
+            $totalScore = $totalScore + $row['score'];
+        endforeach;
+        return number_format($totalScore / $num, 1);
+    }
+    else{
+        return 0.0;
+    }
+
+}
+
+function addReview($userName,$proID,$review,$score){
+    $link = connect();
+    $arr['userName'] = $userName;
+    $arr['proID'] = $proID;
+    $arr['review'] = $review;
+    $arr['score'] = $score;
+    $arr['reviewTime'] = date("y-m-d h:i:s",time());
+    $insertId = insert($link, "go_review", $arr);
+    if ($insertId > 0) {
+        $mes = "添加成功!<br/><a href='index.php'>回到订单页</a>";
+        header("location:listOrder.php");
+    } else {
+        $mes = "添加失败!<br/><a href='listOrder.php'>回到订单页</a>";
+    }
+    return $mes;
 }

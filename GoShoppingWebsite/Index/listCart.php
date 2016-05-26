@@ -9,22 +9,13 @@
 require_once '../include.php';
 $link = connect();
 clearUnSubmitCart($link);
-if(isset($_SESSION['userName']))
-{
-    $userName = $_SESSION['userName'];
-    $sql = "select * from go_cart where userName = '{$_SESSION['userName']}' and isCommit = 0";
-    $cartRows=getResultNum($link,$sql);
-    $carts=getCartByUser($link,$_SESSION['userName']);
-}elseif(isset($_COOKIE['userName']))
-{
-    $userName = $_COOKIE['userName'];
-    $sql = "select * from go_cart where userName = '{$_COOKIE['userName']}' and isCommit = 0";
-    $cartRows=getResultNum($link,$sql);
-    $carts=getCartByUser($link,$_COOKIE['userName']);
-}else
+$userName = getUserName();
+$cartRows = getCartNum($link);
+if($userName==null)
 {
     alertMes("请先登录","login.php");
 }
+$carts=getCartByUser($link,$userName);
 ?>
 <!doctype html>
 <html>
@@ -48,11 +39,7 @@ if(isset($_SESSION['userName']))
                 <div class="rightArea">
                     <B><em>欢迎您
                             <?php
-                            if(isset($_SESSION['userName'])){
-                                echo $_SESSION['userName'];
-                            }elseif(isset($_COOKIE['userName'])){
-                                echo $_COOKIE['userName'];
-                            }
+                            echo $userName;
                             ?>
                         </em></B>
                     <B>

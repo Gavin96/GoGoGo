@@ -6,22 +6,11 @@ $link = connect();
 $pro = null;
 if(isset($_GET["id"]))
 	$pro=getProById($link,$_GET["id"]);
-if(isset($_SESSION['userName']))
-{
-	$userName = $_SESSION['userName'];
-	$sql = "select * from go_cart where userName = '{$_SESSION['userName']}' and isCommit = 0";
-	$cartRows=getResultNum($link,$sql);
-	$orders=getOrderByUser($link,$_SESSION['userName']);
-}elseif(isset($_COOKIE['userName']))
-{
-	$userName = $_COOKIE['userName'];
-	$sql = "select * from go_cart where userName = '{$_COOKIE['userName']}' and isCommit = 0";
-	$cartRows=getResultNum($link,$sql);
-	$orders=getOrderByUser($link,$_COOKIE['userName']);
-}else
-{
+$userName = getUserName();
+$cartRows = getCartNum($link);
+$orders=getOrderByUser($link,$userName);
+if($userName==null){
 	$userName="none";
-	$cartRows=0;
 }
 ?>
 
@@ -110,7 +99,7 @@ if(isset($_SESSION['userName']))
 		<span>&nbsp;&gt;&nbsp;</span>
 		<a href="cateDetail.php?CId=<?php echo $pro['cId']; ?>"><?php echo $pro['name'];?></a>
 		<span>&nbsp;&gt;&nbsp;</span>
-		<a href="goodsDetail.php?id=$pro['id']"><?php echo $pro['pName'];?></a>
+		<a href="goodsDetail.php?id=<?php echo $pro['id']; ?>"><?php echo $pro['pName'];?></a>
 	</div>
 
 <!-- <div class="border"> -->
@@ -211,7 +200,7 @@ if(isset($_SESSION['userName']))
     	         				<div class="des_number">
     	         					<div class="reduction"><span onclick="decrease2(this)" >-</span></div>
     	         					<div class="des_input">
-    	         					  <input type="text" name="amount" id="amount" value="1"/>
+    	         					  <input type="text" name="amount" id="amount" value="0"/>
     	         					</div>
     	         					<div class="plus" ><span onclick="increase2(this)">+</span></div>
     	         				</div>
@@ -296,41 +285,16 @@ if(isset($_SESSION['userName']))
 		</div>
 	</div>
 	<div class="rightArea">
-		<div class="des_infoContent">
-			<ul class="des_tit">
-				<li class="active"><span class="a">产品介绍</span> </li>
-				<li class="x"><span class="b">商品评价(10001)</span> </li>
-			</ul>
 
-			<div class="ad">
-				<a href="#"><img src="images/banner/ad.png"></a>
-			</div>
-			<div class="info_text">
-				<div class="info_tit">
-					<h3>强烈推荐</h3><h4>吹一波</h4>
-				</div>
-				<p>&nbsp&nbsp5月12日，美国正式启动在罗马尼亚南部德韦塞卢空军基地部署的反导系统，并随时准备与北约在欧洲的反导系统并网接轨。13日，美又在波兰破土动工东欧第二处反导系统陆基站点，该项建设任务预计将于2018年底全面完工。
 
-					虽然北约秘书长斯托尔滕贝格等多位高级官员宣称反导系统并非针对俄罗斯，但消息一经播出立即在俄国内激起千层浪。俄外交部发言人扎哈罗娃在新闻发布会上对北约此举表达强烈抗议。此前俄战略火箭部队司令卡拉卡耶夫5月10日表示，针对美国现有和未来布设的反导系统，俄将采取包括换装、研制新型导弹在内的多种反制手段加以应对。</p>
-				<div class="hr_45"></div>
-				<div class="info_tit">
-					<h3>强烈推荐</h3><h4>吹一波</h4>
-				</div>
-				<p>&nbsp&nbsp5月12日，美国正式启动在罗马尼亚南部德韦塞卢空军基地部署的反导系统，并随时准备与北约在欧洲的反导系统并网接轨。13日，美又在波兰破土动工东欧第二处反导系统陆基站点，该项建设任务预计将于2018年底全面完工。
-
-					虽然北约秘书长斯托尔滕贝格等多位高级官员宣称反导系统并非针对俄罗斯，但消息一经播出立即在俄国内激起千层浪。俄外交部发言人扎哈罗娃在新闻发布会上对北约此举表达强烈抗议。此前俄战略火箭部队司令卡拉卡耶夫5月10日表示，针对美国现有和未来布设的反导系统，俄将采取包括换装、研制新型导弹在内的多种反制手段加以应对。</p>
-				<div class="hr_45"></div>
-			</div>
-		</div>
-
-		<div class="hr_15"></div>
 		<div class="des_infoContent">
 			<h3 class="shopDes_tit">商品评价</h3>
 			<div class="score_box clearfix">
 				<div class="score">
-					<span>4.7</span><em>分</em>
+					<span><?php echo getReviewScoreByPro($link,$pro['id']);?></span><em>分</em>
 				</div>
 				<div class="score_speed">
+
 					<ul class="score_speed_text">
 						<li class="speed_01">非常不满意</li>
 						<li class="speed_02">不满意</li>
@@ -339,13 +303,50 @@ if(isset($_SESSION['userName']))
 						<li>非常满意</li>
 					</ul>
 					<div class="score_num">
-						4.7<i></i>
+						<?php echo getReviewScoreByPro($link,$pro['id']);?>
 					</div>
-					<p>共有1999位顾客参与此项评分</p>
+					<p>共有<?php echo getReviewNumByPro($link,$pro['id']);?>位顾客参与此项评分</p>
 				</div>
 
 			</div>
 		</div>
+		<div class="hr_15"></div>
+		<div class="des_infoContent">
+			<ul class="des_tit">
+				<li class="active"><span class="a">商品评价</span> </li>
+<!--				<li class="x"><span class="b">商品评价(10001)</span> </li>-->
+			</ul>
+
+			<div class="ad">
+				<a href="#"><img src="images/banner/ad.png"></a>
+			</div>
+			<div class="info_text">
+
+				<?php
+					$reviews = getAllReviewsByPro($link,$pro['id']);
+					if(($reviews&&is_array($reviews))):
+						foreach($reviews as $review):
+
+				?>
+				<div class="info_tit">
+					<div style="float:left;"><h3><?php echo $review['userName'];?></h3></div>
+					<div style="float:left;"><h4><?php echo number_format($review['score'],1);?>分</h4></div>
+					<div style="float:right;"><h4><?php echo $review['reviewTime'];?></h4></div>
+
+				</div>
+				<p>
+					<?php echo $review['review'];?>
+				</p>
+				<div class="hr_45"></div>
+				<?php
+					endforeach;
+					endif;
+				?>
+
+			</div>
+		</div>
+
+
 
 
 

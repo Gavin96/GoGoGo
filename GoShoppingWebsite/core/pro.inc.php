@@ -190,7 +190,7 @@ function getAllProByCId($link,$id){
 	return $row;
 }
 
-function getAllProBYDes($link){
+function getAllProByDes($link){
 	$sql="select p.id,p.pName,p.pIndex,p.pNum,p.mPrice,p.iPrice,p.pDescription,p.pTime,p.isShow,p.isHot,c.name,p.cId from go_product as p join go_cate c on p.cId=c.id where p.pNum>0 and p.pDescription like '%[***]%'";
 	$rows=fetchAll($link,$sql);
 	return $rows;
@@ -209,7 +209,7 @@ function getAllProByName($link,$product_name){
 }
 
 function getSimilarProByCId($link,$cId,$proID){
-	$sql="select p.id,p.pName,p.pIndex,p.pNum,p.mPrice,p.iPrice,p.pDescription,p.pTime,p.isShow,p.isHot,c.name,p.cId from go_product as p join go_cate c on p.cId=c.id where c.id = {$cId} and p.cId!={$proID} limit 3";
+	$sql="select p.id,p.pName,p.pIndex,p.pNum,p.mPrice,p.iPrice,p.pDescription,p.pTime,p.isShow,p.isHot,c.name,p.cId from go_product as p join go_cate c on p.cId=c.id where c.id = {$cId} and p.cId!={$proID} limit 2";
 	$row=fetchAll($link,$sql);
 	return $row;
 }

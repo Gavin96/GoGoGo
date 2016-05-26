@@ -3,23 +3,15 @@
 require_once '../include.php';
 $link = connect();
 
-if(isset($_POST["product_name"]))
-    //print_r($_POST["product_name"]);
-    $pros=getAllProByName($link,$_POST["product_name"]);
-if(isset($_SESSION['userName']))
-{
-    $sql = "select * from go_cart where userName = '{$_SESSION['userName']}' and isCommit = 0";
-    $cartRows=getResultNum($link,$sql);
-    $orders=getOrderByUser($link,$_SESSION['userName']);
-}elseif(isset($_COOKIE['userName']))
-{
-    $sql = "select * from go_cart where userName = '{$_COOKIE['userName']}' and isCommit = 0";
-    $cartRows=getResultNum($link,$sql);
-    $orders=getOrderByUser($link,$_COOKIE['userName']);
-}else
-{
-    $cartRows=0;
+if(isset($_POST["product_name"])) {
+    $pros = getAllProByName($link, $_POST["product_name"]);
+    $_SESSION['pros'] = $_POST["product_name"];
+}elseif(isset($_SESSION['pros'])){
+    $pros = getAllProByName($link, $_SESSION['pros']);
 }
+$loggedUserName = getUserName();
+$cartRows = getCartNum($link);
+$orders=getOrderByUser($link,$loggedUserName);
 ?>
 
 <!doctype html>
@@ -41,11 +33,7 @@ if(isset($_SESSION['userName']))
             <div class="rightArea">
                 <B><em>欢迎您
                         <?php
-                        if(isset($_SESSION['userName'])){
-                            echo $_SESSION['userName'];
-                        }elseif(isset($_COOKIE['userName'])){
-                            echo $_COOKIE['userName'];
-                        }
+                        echo $loggedUserName;
                         ?>
                     </em></B>
                 <B>

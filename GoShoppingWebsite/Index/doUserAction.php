@@ -34,6 +34,8 @@ if($act=="logout") {
     }
     elseif(isset($_POST['receive']))
         $mes=delOrder($_REQUEST['userName'],$_REQUEST['proID']);
+}elseif($act=="addReview"){
+    $mes = addReview($_REQUEST['userName'],$_REQUEST['proID'],$_REQUEST['review'],$_REQUEST['score']);
 }
 
 ?>
