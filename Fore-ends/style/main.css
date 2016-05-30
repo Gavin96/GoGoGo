@@ -372,8 +372,27 @@ display: inline-block;line-height: 39px;}
 .pages .next:hover{color:red;}
 
 
+
+/*评论*/
+/*.comment{height: 250px;width: 800px;background-color: red;margin: auto;margin-top: 80px;}*/
+/*.comment{border:   #A4D3EE solid 2px;}*/
+.comment .textline{height: 45px;width: 800px;background-color:#9BCD9B;margin: auto;margin-top: 80px;
+  line-height:45px;font-family: "华文隶书";font-size: 25px;font-weight: bold;text-align: center; }
+.comment .pingjia{height: 30px;width: 800px;margin: auto;line-height: 30px;font-size: 20px;
+  font-family:"华文隶书";background-color: #CDC9C9;}
+.pingji{padding-left: 6px;font-weight: bold;font-size: 24px;}
+.pingjia li{float:left;width: 156px;font-family: "仿宋";background-color: #CDC9C9;}
+.pingjia .xuanze1{padding-left: 20px;}
+/*.checkbox{border:#CCC solid 1px; }*/
+.commenttext{height: 220px;width: 800px;margin: auto;font-family: "华文隶书";background-color: #C6E2FF;}
+.text{border: #B8860B solid 1px;height: 100px;width: 665px;margin-left: 70px;font-size: 18px;}
+.submit{background-color:#A2CD5A;width: 80px;height: 30px;margin-left: 68px;font-family: "华文仿宋";
+  font-weight: bold;font-size: 18px;}
+.back{background-color:#A2CD5A;width: 80px;height: 30px;margin-left: 30px;font-family: "华文仿宋";
+  font-weight: bold;font-size: 18px;}
 /*底部*/
-.footer{margin-top: 1200px;height: 200px; text-align: center;background-color: #D4D4D4;line-height: 24px;padding: 50px 0;}
+.footer{margin-top: 1200px;height: 200px; text-align: center;background-color: #D4D4D4;line-height: 24px;
+  padding: 50px 0;}
 .footer i{font-style: normal;margin: 0 5px;}
 .footer a{color: #000;}
 .footer a:hover{color: #F60;}
