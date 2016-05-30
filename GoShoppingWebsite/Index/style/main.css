@@ -313,7 +313,7 @@ background-color: #F3F3F3;}
 /*详细介绍*/
 .des_infoContent{border: #CCC solid 1px; background-color: #FFF;}
 .des_tit{height: 39px;/*border-top: #CCC solid 1px;*/background: url(../images/icon/des_title.png)left top repeat-x;}
-.des_tit li{float: left;width: 100%;/*font-size: 14px;line-height: 39px;*/font:16px/39px "宋体";
+.des_tit li{float: left;width: 50%;/*font-size: 14px;line-height: 39px;*/font:16px/39px "宋体";
 text-align: center;border-left: solid 1px #CCC;margin-left: -1px;}
 /*.des_tit .x{border-left: solid 2px;}*/
 .des_tit .active{background-color: #83B842;font-weight: bold;color: #FFF;position: relative;}
@@ -346,18 +346,53 @@ display: inline-block;line-height: 39px;}
 	background-color: #7F7F7F;color: #FFF;}
 .score_num i{border-width: 4px;border-style: solid dashed dashed dashed;border-color: 
  #7F7F7F transparent transparent transparent; width: 0;height: 0;}
+/*满意切换*/
+.review_tab{height: 32px;background-color: #F2F2F2;}
+.review{line-height: 32px;height: 100%;padding-left: 20px;}
+.review li{float: left;height: 100%;margin-right: 40px;}
+.review li a{display: inline-block;height:30px;line-height: 30px;padding: 0 5px;}
+.review .active{color: #83B842;font-weight: bold;border-bottom: #83B842 solid 2px;margin-bottom: -2px;position:relative;}
+.review_list{padding-top: 20px;height: 90px;padding-bottom: 10px;}
+.review_userHead{width: 170px;}
+.review_user{width:60px;text-align: center;margin-left: 35px;}
+.review_user img{width: 64px;height: 64px;display: block;margin-left: 5px;}
+.review_user p{line-height: 20px;}
+.review_cont{padding-left: 170px;padding-top: 5px;}
+.comment{font-weight: bold;font-family:"Microsoft YaHei","微软雅黑";font-size: 18px;}
+.review_cont .words{line-height: 24px;font-family:"Microsoft YaHei","微软雅黑";font-size: 15px;}
+.review_list{border-bottom:#CCC solid 1px;}
+.pages{text-align: center;padding-bottom: 10px;padding-top: 15px;}
+.shang{padding-right: 10px;}
+.xia{padding-left: 10px;}
+.forward{padding-right: 35px;}
+.pages .now{border: #CCC solid 1px;}
+.pages .now{padding-left: 10px;padding-right: 10px;}
+.next{padding-left: 35px;}
+.pages .forward:hover{color:red;}
+.pages .next:hover{color:red;}
 
 
 
-
-
-
-
-
-
-
+/*评论*/
+/*.comment{height: 250px;width: 800px;background-color: red;margin: auto;margin-top: 80px;}*/
+/*.comment{border:   #A4D3EE solid 2px;}*/
+.comment .textline{height: 45px;width: 800px;background-color:#9BCD9B;margin: auto;margin-top: 80px;
+  line-height:45px;font-family: "华文隶书";font-size: 25px;font-weight: bold;text-align: center; }
+.comment .pingjia{height: 30px;width: 800px;margin: auto;line-height: 30px;font-size: 20px;
+  font-family:"华文隶书";background-color: #CDC9C9;}
+.pingji{padding-left: 6px;font-weight: bold;font-size: 24px;}
+.pingjia li{float:left;width: 156px;font-family: "仿宋";background-color: #CDC9C9;}
+.pingjia .xuanze1{padding-left: 20px;}
+/*.checkbox{border:#CCC solid 1px; }*/
+.commenttext{height: 220px;width: 800px;margin: auto;font-family: "华文隶书";background-color: #C6E2FF;}
+.text{border: #B8860B solid 1px;height: 100px;width: 665px;margin-left: 70px;font-size: 18px;}
+.submit{background-color:#A2CD5A;width: 80px;height: 30px;margin-left: 68px;font-family: "华文仿宋";
+  font-weight: bold;font-size: 18px;}
+.back{background-color:#A2CD5A;width: 80px;height: 30px;margin-left: 30px;font-family: "华文仿宋";
+  font-weight: bold;font-size: 18px;}
 /*底部*/
-.footer{margin-top: 1200px;height: 200px; text-align: center;background-color: #D4D4D4;line-height: 24px;padding: 50px 0;}
+.footer{margin-top: 1200px;height: 200px; text-align: center;background-color: #D4D4D4;line-height: 24px;
+  padding: 50px 0;}
 .footer i{font-style: normal;margin: 0 5px;}
 .footer a{color: #000;}
 .footer a:hover{color: #F60;}

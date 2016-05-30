@@ -188,17 +188,17 @@ function addCart($userName,$proID,$isCommit=0,$amount=0){
         }elseif($isCommit == 1){
             clearUnSubmitCart($link);
             $res=checkCartExist($link,$userName,$proID);
-           // print_r($res);
-            if($res){
-
-                $arr['isCommit'] = $isCommit;
-                $arr['amount'] = $amount;
-                $where=" userName='{$userName}' and proID={$proID}";
-                $rows=update($link,"go_cart",$arr,$where);
-                
-                //$mes="here";
-                header("location:CheckCart.php");
-            }else{
+//           // print_r($res);
+//            if($res){
+//
+//                $arr['isCommit'] = $isCommit;
+//                $arr['amount'] = $amount;
+//                $where=" userName='{$userName}' and proID={$proID}";
+//                $rows=update($link,"go_cart",$arr,$where);
+//
+//                //$mes="here";
+//                header("location:CheckCart.php");
+//            }else{
                 $arr['userName'] = $userName;
                 $arr['proID'] = $proID;
                 $arr['amount'] = $amount;
@@ -206,19 +206,19 @@ function addCart($userName,$proID,$isCommit=0,$amount=0){
                 $insertId = insert($link, "go_cart", $arr);
                 if ($insertId > 0) {
                     $mes = "添加成功!<br/><a href='index.php'>回到首页</a>";
-                    //header("location:CheckCart.php");
+                    header("location:CheckCart.php");
                 } else {
 
                     $mes = "添加失败!<br/><a href='index.php'>回到首页</a>";
                 }
-            }
+//            }
         }
         return $mes;
 
     }
 }
 
-//将iscommit=1但为提交订单的cart，isCommit设为0
+//将iscommit=1但为提交订单的cart，isCommit设为0，即防止用户下订单后又取消，返回到其他页面
 function clearUnSubmitCart($link){
     $arr['isCommit'] = 0;
     $where=" isCommit=1";
@@ -226,7 +226,7 @@ function clearUnSubmitCart($link){
 }
 
 function checkCartExist($link,$userName,$proID){
-    $sql="select * from go_cart where userName='{$userName}' and proID={$proID}";
+    $sql="select * from go_cart where userName='{$userName}' and proID={$proID} and isCommit=0";
 
     $rows=fetchAll($link,$sql);
     return $rows;
@@ -253,11 +253,12 @@ function delOrder($userName,$proID){
     $where="proID=".$proID." and userName='{$userName}'";
 
     if(delete($link,"go_cart",$where)){
-        header("location:review.php?proID={$proID}&userName={$userName}");//转到评价页
+        header("location:addReview.php?proID=".$proID);//转到评价页
     }else{
         $mes= "删除失败！<br/><a href='listOrder.php'>请重新操作</a>";
+        return $mes;
     }
-    return $mes;
+    
 
 }
 
@@ -296,10 +297,10 @@ function addReview($userName,$proID,$review,$score){
     $arr['proID'] = $proID;
     $arr['review'] = $review;
     $arr['score'] = $score;
-    $arr['reviewTime'] = date("y-m-d h:i:s",time());
+    $arr['reviewTime'] = date("Y-m-d H:i:s",time());
     $insertId = insert($link, "go_review", $arr);
     if ($insertId > 0) {
-        $mes = "添加成功!<br/><a href='index.php'>回到订单页</a>";
+        $mes = "添加成功!<br/><a href='listOrder.php'>回到订单页</a>";
         header("location:listOrder.php");
     } else {
         $mes = "添加失败!<br/><a href='listOrder.php'>回到订单页</a>";
