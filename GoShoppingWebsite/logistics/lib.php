@@ -55,7 +55,7 @@ function finishCart($id){
     $sql = "update go_cart set isCommit=5 where id ={$id}";
     $url = "index.php";
     if(mysqli_query($link,$sql))
-        echo 'location.href="'.$url.'"</script>';
+        echo '<script>location.href="'.$url.'"</script>';
     else
         echo '<script>alert("完成失败！");location.href="'.$url.'"</script>';
 }

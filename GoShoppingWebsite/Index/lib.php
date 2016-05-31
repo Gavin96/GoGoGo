@@ -126,8 +126,9 @@ function modifyCart(){
 
 function commitCart($proID,$amount){
     $link=connect();
-    
-    $arr["isCommit"] = 3;
+
+    $arr=$_POST;
+    $arr['isCommit'] = 3;
     if(isset($_SESSION['userName']))
     {
         $mes = update($link,"go_cart",$arr,"userName='{$_SESSION['userName']}' and isCommit = 1");
@@ -135,7 +136,6 @@ function commitCart($proID,$amount){
     {
         $mes = update($link,"go_cart",$arr,"userName='{$_COOKIE['userName']}' and isCommit = 1");
     }
-
 
     updateProAmount($link,$proID,$amount);
     updateIsHot($link,$proID,$amount);

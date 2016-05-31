@@ -14,6 +14,10 @@ $cart=getCommittedCartByUser($link,$loggedUserName);
 $totalPrice = 0;
 //if($cart['amount']==0)
 //    alertMes("商品数量不能为零！","index.php");
+
+$pro = getProById($link,$cart["proID"]);
+if(($pro&&is_array($pro))):
+$proImg = getProImgById($link,$pro["id"]);
 ?>
 <!doctype html>
 <html>
@@ -87,7 +91,7 @@ $totalPrice = 0;
 </div>
 
 <div class="hr_25"></div>
-<form action="" method="POST">
+<form action="doUserAction.php?act=commitCart&proID=<?php echo $pro['id'];?>&amount=<?php echo $cart['amount'];?>" method="POST">
     <div class="shoppingCart comWidth">
         <div class="shopping_item">
             <h3 class="shopping_tit">收货地址</h3>
@@ -95,17 +99,17 @@ $totalPrice = 0;
                 <ul class="shopping_list">
                     <li><span class="shopping_list_text"><em>*</em>选择地区：</span>
                         <div class="select">
-                            <select name="area" style="border: #CCC solid 1px;">
-                                <option value="闵行区">闵行区</option>
-                                <option value="嘉定区">嘉定区</option>
-                                <option value="静安区">静安区</option>
-                                <option value="杨浦区">杨浦区</option>
+                            <select name="add_district" style="border: #CCC solid 1px;">
+                                <option value="1">闵行区</option>
+                                <option value="2">嘉定区</option>
+                                <option value="3">静安区</option>
+                                <option value="4">杨浦区</option>
                             </select>
                         </div>
                     </li>
-                    <li><span class="shopping_list_text"><em>*</em>详细地址：</span><input type="text" placeholder="最多输入20个汉字" class="input input_b"></li>
-                    <li><span class="shopping_list_text"><em>*</em>收 货 人：</span><input type="text" placeholder="请填写完整姓名" class="input"></li>
-                    <li><span class="shopping_list_text"><em>*</em>手	机：</span><input type="text" placeholder="请填写有效号码" class="input"></li>
+                    <li><span class="shopping_list_text"><em>*</em>详细地址：</span><input type="text" name="add_detail" placeholder="最多输入20个汉字" class="input input_b"></li>
+                    <li><span class="shopping_list_text"><em>*</em>收 货 人：</span><input type="text" name="name" placeholder="请填写完整姓名" class="input"></li>
+                    <li><span class="shopping_list_text"><em>*</em>手	机：</span><input type="text" name="phoneNumber" placeholder="请填写有效号码" class="input"></li>
                     <li><input type="button" class="affirm"></li>
                 </ul>
             </div>
@@ -123,12 +127,7 @@ $totalPrice = 0;
         <div class="hr_25"></div>
         <div class="shopping_item">
             <h3 class="shopping_tit">送货清单<a href="doUserAction.php?act=modifyCart" class="backCar">返回购物车修改</a></h3>
-            <?php
 
-                $pro = getProById($link,$cart["proID"]);
-                if(($pro&&is_array($pro))):
-                    $proImg = getProImgById($link,$pro["id"]);
-            ?>
             <div class="shopping_cont pb_10">
                 <div class="cart_inner">
                     <div class="cart_head clearfix">
@@ -176,7 +175,8 @@ $totalPrice = 0;
 
                     </div>
                     <div class="cart_btnBox">
-                        <a href="doUserAction.php?act=commitCart&proID=<?php echo $pro['id'];?>&amount=<?php echo $cart['amount'];?>" class="cart_btn">提交订单</a>
+<!--                        <a href="doUserAction.php?act=commitCart&proID=--><?php //echo $pro['id'];?><!--&amount=--><?php //echo $cart['amount'];?><!--" class="cart_btn">提交订单</a>-->
+                            <input type="submit"  value="提交订单" class="cart_btn"></>
                     </div>
                 </div>
             </div>
