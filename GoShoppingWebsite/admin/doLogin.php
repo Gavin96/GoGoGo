@@ -14,7 +14,7 @@ if(isset($_POST['autoFlag']))
     $autoFlag = $_POST['autoFlag'];
 $link = connect();
 if($verify==$verify1){
-    $sql = "select * from go_admin where username='{$username}' and password='{$password}'";
+    $sql = "select * from go_admin where username='{$username}' and password='{$password}' and admType=1";
     $result = checkAdmin($link,$sql);
     if($result){
         $_SESSION['adminName'] = $result['username'];

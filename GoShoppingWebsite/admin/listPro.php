@@ -16,7 +16,10 @@ if($page<1||$page==null||!is_numeric($page))$page=1;
 if($page>$totalPage)$page=$totalPage;
 $offset=($page-1)*$pageSize;
 $sql="select p.id,p.pName,p.pIndex,p.pNum,p.mPrice,p.iPrice,p.pDescription,p.pTime,p.isShow,p.isHot,c.name from go_product as p join go_cate c on p.cId=c.id {$where} {$orderBy} limit {$offset},{$pageSize}";
-$rows=fetchAll($link,$sql);
+$rows=array();
+if($totalPage!=0)
+	$rows=fetchAll($link,$sql);
+
 ?>
 <!doctype html>
 <html>

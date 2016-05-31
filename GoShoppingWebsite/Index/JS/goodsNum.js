@@ -5,13 +5,17 @@
 function decrease(obj) {
     var val=parseInt($(obj).next().val())-1;
     if(val>=0){$(obj).next().val(val);}
-    $(".t_red").html(parseInt($(obj).next().val(val))*parseInt($(t_price).val()));
+    $(".show_total_price").html(parseInt($(obj).next().val())*parseInt($(".show_per_price").html()));
 
 }
 
 function increase(obj) {
-    $(obj).prev().val(parseInt($(obj).prev().val())+1);
-    $(".t_red").html(parseInt($(obj).next().val(val))*parseInt($(t_price).val()));
+    var val = parseInt($(obj).prev().val())+1;
+    if(val<=$(".total_amount_left").val()){
+        $(obj).prev().val(val);
+    }
+    $(".show_total_price").html(parseInt($(obj).prev().val())*parseInt($(".show_per_price").html()));
+    
 }
 
 function decrease2(obj) {
@@ -22,6 +26,9 @@ function decrease2(obj) {
 }
 
 function increase2(obj) {
-    $(obj).parent().prev().children().val(parseInt($(obj).parent().prev().children().val())+1);
+    var val = parseInt($(obj).parent().prev().children().val())+1;
+    if(val<=$(".total_amount_left").val()){
+        $(obj).parent().prev().children().val(val);
+    }
     $(".span_amount").html($(obj).parent().prev().children().val());
 }

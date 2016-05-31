@@ -9,22 +9,13 @@
 require_once '../include.php';
 $link = connect();
 clearUnSubmitCart($link);
-if(isset($_SESSION['userName']))
-{
-    $userName = $_SESSION['userName'];
-    $sql = "select * from go_cart where userName = '{$_SESSION['userName']}' and isCommit = 0";
-    $cartRows=getResultNum($link,$sql);
-    $carts=getCartByUser($link,$_SESSION['userName']);
-}elseif(isset($_COOKIE['userName']))
-{
-    $userName = $_COOKIE['userName'];
-    $sql = "select * from go_cart where userName = '{$_COOKIE['userName']}' and isCommit = 0";
-    $cartRows=getResultNum($link,$sql);
-    $carts=getCartByUser($link,$_COOKIE['userName']);
-}else
+$userName = getUserName();
+$cartRows = getCartNum($link);
+if($userName==null)
 {
     alertMes("请先登录","login.php");
 }
+$carts=getCartByUser($link,$userName);
 ?>
 <!doctype html>
 <html>
@@ -48,11 +39,7 @@ if(isset($_SESSION['userName']))
                 <div class="rightArea">
                     <B><em>欢迎您
                             <?php
-                            if(isset($_SESSION['userName'])){
-                                echo $_SESSION['userName'];
-                            }elseif(isset($_COOKIE['userName'])){
-                                echo $_COOKIE['userName'];
-                            }
+                            echo $userName;
                             ?>
                         </em></B>
                     <B>
@@ -97,7 +84,7 @@ if(isset($_SESSION['userName']))
                     <li><a href="hot.php">热销</a></li>
                     <li><a href="#">健康知识</a></li>
                     <li><a href="#">质量管控</a></li>
-                    <li><a href="order.php">订单中心</a></li>
+                    <li><a href="listOrder.php">订单中心</a></li>
                 </ul>
 
             </div>
@@ -145,9 +132,10 @@ if(isset($_SESSION['userName']))
                             </div>
                         </div>
                         <div class="cart_item t_price">
-                            <?php echo $pro['iPrice']?>元
+                            <span class="show_per_price"><?php echo $pro['iPrice']?></span>元
                         </div>
                         <div class="cart_item t_return"> 0元</div>
+                        <input class="total_amount_left" type="hidden" value="<?php echo $pro['pNum'];?>">
                         <div class="cart_item t_num">
                             <p class="p_num">
                                 <span class="sy_minus" id="min1" onclick="decrease(this)">-</span>
@@ -155,7 +143,7 @@ if(isset($_SESSION['userName']))
                                 <span class="sy_plus" id="add1"  onclick="increase(this)">+</span>
                             </p>
                         </div>
-                        <div class="cart_item t_subtotal t_red">500元</div>
+                        <div class="cart_item t_subtotal t_red"><span class="show_total_price"><?php echo $pro['iPrice']?></span>元</div>
                     </div>
                     <div class="cart_message">
                         

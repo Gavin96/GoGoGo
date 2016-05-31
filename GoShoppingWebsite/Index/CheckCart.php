@@ -8,18 +8,12 @@
 
 require_once '../include.php';
 $link = connect();
-if(isset($_SESSION['userName']))
-{
-    $sql = "select * from go_cart where userName = '{$_SESSION['userName']}' and isCommit = 0";
-    $cartRows=getResultNum($link,$sql);
-    $carts=getCommittedCartByUser($link,$_SESSION['userName']);
-}elseif(isset($_COOKIE['userName']))
-{
-    $sql = "select * from go_cart where userName = '{$_COOKIE['userName']}' and isCommit = 0";
-    $cartRows=getResultNum($link,$sql);
-    $carts=getCommittedCartByUser($link,$_COOKIE['userName']);
-}
+$loggedUserName = getUserName();
+$cartRows = getCartNum($link);
+$cart=getCommittedCartByUser($link,$loggedUserName);
 $totalPrice = 0;
+//if($cart['amount']==0)
+//    alertMes("商品数量不能为零！","index.php");
 ?>
 <!doctype html>
 <html>
@@ -40,11 +34,7 @@ $totalPrice = 0;
             <div class="rightArea">
                 <B><em>欢迎您
                         <?php
-                        if(isset($_SESSION['userName'])){
-                            echo $_SESSION['userName'];
-                        }elseif(isset($_COOKIE['userName'])){
-                            echo $_COOKIE['userName'];
-                        }
+                        echo $loggedUserName;
                         ?>
                     </em></B>
                 <B>
@@ -89,7 +79,7 @@ $totalPrice = 0;
                 <li><a href="hot.php">热销</a></li>
                 <li><a href="#">健康知识</a></li>
                 <li><a href="#">质量管控</a></li>
-                <li><a href="order.php">订单中心</a></li>
+                <li><a href="listOrder.php">订单中心</a></li>
             </ul>
 
         </div>
@@ -113,9 +103,9 @@ $totalPrice = 0;
                             </select>
                         </div>
                     </li>
-                    <li><span class="shopping_list_text"><em>*</em>详细地址：</span><input type="text" value="最多输入20个汉字" class="input input_b"></li>
-                    <li><span class="shopping_list_text"><em>*</em>收 货 人：</span><input type="text" value="最多10个" class="input"></li>
-                    <li><span class="shopping_list_text"><em>*</em>手	机：</span><input type="text" value="如：12312312" class="input"><span class="cart_tel">&nbsp;或固定电话：</span><input type="text" class="input input_s"><span class="jian">-</span><input type="text" class="input input_s2"><span class="jian">-</span><input type="text" class="input input_s2"></li>
+                    <li><span class="shopping_list_text"><em>*</em>详细地址：</span><input type="text" placeholder="最多输入20个汉字" class="input input_b"></li>
+                    <li><span class="shopping_list_text"><em>*</em>收 货 人：</span><input type="text" placeholder="请填写完整姓名" class="input"></li>
+                    <li><span class="shopping_list_text"><em>*</em>手	机：</span><input type="text" placeholder="请填写有效号码" class="input"></li>
                     <li><input type="button" class="affirm"></li>
                 </ul>
             </div>
@@ -125,8 +115,8 @@ $totalPrice = 0;
             <h3 class="shopping_tit">支付方式</h3>
             <div class="shopping_cont padding_shop">
                 <ul class="shopping_list">
-                    <li><input type="radio" class="radio" id="r1"><label for="r1">线上支付</label></li>
-                    <li><input type="radio" class="radio" id="r2"><label for="r2">货到付款</label></li>
+                    <li><input type="radio" class="radio" id="r1" name="paymentStyle"><label for="r1">线上支付</label></li>
+                    <li><input type="radio" class="radio" id="r2" name="paymentStyle"><label for="r2">货到付款</label></li>
                 </ul>
             </div>
         </div>
@@ -134,8 +124,8 @@ $totalPrice = 0;
         <div class="shopping_item">
             <h3 class="shopping_tit">送货清单<a href="doUserAction.php?act=modifyCart" class="backCar">返回购物车修改</a></h3>
             <?php
-                foreach($carts as $cart):
-                    $pro = getProById($link,$cart["proID"]);
+
+                $pro = getProById($link,$cart["proID"]);
                 if(($pro&&is_array($pro))):
                     $proImg = getProImgById($link,$pro["id"]);
             ?>
@@ -174,7 +164,7 @@ $totalPrice = 0;
 
         <?php
             endif;
-            endforeach;
+
         ?>
 
         <div class="shopping_item">
@@ -186,7 +176,7 @@ $totalPrice = 0;
 
                     </div>
                     <div class="cart_btnBox">
-                        <a href="doUserAction.php?act=commitCart" class="cart_btn">提交订单</a>
+                        <a href="doUserAction.php?act=commitCart&proID=<?php echo $pro['id'];?>&amount=<?php echo $cart['amount'];?>" class="cart_btn">提交订单</a>
                     </div>
                 </div>
             </div>

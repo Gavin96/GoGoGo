@@ -4,23 +4,14 @@
 
 require_once '../include.php';
 $link = connect();
+$userName = getUserName();
+$cartRows = getCartNum($link);
 
-if(isset($_SESSION['userName']))
-{
-    $userName = $_SESSION['userName'];
-    $sql = "select * from go_cart where userName = '{$_SESSION['userName']}' and isCommit = 0";
-    $cartRows=getResultNum($link,$sql);
-    $orders=getOrderByUser($link,$_SESSION['userName']);
-}elseif(isset($_COOKIE['userName']))
-{
-    $userName = $_COOKIE['userName'];
-    $sql = "select * from go_cart where userName = '{$_COOKIE['userName']}' and isCommit = 0";
-    $cartRows=getResultNum($link,$sql);
-    $orders=getOrderByUser($link,$_COOKIE['userName']);
-}else
+if($userName==null)
 {
     alertMes("请先登录","login.php");
 }
+$orders=getOrderByUser($link,$userName);
 ?>
 <!doctype html>
 <html>
@@ -41,11 +32,7 @@ if(isset($_SESSION['userName']))
             <div class="rightArea">
                 <B><em>欢迎您
                         <?php
-                        if(isset($_SESSION['userName'])){
-                            echo $_SESSION['userName'];
-                        }elseif(isset($_COOKIE['userName'])){
-                            echo $_COOKIE['userName'];
-                        }
+                        echo $userName;
                         ?>
                     </em></B>
                 <B>
@@ -90,7 +77,7 @@ if(isset($_SESSION['userName']))
                 <li><a href="hot.php">热销</a></li>
                 <li><a href="#">健康知识</a></li>
                 <li><a href="#">质量管控</a></li>
-                <li><a href="order.php" class="active">订单中心</a></li>
+                <li><a href="listOrder.php" class="active">订单中心</a></li>
             </ul>
 
         </div>

@@ -15,25 +15,31 @@ if($act=="logout") {
 }elseif($act=="addCart"){   //在商品详情页选择加入购物车
     $mes=addCart($_REQUEST['userName'],$_REQUEST['proID']);
 }elseif($act=="checkCart"){  //在商品详情页选择购买
-   
-    $mes=addCart($_REQUEST['userName'],$_REQUEST['proID'],1,$_REQUEST['amount']);
+    if($_REQUEST['amount']==0){
+        echo "<script>alert('商品数量不能为零!');history.go(-1);</script>";
+
+    }else
+        $mes=addCart($_REQUEST['userName'],$_REQUEST['proID'],1,$_REQUEST['amount']);
+
 }elseif($act=="modifyCart"){
     modifyCart();
 }elseif($act=="commitCart"){
-    commitCart();
+    commitCart($_REQUEST['proID'],$_REQUEST['amount']);
 }elseif($act=="manipulateCart"){
     
     if(isset($_POST['delete']))
         $mes=delCart($_REQUEST['userName'],$_REQUEST['proID']);
     elseif(isset($_POST['purchase']))
         $mes=addCart($_REQUEST['userName'],$_REQUEST['proID'],1,$_REQUEST['number1']);
-}elseif($act="manipulateOrder"){
+}elseif($act=="manipulateOrder"){
     if(isset($_POST['check']))
     {
-        header("location:order.php");
+        header("location:listOrder.php");
     }
     elseif(isset($_POST['receive']))
         $mes=delOrder($_REQUEST['userName'],$_REQUEST['proID']);
+}elseif($act=="addReview"){
+    $mes = addReview($_REQUEST['userName'],$_REQUEST['proID'],$_REQUEST['review'],$_REQUEST['score']);
 }
 
 ?>

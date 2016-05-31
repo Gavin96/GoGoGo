@@ -6,22 +6,11 @@ $link = connect();
 $pro = null;
 if(isset($_GET["id"]))
 	$pro=getProById($link,$_GET["id"]);
-if(isset($_SESSION['userName']))
-{
-	$userName = $_SESSION['userName'];
-	$sql = "select * from go_cart where userName = '{$_SESSION['userName']}' and isCommit = 0";
-	$cartRows=getResultNum($link,$sql);
-	$orders=getOrderByUser($link,$_SESSION['userName']);
-}elseif(isset($_COOKIE['userName']))
-{
-	$userName = $_COOKIE['userName'];
-	$sql = "select * from go_cart where userName = '{$_COOKIE['userName']}' and isCommit = 0";
-	$cartRows=getResultNum($link,$sql);
-	$orders=getOrderByUser($link,$_COOKIE['userName']);
-}else
-{
+$userName = getUserName();
+$cartRows = getCartNum($link);
+$orders=getOrderByUser($link,$userName);
+if($userName==null){
 	$userName="none";
-	$cartRows=0;
 }
 ?>
 
@@ -97,7 +86,7 @@ if(isset($_SESSION['userName']))
 				<li><a href="hot.php">热销</a></li>
 				<li><a href="#">健康知识</a></li>
 				<li><a href="#">质量管控</a></li>
-				<li><a href="order.php">订单中心</a></li>
+				<li><a href="listOrder.php">订单中心</a></li>
 			</ul>
 
 		</div>
@@ -110,7 +99,7 @@ if(isset($_SESSION['userName']))
 		<span>&nbsp;&gt;&nbsp;</span>
 		<a href="cateDetail.php?CId=<?php echo $pro['cId']; ?>"><?php echo $pro['name'];?></a>
 		<span>&nbsp;&gt;&nbsp;</span>
-		<a href="goodsDetail.php?id=$pro['id']"><?php echo $pro['pName'];?></a>
+		<a href="goodsDetail.php?id=<?php echo $pro['id']; ?>"><?php echo $pro['pName'];?></a>
 	</div>
 
 <!-- <div class="border"> -->
@@ -204,6 +193,7 @@ if(isset($_SESSION['userName']))
 <!--    	         		</div>-->
 
 
+						<input class="total_amount_left" type="hidden" value="<?php echo $pro['pNum'];?>">
     	         		<div class="dl clearfix">
     	         			<div class="dt des_num">已选择数量：</div>
     	         			<div class="dd dd2 clearfix">
@@ -220,7 +210,7 @@ if(isset($_SESSION['userName']))
 
                 </div>
     	         	<div class="des_select">
-    	         		已选择 <span><?php echo $pro['pName'];?>：<span class="span_amount">0</span>件</span>
+    	         		已选择 <span><?php echo $pro['pName'];?>：<span class="span_amount">1</span>件</span>
     	         	</div>
     	         	<div class="shop_buy">
     	         		<a href="doUserAction.php?act=addCart&userName=<?php echo $userName;?>&proID=<?php echo $pro['id'];?>" class="shopping_btn"></a>
@@ -238,30 +228,148 @@ if(isset($_SESSION['userName']))
 
         </div>
 	</div>
+
+
+<div class="hr_15"></div>
+
+<div class="des_info comWidth clearfix">
+	<div class="leftArea">
+		<div class="recommend">
+			<h3 class="tit">类似产品</h3>
+
+			<?php
+				$similarPros = getSimilarProByCId($link,$pro["cId"],$pro['id']);
+				if(($similarPros&&is_array($similarPros))):
+					foreach($similarPros as $similarPro):
+						$similarProImg = getProImgById($link,$similarPro["id"]);
+			?>
+			<div class="item">
+				<div class="item_cont">
+					<div class="img_item">
+						<a href="goodsDetail.php?id=<?php echo $similarPro['id'];?>"><img  height="180" width="187" src="../image_220/<?php echo $similarProImg['albumPath'];?>"></a>
+					</div>
+					<center>
+					<p><a href="#"><?php echo $similarPro['pName'];?></a></p>
+					<p class="money"><?php echo $similarPro['iPrice'];?>元</p>
+					</center>
+				</div>
+			</div>
+			<?php
+				endforeach;
+				endif;
+			?>
+
+			<h3 class="tit2">推荐一下</h3>
+			<?php
+			    $recommendPros = getRecommendPro($link);
+				if(($recommendPros&&is_array($recommendPros))):
+					foreach($recommendPros as $recommendPro):
+						$recommendProImg = getProImgById($link,$recommendPro["id"]);
+			?>
+			<div class="item">
+				<div class="item_cont">
+					<div class="img_item">
+						<a href="goodsDetail.php?id=<?php echo $recommendPro['id'];?>"><img  height="180" width="187" src="../image_220/<?php echo $recommendProImg['albumPath'];?>"></a>
+					</div>
+					<center>
+						<p><a href="#"><?php echo $recommendPro['pName'];?></a></p>
+						<p class="money"><?php echo $recommendPro['iPrice'];?>元</p>
+					</center>
+				</div>
+			</div>
+			<?php
+				endforeach;
+				endif;
+			?>
+			
+		</div>
+	</div>
+	<div class="rightArea">
+
+
+		<div class="des_infoContent">
+			<h3 class="shopDes_tit">商品评价</h3>
+			<div class="score_box clearfix">
+				<div class="score">
+					<span><?php echo getReviewScoreByPro($link,$pro['id']);?></span><em>分</em>
+				</div>
+				<div class="score_speed">
+
+					<ul class="score_speed_text">
+						<li class="speed_01">非常不满意</li>
+						<li class="speed_02">不满意</li>
+						<li class="speed_03">一般</li>
+						<li class="speed_04">满意</li>
+						<li>非常满意</li>
+					</ul>
+					<div class="score_num">
+						<?php echo getReviewScoreByPro($link,$pro['id']);?>
+					</div>
+					<p>共有<?php echo getReviewNumByPro($link,$pro['id']);?>位顾客参与此项评分</p>
+				</div>
+
+			</div>
+		</div>
+		<div class="hr_15"></div>
+		<div class="des_infoContent">
+			<ul class="des_tit">
+				<li class="active"><span class="a">商品评价</span> </li>
+<!--				<li class="x"><span class="b">商品评价(10001)</span> </li>-->
+			</ul>
+
+			<div class="ad">
+				<a href="#"><img src="images/banner/ad.png"></a>
+			</div>
+			<div class="info_text">
+
+				<?php
+					$reviews = getAllReviewsByPro($link,$pro['id']);
+					if(($reviews&&is_array($reviews))):
+						foreach($reviews as $review):
+
+				?>
+				<div class="info_tit">
+					<div style="float:left;"><h3><?php echo $review['userName'];?></h3></div>
+					<div style="float:left;"><h4><?php echo number_format($review['score'],1);?>分</h4></div>
+					<div style="float:right;"><h4><?php echo $review['reviewTime'];?></h4></div>
+
+				</div>
+				<p>
+					<?php echo $review['review'];?>
+				</p>
+				<div class="hr_45"></div>
+				<?php
+					endforeach;
+					endif;
+				?>
+
+			</div>
+		</div>
+
+
+
+
+
+
+	</div>
+</div>
+
+
+<div class="hr_15" style="clear:both;"></div>
 <!-- <div> -->
-    <div class="footer" style="margin-top:100px;">
-		<p><a href="#">Go简介</a><i>|</i><a href="#">招贤纳士</a><i>|</i><a href="#">联系我们</a><i>|</i>客服热线：021-8888-8888</p>
-		<p>Copyright &copy; 2016 - 2020 同济大学版权所有</p>
-    	<p class="weblogo">
-    	   <br/> <br/>
-    	   <a href="#"><img src="images/banner/weblogo.png" alt="logo"></a>&nbsp;
+<div class="footer" style="margin-top:100px;">
+	<p><a href="#">Go简介</a><i>|</i><a href="#">招贤纳士</a><i>|</i><a href="#">联系我们</a><i>|</i>客服热线：021-8888-8888</p>
+	<p>Copyright &copy; 2016 - 2020 同济大学版权所有</p>
+	<p class="weblogo">
+	   <br/> <br/>
+	   <a href="#"><img src="images/banner/weblogo.png" alt="logo"></a>&nbsp;
 <!--    	   <a href="#"><img src="images/banner/weblogo.png" alt="logo"></a>&nbsp;-->
 <!--           <a href="#"><img src="images/banner/weblogo.png" alt="logo"></a>&nbsp;-->
 <!--           <a href="#"><img src="images/banner/weblogo.png" alt="logo"></a>-->
-       </p>
+   </p>
 
-    </div>
-<script type="text/javascript">
+</div>
 
-	
-
-	function checkCart(userName,proID){
-		alert("d");
-		var amount= document.getElementById('amount').value;
-
-		window.location="doUserAction.php?act=checkCart&userName="+userName+"&proID="+proID+"&amount="+amount;
-	}
-</script>
 </body>
 
 </html>

@@ -67,7 +67,7 @@ checkLogined();
                     <li>
                         <h3><span  onclick="show('menu3','change3')" id="change3" >+</span>订单管理</h3>
                         <dl id="menu3" style="display:none;">
-                            <dd><a href="listCart.php" target="mainFrame">待处理订单列表</a></dd>
+                            <dd><a href="listCart.php" target="mainFrame">待接受订单列表</a></dd>
                             <dd><a href="listFinishedCart.php" target="mainFrame">已完成订单列表</a></dd>
                         </dl>
                     </li>

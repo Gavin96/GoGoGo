@@ -4,7 +4,7 @@ if(!isset($_SESSION['adminId'])&&$_COOKIE['adminId']==""){
     alertMes("请先登录","login.php");
 }
 $link = connect();
-$sql="select c.id,userName,p.pName,p.iPrice,c.amount,c.isCommit from go_cart as c join go_product as p where c.proID=p.id";
+$sql="select c.id,userName,p.pName,p.iPrice,c.amount,c.isCommit from go_cart as c join go_product as p where c.proID=p.id and c.isCommit=4 ";
 $totalRows=getResultNum($link,$sql);
 $pageSize=2;
 $totalPage=ceil($totalRows/$pageSize);
@@ -12,8 +12,11 @@ $page=isset($_REQUEST['page'])?(int)$_REQUEST['page']:1;
 if($page<1||$page==null||!is_numeric($page))$page=1;
 if($page>$totalPage)$page=$totalPage;
 $offset=($page-1)*$pageSize;
-$sql="select c.id,c.userName,p.pName,p.iPrice,c.amount,c.isCommit from go_cart as c join go_product as p where c.proID=p.id and c.isCommit=4";
-$rows=fetchAll($link,$sql);
+$sql="select c.id,c.userName,p.pName,p.iPrice,c.amount,c.isCommit from go_cart as c join go_product as p where c.proID=p.id and c.isCommit=4 limit {$offset},{$pageSize}";
+$rows=array();
+if($totalPage!=0)
+    $rows=fetchAll($link,$sql);
+
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -33,17 +36,15 @@ $rows=fetchAll($link,$sql);
     <div class="link fr">
         <b>欢迎您
             <?php
-            if(isset($_SESSION['adminName'])){
-                echo $_SESSION['adminName'];
-            }elseif(isset($_COOKIE['adminName'])){
-                echo $_COOKIE['adminName'];
+            if(isset($_SESSION['admin2Name'])){
+                echo $_SESSION['admin2Name'];
+            }elseif(isset($_COOKIE['admin2Name'])){
+                echo $_COOKIE['admin2Name'];
             }
             ?>
 
         </b>&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.php" class="icon icon_i">首页</a>
-        <span></span><a href="javascript:void(0);" class="icon icon_j" onclick="back()">后退</a>
-        <span></span><a href="javascript:void(0);" class="icon icon_t" onclick="forward()">前进</a>
-        <span></span><a href="javascript:void(0);" class="icon icon_n" onclick="reload()">刷新</a>
+        
         <span></span><a href="doLogAction.php?act=logout" class="icon icon_e">退出</a>
 
     </div>
@@ -79,7 +80,7 @@ $rows=fetchAll($link,$sql);
         <?php endforeach;?>
         <?php if($totalRows>$pageSize):?>
             <tr>
-                <td colspan="4"><?php echo showPage($page, $totalPage);?></td>
+                <td colspan="6"><?php echo showPage($page, $totalPage);?></td>
             </tr>
         <?php endif;?>
         </tbody>

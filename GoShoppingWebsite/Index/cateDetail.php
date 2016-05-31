@@ -2,22 +2,10 @@
 
 require_once '../include.php';
 $link = connect();
-//$_GET["CId"]=9;
 if(isset($_GET["CId"]))
 	$cate=getOneCate($link,$_GET["CId"]);
-//print_r($cate);
-if(isset($_SESSION['userName']))
-{
-	$sql = "select * from go_cart where userName = '{$_SESSION['userName']}' and isCommit = 0";
-	$cartRows=getResultNum($link,$sql);
-}elseif(isset($_COOKIE['userName']))
-{
-	$sql = "select * from go_cart where userName = '{$_COOKIE['userName']}' and isCommit = 0";
-	$cartRows=getResultNum($link,$sql);
-}else
-{
-	$cartRows=0;
-}
+$loggedUserName = getUserName();
+$cartRows = getCartNum($link);
 ?>
 
 <!doctype html>
@@ -39,11 +27,7 @@ if(isset($_SESSION['userName']))
 				<div class="rightArea">
 					<B><em>欢迎您
 							<?php
-							if(isset($_SESSION['userName'])){
-								echo $_SESSION['userName'];
-							}elseif(isset($_COOKIE['userName'])){
-								echo $_COOKIE['userName'];
-							}
+								echo $loggedUserName;
 							?>
 						</em></B>
 					<B>
@@ -88,7 +72,7 @@ if(isset($_SESSION['userName']))
 					<li><a href="hot.php">热销</a></li>
 					<li><a href="#">健康知识</a></li>
 					<li><a href="#">质量管控</a></li>
-					<li><a href="order.php">订单中心</a></li>
+					<li><a href="listOrder.php">订单中心</a></li>
 				</ul>
 
 			</div>

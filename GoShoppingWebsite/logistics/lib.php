@@ -16,14 +16,14 @@ function login(){
         $autoFlag = $_POST['autoFlag'];
     $link = connect();
     if($verify==$verify1){
-        $sql = "select * from go_admin where username='{$username}' and password='{$password}'";
+        $sql = "select * from go_admin where username='{$username}' and password='{$password}'  and admType=2";
         $result = checkAdmin($link,$sql);
         if($result&&$result['admType'] == 2) {
-            $_SESSION['adminName'] = $result['username'];
-            $_SESSION['adminId'] = $result['id'];
+            $_SESSION['admin2Name'] = $result['username'];
+            $_SESSION['admin2Id'] = $result['id'];
             if (isset($autoFlag) && $autoFlag == 1) {
-                setcookie("adminId", $result['id'], time() + 7 * 24 * 3600);
-                setcookie("adminName", $result['username'], time() + 7 * 24 * 3600);
+                setcookie("admin2Id", $result['id'], time() + 7 * 24 * 3600);
+                setcookie("admin2Name", $result['username'], time() + 7 * 24 * 3600);
             }
             echo "<script>window.location='index.php';</script>";
         }else{
@@ -55,7 +55,7 @@ function finishCart($id){
     $sql = "update go_cart set isCommit=5 where id ={$id}";
     $url = "index.php";
     if(mysqli_query($link,$sql))
-        echo '<script>alert("提交成功！");location.href="'.$url.'"</script>';
+        echo 'location.href="'.$url.'"</script>';
     else
-        echo '<script>alert("修改失败！");location.href="'.$url.'"</script>';
+        echo '<script>alert("完成失败！");location.href="'.$url.'"</script>';
 }
