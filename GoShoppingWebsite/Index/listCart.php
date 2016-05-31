@@ -8,9 +8,10 @@
 
 require_once '../include.php';
 $link = connect();
-clearUnSubmitCart($link);
+
 $userName = getUserName();
 $cartRows = getCartNum($link);
+clearUnSubmitCart($link,$userName);
 if($userName==null)
 {
     alertMes("请先登录","login.php");

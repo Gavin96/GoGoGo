@@ -22,7 +22,7 @@ if($act=="logout") {
         $mes=addCart($_REQUEST['userName'],$_REQUEST['proID'],1,$_REQUEST['amount']);
 
 }elseif($act=="modifyCart"){
-    modifyCart();
+    modifyCart($_REQUEST['userName']);
 }elseif($act=="commitCart"){
     commitCart($_REQUEST['proID'],$_REQUEST['amount']);
 }elseif($act=="manipulateCart"){

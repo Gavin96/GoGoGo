@@ -118,9 +118,9 @@ function getCommittedCartByUser($link,$userName){
     return $rows;
 }
 
-function modifyCart(){
+function modifyCart($userName){
     $link=connect();
-    clearUnSubmitCart($link);
+    clearUnSubmitCart($link,$userName);
     header("location:listCart.php");
 }
 
@@ -219,10 +219,11 @@ function addCart($userName,$proID,$isCommit=0,$amount=0){
 }
 
 //将iscommit=1但为提交订单的cart，isCommit设为0，即防止用户下订单后又取消，返回到其他页面
-function clearUnSubmitCart($link){
-    $arr['isCommit'] = 0;
-    $where=" isCommit=1";
-    $rows=update($link,"go_cart",$arr,$where);
+function clearUnSubmitCart($link,$userName){
+//    $arr['isCommit'] = 0;
+    $where=" isCommit=1 and userName='{$userName}'";
+    
+    $rows=delete($link,"go_cart",$where);
 }
 
 function checkCartExist($link,$userName,$proID){

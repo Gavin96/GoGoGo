@@ -12,6 +12,9 @@ $orders=getOrderByUser($link,$userName);
 if($userName==null){
 	$userName="none";
 }
+else{
+	clearUnSubmitCart($link,$userName);
+}
 ?>
 
 
