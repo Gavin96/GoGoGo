@@ -1,6 +1,21 @@
 /**
  * Created by FanLiang on 5/15 2016.
  */
+function showBanner1(obj){
+    var src = "images/banner/banner_01.jpg";
+    $(".bannerImgBox img").attr("src",src);
+    $(".bannerImgBox a").attr("href","cateDetail.php?CId=1");
+    $(".bannerImgNum").children().addClass("active");
+    $(".bannerImgNum").children().next().removeClass("active");
+}
+
+function showBanner2(obj){
+    var src = "images/banner/banner_02.jpg";
+    $(".bannerImgBox img").attr("src",src);
+    $(".bannerImgBox a").attr("href","cateDetail.php?CId=2");
+    $(".bannerImgNum").children().removeClass("active");
+    $(".bannerImgNum").children().next().addClass("active");
+}
 
 function decrease(obj) {
     var val=parseInt($(obj).next().val())-1;
@@ -31,4 +46,13 @@ function increase2(obj) {
         $(obj).parent().prev().children().val(val);
     }
     $(".span_amount").html($(obj).parent().prev().children().val());
+}
+
+function changePhoto(obj){
+    // $(".big").children().attr("src",$(obj).children().attr("src"));
+    var src = $(obj).children().attr("src");
+    var re=new RegExp("50","i");
+    var newSrc=src.replace(re,"220");
+
+    $(".big").children().attr("src",newSrc);
 }

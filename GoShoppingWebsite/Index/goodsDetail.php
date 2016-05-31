@@ -117,7 +117,7 @@ if($userName==null){
 				<?php
 					foreach($proImgs as $proImg):
 				?>
-    		     <li><a href="#"><img src="../image_50/<?php echo $proImg['albumPath'];?>" class="active"  alt=""></a></li>
+    		     <li class="photo_list"><a href="#" onmouseover="changePhoto(this)"><img src="../image_50/<?php echo $proImg['albumPath'];?>" class="active"  alt=""></a></li>
     		     <?php
 				 	endforeach;
 				 ?>
@@ -135,9 +135,14 @@ if($userName==null){
 					 </div>
 
     	         	<div class="dl clearfix">
-    	         		<div class="dt k1">价格：</div>
+    	         		<div class="dt k1">Go价格：</div>
     	         		<div class="dd"><span class="des_money"><em>¥</em><?php echo $pro['iPrice'];?></span></div>
     	         	</div>
+
+					 <div class="dl clearfix">
+						 <div class="dt k1">市场价：</div>
+						 <div class="dd"><span class="des_money"><s><em>¥</em><?php echo $pro['mPrice'];?></span></s></div>
+					 </div>
 
     	         	<div class="dl clearfix">
     	         		<div class="dt k1">优惠：</div>

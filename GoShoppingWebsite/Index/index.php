@@ -26,9 +26,8 @@ $cartRows = getCartNum($link);
 <title>首页</title>
 <link href="style/reset.css" rel="stylesheet" type="text/css">
 <link href="style/main.css" rel="stylesheet" type="text/css">
-<script language="JavaScript">
-
-</script>
+<script language="JavaScript" src="JS/goodsNum.js"></script>
+<script src="JS/jquery-2.2.3.min.js"></script>
 </head>
 
 <body>
@@ -102,12 +101,13 @@ $cartRows = getCartNum($link);
 
 	<div class="banner comWidth clearfix">
 		<div class="banner_bar banner_big">
-			<ul class="imgBox">
-				<li><a href="#"><img src="images/banner/banner_01.png" alt="banner"></a></li>
-				<li><a href="#"><img src="images/banner/banner_02.png" alt="banner"></a></li>
+			<ul class="imgBox bannerImgBox">
+				<li><a href="#"><img src="images/banner/banner_01.jpg" alt="banner"></a></li>
+
 			</ul>
-			<div class="imgNum">
-				<a href="#" class="active"></a> <a href="#"></a>
+			<div class="imgNum bannerImgNum">
+				<a href="#" class="active" onmouseover="showBanner1(this)"></a>
+				<a href="#" onmouseover="showBanner2(this)"></a>
 			</div>
 		</div>
 	</div>

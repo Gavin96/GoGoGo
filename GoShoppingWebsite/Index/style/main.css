@@ -34,7 +34,7 @@
 
 /*导航栏*/
 .navBox{height: 35px;background-color:#83B842; color: #FFF;}
-.shopClass{width: 194px;position: relative;}
+.shopClass{width: 190px;position: relative;}
 .shopClass h3{text-align: center;line-height: 35px;}
 /*.shopClass i{width: 17px;height: 13px; overflow: hidden;background: url(../images/icon/down.png) left center no-repeat;*/
               /*display: inline-block;margin-left: 15px;}*/
@@ -64,7 +64,7 @@
 .imgBox li{float: left;}
 .imgBox img{display: block;}
 .imgNum{position: absolute;left: 0;bottom: 10px;width: 100%;text-align: center;}
-.imgNum a{width: 20px;height: 5px;overflow: hidden;background-color: #FFF;display: inline-block;margin: 0 3px;}
+.imgNum a{width: 20px;height: 5px;overflow: hidden;background-color: #b4b4a4;display: inline-block;margin: 0 3px;}
 .imgNum .active{background-color:#EE0000;}
 .banner_big,
 .banner_big img{width: 810px;height: 375px;}
