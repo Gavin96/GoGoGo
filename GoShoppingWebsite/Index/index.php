@@ -28,6 +28,7 @@ $cartRows = getCartNum($link);
 <link href="style/main.css" rel="stylesheet" type="text/css">
 <script language="JavaScript" src="JS/goodsNum.js"></script>
 <script src="JS/jquery-2.2.3.min.js"></script>
+	
 </head>
 
 <body>
@@ -35,7 +36,7 @@ $cartRows = getCartNum($link);
 		<div class="topBar">
 			<div class="comWidth">
 			    <div class="leftArea">
-				 <B> <a class="collection"><img src="images/icon/collection.png">Crazy shopping</a></B>
+				 <B> <a href="index.php" class="collection"><img src="images/icon/collection.png">Crazy shopping</a></B>
 			    </div>
 			    <div class="rightArea">
 			    	<B><em>欢迎您
@@ -58,19 +59,23 @@ $cartRows = getCartNum($link);
 		<div class="logoBar">
 			<div class="comWidth">
 				<div class="logo fl">
-					<a href="#"><img src="images/icon/Fruits_Vegetable.png" alt="有机食品销售"></a>
+					<a href="index.php"><img src="images/icon/Fruits_Vegetable.png" alt="有机食品销售"></a>
 			    </div>
 			<div class="search_box fl">
                   <span class="search_glass fl" > </span>
 				  <form action="product.php" method="post">
 				  <input type="text" name="product_name" class="search_text fl">
 				  <input type="submit" value="搜 索" class="search_btn fr">
+
 				  </form>
-			    </div>  
+			</div>
+
+
 			    <div class="shopCar fr">
 				<span class="shopText fl"><a href="listCart.php">购物车</a></span>
 				<span class="shopNum fl"><?php echo $cartRows; ?></span>
 				</div>
+
 			</div>
 		</div>
 		<div class="navBox">

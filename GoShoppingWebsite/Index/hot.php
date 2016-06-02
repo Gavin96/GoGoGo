@@ -20,7 +20,7 @@ $cartRows = getCartNum($link);
     <div class="topBar">
         <div class="comWidth">
             <div class="leftArea">
-                <B> <a class="collection"><img src="images/icon/collection.png">Crazy shopping</a></B>
+                <B> <a href="index.php" class="collection"><img src="images/icon/collection.png">Crazy shopping</a></B>
             </div>
             <div class="rightArea">
                 <B><em>欢迎您
@@ -36,14 +36,14 @@ $cartRows = getCartNum($link);
                         <?php
                     endif
                     ?>
-                    &nbsp<a href="doUserAction.php?act=logout">[退出]</a></B>
+                    &nbsp;<a href="doUserAction.php?act=logout">[退出]</a></B>
             </div>
         </div>
     </div>
     <div class="logoBar">
         <div class="comWidth">
             <div class="logo fl">
-                <a href="#"><img src="images/icon/Fruits_Vegetable.png" alt="有机食品销售"></a>
+                <a href="index.php"><img src="images/icon/Fruits_Vegetable.png" alt="有机食品销售"></a>
             </div>
             <div class="search_box fl">
                 <span class="search_glass fl" > </span>
@@ -93,7 +93,8 @@ $cartRows = getCartNum($link);
                             <a href="goodsDetail.php?id=<?php echo $pro['id'];?>"><img height="200" width="187" src="../image_220/<?php echo $proImg["albumPath"]?>" alt=""></a>
                         </div>
                         <h3><?php echo $pro['pName'];?></h3>
-                        <p><?php echo $pro['iPrice'];?>元</p>
+                        <p><?php echo $pro['iPrice'];?>元&nbsp;&nbsp;&nbsp;已售<?php echo $pro['isHot'];?>件</p>
+
                     </div>
                     <?php
                         endforeach;

@@ -168,7 +168,7 @@
 .cart_rmb span{font:bold 24px/1 Verdana; color:red;}
 .cart_btnBox{text-align:right;}
 .cart_btn{width:80px; height:33px; background-color:
-        #7fffd4; font:18px/33px "Microsoft YaHei", "微软雅黑"; color:#FFF;}
+        #ff6347; font:18px/33px "Microsoft YaHei", "微软雅黑"; color:#FFF;}
 
 .hr_25{height:25px;}
 
@@ -396,3 +396,4 @@ display: inline-block;line-height: 39px;}
 .footer i{font-style: normal;margin: 0 5px;}
 .footer a{color: #000;}
 .footer a:hover{color: #F60;}
+
