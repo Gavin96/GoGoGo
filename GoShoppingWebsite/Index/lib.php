@@ -126,7 +126,8 @@ function modifyCart($userName){
 
 function commitCart($proID,$amount){
     $link=connect();
-    
+
+    $arr=$_POST;
     $arr["isCommit"] = 3;
     if(isset($_SESSION['userName']))
     {

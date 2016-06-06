@@ -182,7 +182,7 @@ function emitCart($id){
     $sql = "update go_cart set isCommit=4 where id ={$id}";
     $url = "../admin/listCart.php";
     if(mysqli_query($link,$sql))
-        echo 'location.href="'.$url.'"</script>';
+        echo '<script>location.href="'.$url.'"</script>';
     else
         echo '<script>alert("接受失败！");location.href="'.$url.'"</script>';
 }

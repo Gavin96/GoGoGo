@@ -1,10 +1,10 @@
 <?php
 require_once '../include.php';
-if(!isset($_SESSION['adminId'])&&$_COOKIE['adminId']==""){
+if(!isset($_SESSION['admin2Id'])&&$_COOKIE['admin2Id']==""){
     alertMes("请先登录","login.php");
 }
 $link = connect();
-$sql="select c.id,userName,p.pName,p.iPrice,c.amount,c.isCommit from go_cart as c join go_product as p where c.proID=p.id and c.isCommit=4 ";
+$sql="select c.id,c.name,p.pName,c.add_district,c.add_detail,c.phoneNumber from go_cart as c join go_product as p where c.proID=p.id and c.isCommit=4 ";
 $totalRows=getResultNum($link,$sql);
 $pageSize=2;
 $totalPage=ceil($totalRows/$pageSize);
@@ -12,12 +12,15 @@ $page=isset($_REQUEST['page'])?(int)$_REQUEST['page']:1;
 if($page<1||$page==null||!is_numeric($page))$page=1;
 if($page>$totalPage)$page=$totalPage;
 $offset=($page-1)*$pageSize;
-$sql="select c.id,c.userName,p.pName,p.iPrice,c.amount,c.isCommit from go_cart as c join go_product as p where c.proID=p.id and c.isCommit=4 limit {$offset},{$pageSize}";
+$sql="select c.id,c.name,p.pName,c.add_district,c.add_detail,c.phoneNumber from go_cart as c join go_product as p where c.proID=p.id and c.isCommit=4 limit {$offset},{$pageSize}";
 $rows=array();
 if($totalPage!=0)
     $rows=fetchAll($link,$sql);
 
-
+$Dname[1]='闵行';
+$Dname[2]='嘉定';
+$Dname[3]='静安';
+$Dname[4]='杨浦';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -58,9 +61,10 @@ if($totalPage!=0)
         <thead>
         <tr>
             <th>编号</th>
-            <th>用户名</th>
-            <th>商品名</th>
-            <th>订单总价</th>
+            <th>商品名称</th>
+            <th>收货人姓名</th>
+            <th>地址</th>
+            <th>电话</th>
             <th>订单状态</th>
             <th>操作</th>
         </tr>
@@ -69,9 +73,10 @@ if($totalPage!=0)
         <?php  foreach($rows as $row):?>
             <tr>
                 <td><?php echo $row['id'];?></td>
-                <td><?php echo $row['userName'];?></td>
                 <td><?php echo $row['pName'];?></td>
-                <td><?php echo $row['iPrice']*$row['amount'];?></td>
+                <td><?php echo $row['name'];?></td>
+                <td><?php echo $Dname[$row['add_district']];?>&nbsp;<?php echo $row['add_detail'];?></td>
+                <td><?php echo $row['phoneNumber'];?></td>
                 <td>已发送</td>
                 <td align="center">
                     <input type="button" value="完成订单" class="btn" onclick="finishCart(<?php echo $row['id'];?>)">
