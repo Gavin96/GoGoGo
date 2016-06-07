@@ -83,8 +83,8 @@ $carts=getCartByUser($link,$userName);
                     <li><a href="index.php">首页</a></li>
                     <li><a href="discount.php">优惠</a></li>
                     <li><a href="hot.php">热销</a></li>
-                    <li><a href="#">健康知识</a></li>
-                    <li><a href="#">质量管控</a></li>
+                    <li><a href="health.php">健康知识</a></li>
+                    <li><a href="quality.php">质量管控</a></li>
                     <li><a href="listOrder.php">订单中心</a></li>
                 </ul>
 

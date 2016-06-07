@@ -75,8 +75,8 @@ $orders=getOrderByUser($link,$userName);
                 <li><a href="index.php">首页</a></li>
                 <li><a href="discount.php">优惠</a></li>
                 <li><a href="hot.php">热销</a></li>
-                <li><a href="#">健康知识</a></li>
-                <li><a href="#">质量管控</a></li>
+                <li><a href="health.php">健康知识</a></li>
+                <li><a href="quality.php">质量管控</a></li>
                 <li><a href="listOrder.php" class="active">订单中心</a></li>
             </ul>
 
@@ -133,17 +133,17 @@ foreach($orders as $order):
                             </div>
                             <div class="cart_item t_return"> 0元</div>
                             <div class="cart_item t_num"><?php echo $order['amount'];?></div>
-                            <div class="cart_item t_subtotal t_red">500元</div>
+                            <div class="cart_item t_subtotal t_red"><?php echo $order['amount']*$pro['iPrice'];?>元</div>
                         </div>
                         <div class="cart_message">
                            
-                            <div class="cart_btnBox">
+                            <div class="cart_btnBox" >
                                 <input type="hidden" name="act" value="manipulateOrder">
                                 <input type="hidden" name="userName" value="<?php echo $userName;?>">
                                 <input type="hidden" name="proID" value="<?php echo $pro['id'];?>">
                                 <input type="hidden" name="orderID" value="<?php echo $order['id'];?>">
-                                <input type="submit"  class="cart_btn" name="check" value="查看物流">
-                                <input type="submit"  class="cart_btn" name="receive" value="确认收货">
+<!--                                <input type="submit"  class="cart_btn" name="check" value="查看物流">-->
+                                <input type="submit"  class="cart_btn" style="margin-right:45px" name="receive" value="收货" >
                             </div>
                         </div>
                     </div>

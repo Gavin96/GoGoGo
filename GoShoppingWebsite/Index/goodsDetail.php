@@ -87,8 +87,8 @@ else{
 				<li><a href="index.php" class="active">首页</a></li>
 				<li><a href="discount.php">优惠</a></li>
 				<li><a href="hot.php">热销</a></li>
-				<li><a href="#">健康知识</a></li>
-				<li><a href="#">质量管控</a></li>
+				<li><a href="health.php">健康知识</a></li>
+				<li><a href="quality.php">质量管控</a></li>
 				<li><a href="listOrder.php">订单中心</a></li>
 			</ul>
 
@@ -139,12 +139,12 @@ else{
 
     	         	<div class="dl clearfix">
     	         		<div class="dt k1">Go价格：</div>
-    	         		<div class="dd"><span class="des_money"><em>¥</em><?php echo $pro['iPrice'];?></span></div>
+    	         		<div class="dd"><span class="des_money"><em>¥</em>&nbsp;<?php echo $pro['iPrice'];?></span></div>
     	         	</div>
 
 					 <div class="dl clearfix">
 						 <div class="dt k1">市场价：</div>
-						 <div class="dd"><span class="des_money"><s><em>¥</em><?php echo $pro['mPrice'];?></span></s></div>
+						 <div class="dd"><span class="des_money"><s><em>¥</em>&nbsp;<?php echo $pro['mPrice'];?></span></s></div>
 					 </div>
 
     	         	<div class="dl clearfix">

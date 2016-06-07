@@ -1,16 +1,16 @@
 <?php
-
 require_once '../include.php';
 $link = connect();
 
 $loggedUserName = getUserName();
 $cartRows = getCartNum($link);
 ?>
+
 <!doctype html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>首页</title>
+    <title>质量管理</title>
     <link href="style/reset.css" rel="stylesheet" type="text/css">
     <link href="style/main.css" rel="stylesheet" type="text/css">
 </head>
@@ -20,7 +20,7 @@ $cartRows = getCartNum($link);
     <div class="topBar">
         <div class="comWidth">
             <div class="leftArea">
-                <B> <a href="index.php" class="collection"><img src="images/icon/collection.png">Crazy shopping</a></B>
+                <B> <a class="collection"><img src="images/icon/collection.png">Crazy shopping</a></B>
             </div>
             <div class="rightArea">
                 <B><em>欢迎您
@@ -36,7 +36,7 @@ $cartRows = getCartNum($link);
                         <?php
                     endif
                     ?>
-                    &nbsp;<a href="doUserAction.php?act=logout">[退出]</a></B>
+                    &nbsp<a href="doUserAction.php?act=logout">[退出]</a></B>
             </div>
         </div>
     </div>
@@ -50,12 +50,16 @@ $cartRows = getCartNum($link);
                 <form action="product.php" method="post">
                     <input type="text" name="product_name" class="search_text fl">
                     <input type="submit" value="搜 索" class="search_btn fr">
+
                 </form>
             </div>
+
+
             <div class="shopCar fr">
                 <span class="shopText fl"><a href="listCart.php">购物车</a></span>
                 <span class="shopNum fl"><?php echo $cartRows; ?></span>
             </div>
+
         </div>
     </div>
     <div class="navBox">
@@ -66,10 +70,10 @@ $cartRows = getCartNum($link);
             </div>
             <ul class="nav fl">
                 <li><a href="index.php">首页</a></li>
-                <li><a href="discount.php" class="active">优惠</a></li>
+                <li><a href="discount.php">优惠</a></li>
                 <li><a href="hot.php">热销</a></li>
                 <li><a href="health.php">健康知识</a></li>
-                <li><a href="quality.php">质量管控</a></li>
+                <li><a href="quality.php" class="active">质量管控</a></li>
                 <li><a href="listOrder.php">订单中心</a></li>
             </ul>
 
@@ -78,32 +82,32 @@ $cartRows = getCartNum($link);
 </div>
 
 
-<div class="shopList comWidth clearfix">
 
-    <div class="leftArea2" style="width:1000px;overflow:visible;height:auto;border:none;">
-        <div class="shopList_top clearfix">
-            <?php
-            $pros = getAllProByDes($link);
-            if(($pros&&is_array($pros))):
-                foreach($pros as $pro):
-                    $proImg = getProImgById($link,$pro["id"]);
-                    ?>
-                    <div class="shop_item" style="margin-left: 40px;margin-top:15px;border:#999 solid 1px;">
-                        <div class="shop_img">
-                            <a href="goodsDetail.php?id=<?php echo $pro['id'];?>"><img height="200" width="187" src="../image_220/<?php echo $proImg["albumPath"]?>" alt=""></a>
-                        </div>
-                        <h3><?php echo $pro['pName'];?></h3>
-                        <p><?php echo $pro['iPrice'];?>元&nbsp;&nbsp;&nbsp;市场价<s><?php echo $pro['mPrice'];?>元</s></p>
-                    </div>
-                    <?php
-                        endforeach;
-                        endif;
-                    ?>
+<div class="Intro">
+    <div class="comWidth">
+        <div class="head">
+            <div class="ID">GOGO购自有农场</div>
         </div>
-
-
+        <div class="mainbody1">
+            <!-- <div class="text"> -->
+            &nbsp&nbsp现在的污染无处不在，城里有噪音雾霾，农村有农药化肥，反正环境是大不如前了。<br>
+            &nbsp&nbsp对于农田来说，农药和化肥都是大规模杀伤性武器，它杀灭了虫害病毒，同时也破坏了土地，玷污了作物，最终受伤的还是人类自己。<br>
+            &nbsp&nbsp农田干净一点，作物就安全健康一点。所以，支持有机农业的呼声越来越高。在我们的有机农场里进行的正是当下倡导的有机农业。<br><br>
+            <!-- </div> -->
+            <a class="img1"> <img src="images/about/yard.jpg" width="755" height="350"> </a>
+        </div>
+        <div class="mainbody2">
+            <br>
+            <div class="title">&nbsp&nbsp我们的有机农业的优势：</div>
+            <br>
+            <a class="img2"><img src="images/about/diff.png"></a>
+            <br>
+            <br>
+        </div>
     </div>
 </div>
+
+
 <div style="clear:both"></div>
 
 

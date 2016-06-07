@@ -82,8 +82,8 @@ $proImg = getProImgById($link,$pro["id"]);
                 <li><a href="index.php">首页</a></li>
                 <li><a href="discount.php">优惠</a></li>
                 <li><a href="hot.php">热销</a></li>
-                <li><a href="#">健康知识</a></li>
-                <li><a href="#">质量管控</a></li>
+                <li><a href="health.php">健康知识</a></li>
+                <li><a href="quality.php">质量管控</a></li>
                 <li><a href="listOrder.php">订单中心</a></li>
             </ul>
 
@@ -120,7 +120,7 @@ $proImg = getProImgById($link,$pro["id"]);
             <h3 class="shopping_tit">支付方式</h3>
             <div class="shopping_cont padding_shop">
                 <ul class="shopping_list">
-                    <li><input type="radio" class="radio" id="r1" name="paymentStyle"><label for="r1">线上支付</label></li>
+<!--                    <li><input type="radio" class="radio" id="r1" name="paymentStyle"><label for="r1">线上支付</label></li>-->
                     <li><input type="radio" class="radio" id="r2" name="paymentStyle"><label for="r2">货到付款</label></li>
                 </ul>
             </div>
