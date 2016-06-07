@@ -219,3 +219,10 @@ function getRecommendPro($link){
 	$rows=fetchAll($link,$sql);
 	return $rows;
 }
+
+function getProInfo ($link)
+{
+	$sql = "select a.Pid,p.pName,a.albumPath from go_album as a join go_product as p on a.Pid=p.id";
+	$rows=fetchAll($link,$sql);
+	return $rows;
+}

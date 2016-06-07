@@ -34,6 +34,10 @@ if($act=="logout"){
     $mes = verify($_REQUEST['verify']);
 }elseif($act=='emitCart'){
     $mes = emitCart($_REQUEST['id']);
+}elseif ($act=="waterText"){
+    $mes=doWaterText($_REQUEST['id']);
+}elseif ($act=="waterPic"){
+    $mes=doWaterPic($_REQUEST['id']);
 }
 ?>
 

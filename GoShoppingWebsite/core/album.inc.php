@@ -16,3 +16,24 @@ function getAllProImgById($link,$id){
 	return $rows;
 }
 
+function doWaterText($id){
+	$link = connect();
+	$rows=getAllImgByProId($link,$id);
+	foreach ($rows as $row){
+		$filename="../image_800/".$row['albumPath'];
+		waterText($filename);
+	}
+	$mes=$filename;
+	return $mes;
+}
+function doWaterPic($id){
+	$link = connect();
+	$rows=getAllImgByProId($link,$id);
+	foreach ($rows as $row){
+		$filename="../image_800/".$row['albumPath'];
+		waterPic($filename);
+	}
+	$mes="success";
+	return $mes;
+}
+
