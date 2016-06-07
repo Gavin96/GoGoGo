@@ -123,7 +123,7 @@ $carts=getCartByUser($link,$userName);
                         <div class="cart_item t_subtotal">小计</div>
                     </div>
                     <div class="cart_cont clearfix">
-                        <div class="cart_item t_name">
+                        <div class="cart_item t_name" >
                             <div class="cart_shopInfo clearfix">
                                 <a href="goodsDetail.php?id=<?php echo $pro['id'];?>"><img src="../image_220/<?php echo $proImg["albumPath"]?>" alt=""></a>
                                 <div class="cart_shopInfo_cont">

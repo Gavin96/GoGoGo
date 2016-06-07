@@ -93,7 +93,7 @@ function registerUser()
 //得到用户的所有完成订单，此时isCommit = 5
 function getOrderByUser($link,$userName){
 
-    $sql="select * from go_cart where userName = '{$userName}' and (isCommit = 3 or isCommit = 4 or isCommit = 5)";
+    $sql="select * from go_cart where userName = '{$userName}' and (isCommit = 3 or isCommit = 4 or isCommit = 5) order by add_time desc";
 
     $rows=fetchAll($link,$sql);
     
@@ -129,6 +129,8 @@ function commitCart($proID,$amount){
 
     $arr=$_POST;
     $arr["isCommit"] = 3;
+
+    unset($arr["act"]);
     if(isset($_SESSION['userName']))
     {
         $mes = update($link,"go_cart",$arr,"userName='{$_SESSION['userName']}' and isCommit = 1");
@@ -249,10 +251,10 @@ function delCart($userName,$proID){
 
 }
 
-function delOrder($userName,$proID){
+function delOrder($id,$proID){
     $link = connect();
 
-    $where="proID=".$proID." and userName='{$userName}'";
+    $where="id=".$id;
 
     if(delete($link,"go_cart",$where)){
         header("location:addReview.php?proID=".$proID);//转到评价页
@@ -295,6 +297,7 @@ function getReviewScoreByPro($link,$proID)
 
 function addReview($userName,$proID,$review,$score){
     $link = connect();
+    
     $arr['userName'] = $userName;
     $arr['proID'] = $proID;
     $arr['review'] = $review;

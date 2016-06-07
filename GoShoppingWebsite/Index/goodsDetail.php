@@ -218,7 +218,7 @@ else{
 
                 </div>
     	         	<div class="des_select">
-    	         		已选择 <span><?php echo $pro['pName'];?>：<span class="span_amount">1</span>件</span>
+    	         		已选择 <span><?php echo $pro['pName'];?>：<span class="span_amount">0</span>件</span>
     	         	</div>
     	         	<div class="shop_buy">
     	         		<a href="doUserAction.php?act=addCart&userName=<?php echo $userName;?>&proID=<?php echo $pro['id'];?>" class="shopping_btn"></a>

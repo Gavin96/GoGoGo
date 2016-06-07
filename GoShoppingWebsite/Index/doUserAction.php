@@ -37,7 +37,7 @@ if($act=="logout") {
         header("location:listOrder.php");
     }
     elseif(isset($_POST['receive']))
-        $mes=delOrder($_REQUEST['userName'],$_REQUEST['proID']);
+        $mes=delOrder($_REQUEST['orderID'],$_REQUEST['proID']);
 }elseif($act=="addReview"){
     $mes = addReview($_REQUEST['userName'],$_REQUEST['proID'],$_REQUEST['review'],$_REQUEST['score']);
 }

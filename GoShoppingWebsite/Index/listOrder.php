@@ -108,14 +108,15 @@ foreach($orders as $order):
                 <div class="shopping_cont pb_10">
                     <div class="cart_inner">
                         <div class="cart_head clearfix">
-                            <div class="cart_item t_name">商品名称</div>
+                            <div class="cart_item t_name_order">商品名称</div>
+                            <div class="cart_item t_time">下单时间</div>
                             <div class="cart_item t_price">单价</div>
                             <div class="cart_item t_return">返现</div>
                             <div class="cart_item t_num">数量</div>
                             <div class="cart_item t_subtotal">小计</div>
                         </div>
                         <div class="cart_cont clearfix">
-                            <div class="cart_item t_name">
+                            <div class="cart_item t_name_order">
                                 <div class="cart_shopInfo clearfix">
                                     <a href="goodsDetail.php?id=<?php echo $pro['id'];?>"><img  src="../image_220/<?php echo $proImg["albumPath"]?>" alt=""></a>
                                     <div class="cart_shopInfo_cont">
@@ -124,11 +125,14 @@ foreach($orders as $order):
                                     </div>
                                 </div>
                             </div>
+                            <div class="cart_item t_time">
+                                <?php echo $order['add_time'];?>
+                            </div>
                             <div class="cart_item t_price">
                                  <?php echo $pro['iPrice'];?>元
                             </div>
                             <div class="cart_item t_return"> 0元</div>
-                            <div class="cart_item t_num"><?php echo $order['amount']?></div>
+                            <div class="cart_item t_num"><?php echo $order['amount'];?></div>
                             <div class="cart_item t_subtotal t_red">500元</div>
                         </div>
                         <div class="cart_message">
@@ -137,6 +141,7 @@ foreach($orders as $order):
                                 <input type="hidden" name="act" value="manipulateOrder">
                                 <input type="hidden" name="userName" value="<?php echo $userName;?>">
                                 <input type="hidden" name="proID" value="<?php echo $pro['id'];?>">
+                                <input type="hidden" name="orderID" value="<?php echo $order['id'];?>">
                                 <input type="submit"  class="cart_btn" name="check" value="查看物流">
                                 <input type="submit"  class="cart_btn" name="receive" value="确认收货">
                             </div>

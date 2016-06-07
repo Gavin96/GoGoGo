@@ -4,7 +4,7 @@ if(!isset($_SESSION['admin2Id'])&&$_COOKIE['admin2Id']==""){
     alertMes("请先登录","login.php");
 }
 $link = connect();
-$sql="select c.id,c.name,p.pName,c.add_district,c.add_detail,c.phoneNumber from go_cart as c join go_product as p where c.proID=p.id and c.isCommit=4 ";
+$sql="select c.id,c.name,p.pName,c.add_district,c.add_detail,c.phoneNumber,c.amount from go_cart as c join go_product as p where c.proID=p.id and c.isCommit=4 ";
 $totalRows=getResultNum($link,$sql);
 $pageSize=2;
 $totalPage=ceil($totalRows/$pageSize);
@@ -12,7 +12,7 @@ $page=isset($_REQUEST['page'])?(int)$_REQUEST['page']:1;
 if($page<1||$page==null||!is_numeric($page))$page=1;
 if($page>$totalPage)$page=$totalPage;
 $offset=($page-1)*$pageSize;
-$sql="select c.id,c.name,p.pName,c.add_district,c.add_detail,c.phoneNumber from go_cart as c join go_product as p where c.proID=p.id and c.isCommit=4 limit {$offset},{$pageSize}";
+$sql="select c.id,c.name,p.pName,c.add_district,c.add_detail,c.phoneNumber,c.amount from go_cart as c join go_product as p where c.proID=p.id and c.isCommit=4 limit {$offset},{$pageSize}";
 $rows=array();
 if($totalPage!=0)
     $rows=fetchAll($link,$sql);
@@ -65,7 +65,7 @@ $Dname[4]='杨浦';
             <th>收货人姓名</th>
             <th>地址</th>
             <th>电话</th>
-            <th>订单状态</th>
+            <th>数量</th>
             <th>操作</th>
         </tr>
         </thead>
@@ -75,9 +75,9 @@ $Dname[4]='杨浦';
                 <td><?php echo $row['id'];?></td>
                 <td><?php echo $row['pName'];?></td>
                 <td><?php echo $row['name'];?></td>
-                <td><?php echo $Dname[$row['add_district']];?>&nbsp;<?php echo $row['add_detail'];?></td>
+                <td><?php echo $Dname[$row['add_district']]." ".$row['add_detail'];?></td>
                 <td><?php echo $row['phoneNumber'];?></td>
-                <td>已发送</td>
+                <td><?php echo $row['amount'];?></td>
                 <td align="center">
                     <input type="button" value="完成订单" class="btn" onclick="finishCart(<?php echo $row['id'];?>)">
                 </td>
@@ -96,15 +96,6 @@ $Dname[4]='杨浦';
         if(window.confirm("您确定要完成订单吗？")){
             window.location="doLogAction.php?act=finishCart&id="+id;
         }
-    }
-    function reload(){
-        window.frames.mainFrame.location.reload();
-    }
-    function back(){
-        window.frames.mainFrame.history.back();
-    }
-    function forward(){
-        window.frames.mainFrame.history.forward();
     }
 </script>
 </body>

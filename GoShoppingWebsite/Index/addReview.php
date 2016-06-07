@@ -95,13 +95,20 @@ $cartRows = getCartNum($link);
 					<input type="hidden" name="userName" value="<?php echo $loggedUserName;?>">
 					<input type="hidden" name="proID" value="<?php echo $proID;?>">
 					<input type="hidden" name="act" value="addReview">
-					<button class="submit">发 布</button>
-					<button class="back">返 回</button>
+					<input type="submit" class="submit" value="评价">
+<!--					<button class="back" onclick="jump()" >跳过</button>-->
+					<input type="button" class="back" onclick="jump()" value="跳过">
 				</div>
 			</div>
 			</form>
 		</div>
+<script type="text/javascript">
+	function jump(){
 
+		window.location="listOrder.php";
+
+	}
+</script>
 </body>
 
 </html>

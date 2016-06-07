@@ -176,6 +176,7 @@ $proImg = getProImgById($link,$pro["id"]);
 
                     </div>
                     <div class="cart_btnBox">
+                        <input type="hidden"  value="<?php echo date("Y-m-d H:i:s",time());?>" name="add_time"></>
                         <input type="submit"  value="提交订单" class="cart_btn"></>
                     </div>
                 </div>
