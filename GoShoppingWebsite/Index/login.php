@@ -32,9 +32,9 @@
                 <li class="mb_10"><input type="text"  name="verify" class="login_input password_icon"></li>
                 <img src="../admin/getVerify.php" alt="验证码" />
                 <li class="autoLogin"><input type="checkbox" id="a1" class="checked" name="autoFlag" value="1"><label for="a1">自动登陆(一周内自动登陆)</label></li>
-                <li><input type="submit" value="" class="login_btn"></li>
+                <li><input type="submit" value="登录" style="width:309px; height:36px;background-color: #ccc;"></li>
                 <br/>
-                <li><input type="button" value="注册" style="width:309px; height:36px;background-color: #9fa8a3;" onclick="register()"></li>
+                <li><input type="button" value="注册" style="width:309px; height:36px;background-color: #ccc;" onclick="register()"></li>
             </ul>
         </form>
     </div>

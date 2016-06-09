@@ -303,15 +303,18 @@ else{
 				</div>
 				<div class="score_speed">
 
-					<ul class="score_speed_text">
+					<ul class="score_speed_text" >
 						<li class="speed_01">非常不满意</li>
 						<li class="speed_02">不满意</li>
 						<li class="speed_03">一般</li>
 						<li class="speed_04">满意</li>
-						<li>非常满意</li>
+						<li class="speed_05">非常满意</li>
 					</ul>
+					<div class="score_num0">
+						0.0分
+					</div>
 					<div class="score_num">
-						<?php echo getReviewScoreByPro($link,$pro['id']);?>
+						5.0分
 					</div>
 					<p>共有<?php echo getReviewNumByPro($link,$pro['id']);?>位顾客参与此项评分</p>
 				</div>
@@ -326,7 +329,7 @@ else{
 			</ul>
 
 			<div class="ad">
-				<a href="#"><img src="images/banner/ad.png"></a>
+				<a href="#"><img src="images/banner/ad.jpg"></a>
 			</div>
 			<div class="info_text">
 

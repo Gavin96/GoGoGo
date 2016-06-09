@@ -86,7 +86,6 @@ $cartRows = getCartNum($link);
 						<?php  foreach($cates as $cate):?>
 						<dl class="shopClass_item">
 							<dt><a href="cateDetail.php?CId=<?php echo $cate["id"]; ?>" class="b"><?php echo $cate['name'];?></a> </dt>
-<!--						    <dd><a href="#">单反</a> <a href="#">四旋螺翼</a></dd>-->
 						</dl>
 						<?php endforeach;?>
 					</div>
@@ -127,12 +126,8 @@ $cartRows = getCartNum($link);
 		<div class="leftArea">
          <div class="banner_bar banner_sm">
 			<ul class="imgBox">
-				<li><a href="cateDetail.php?CId=<?php echo $cate["id"]; ?>"><img src="images/banner/banner_sm_01.png" alt="banner"></a></li>
-				<li><a href="cateDetail.php?CId=<?php echo $cate["id"]; ?>"><img src="images/banner/banner_sm_02.png" alt="banner"></a></li>
+				<li ><a href="cateDetail.php?CId=<?php echo $cate["id"]; ?>"><img src="images/banner/banner_cate.jpg" alt="banner"  ></a></li>
 			</ul>
-			<div class="imgNum">
-				<a href="#" class="active"></a> <a href="#"></a>
-			</div>
 		</div>
         </div>
         <div class="leftArea2">

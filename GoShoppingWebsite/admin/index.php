@@ -6,7 +6,7 @@ checkLogined();
 <html>
 <head>
 <meta charset="utf-8">
-<title>-.-</title>
+<title>网站管理员</title>
 <link rel="stylesheet" href="styles/backstage.css">
 </head>
 

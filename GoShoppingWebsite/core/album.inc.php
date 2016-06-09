@@ -18,22 +18,34 @@ function getAllProImgById($link,$id){
 
 function doWaterText($id){
 	$link = connect();
-	$rows=getAllImgByProId($link,$id);
-	foreach ($rows as $row){
-		$filename="../image_800/".$row['albumPath'];
-		waterText($filename);
-	}
-	$mes=$filename;
+	$row=getAlbumPathById($link,$id);
+
+	$filename="../image_50/".$row['albumPath'];
+	waterText($filename);
+	$filename="../image_220/".$row['albumPath'];
+	waterText($filename);
+	$filename="../image_350/".$row['albumPath'];
+	waterText($filename);
+	$filename="../image_800/".$row['albumPath'];
+	waterText($filename);
+
+	$mes="文字水印添加成功!<br/><a href='listProImages.php'>继续添加</a>";
 	return $mes;
 }
 function doWaterPic($id){
 	$link = connect();
-	$rows=getAllImgByProId($link,$id);
-	foreach ($rows as $row){
-		$filename="../image_800/".$row['albumPath'];
-		waterPic($filename);
-	}
-	$mes="success";
+	$row=getAlbumPathById($link,$id);
+
+	$filename="../image_50/".$row['albumPath'];
+	waterText($filename);
+	$filename="../image_220/".$row['albumPath'];
+	waterText($filename);
+	$filename="../image_350/".$row['albumPath'];
+	waterText($filename);
+	$filename="../image_800/".$row['albumPath'];
+	waterText($filename);
+	
+	$mes="图片水印添加成功!<br/><a href='listProImages.php'>继续添加</a>";
 	return $mes;
 }
 

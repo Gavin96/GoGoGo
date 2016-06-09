@@ -2,7 +2,7 @@
 require_once '../include.php';
 $link = connect();
 $rows=getAllAdmin($link);
-$pageSize=2;
+$pageSize=3;
 $page=$_REQUEST['page']?(int)$_REQUEST['page']:1;
 $rows=getAdminByPage($page,$pageSize);
 if(!$rows){
@@ -41,7 +41,7 @@ ob_clean();
         <tbody>
         <?php  foreach($rows as $row):?>
             <tr>
-                <td><input type="checkbox" id="c1" class="check"><label for="c1" class="label"><?php echo $row['id'];?></label></td>
+                <td><label for="c1" class="label"><?php echo $row['id'];?></label></td>
                 <td><?php echo $row['username'];?></td>
                 <td><?php
                     $name[1] = '网站管理员';$name[2] = '运输管理员';

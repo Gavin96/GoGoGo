@@ -28,7 +28,7 @@
                 <li class="l_tit">用户名</li>
                 <li class="mb_10"><input type="text"  name="username" placeholder="请输入用户名" class="login_input user_icon"></li>
                 <li class="l_tit">密码</li>
-                <li class="mb_10"><input type="password"  name="password" class="login_input password_icon"></li>
+                <li class="mb_10"><input type="password"  name="password" placeholder="请输入密码" class="login_input password_icon"></li>
                 <li class="l_tit">邮箱</li>
                 <li class="mb_10"><input type="text"  name="email" placeholder="请输入email" class="login_input"></li>
                 <li class="l_tit">性别</li>

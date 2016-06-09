@@ -102,42 +102,47 @@ function editPro($id){
 	return $mes;
 }
 
-function delPro($id){
+function delPro($id)
+{
 	$link = connect();
-	$where="id=$id";
-	$res=delete($link,"go_product",$where);
-	$proImgs=getAllImgByProId($link,$id);
-	if($proImgs&&is_array($proImgs)){
-		foreach($proImgs as $proImg){
-			if(file_exists("uploads/".$proImg['albumPath'])){
-				unlink("uploads/".$proImg['albumPath']);
+	$where = "id=$id";
+	$res = delete($link, "go_product", $where);
+	$proImgs = getAllImgByProId($link, $id);
+	if ($proImgs && is_array($proImgs)) {
+		foreach ($proImgs as $proImg) {
+			if (file_exists("uploads/" . $proImg['albumPath'])) {
+				unlink("uploads/" . $proImg['albumPath']);
 			}
-			if(file_exists("../image_50/".$proImg['albumPath'])){
-				unlink("../image_50/".$proImg['albumPath']);
+			if (file_exists("../image_50/" . $proImg['albumPath'])) {
+				unlink("../image_50/" . $proImg['albumPath']);
 			}
-			if(file_exists("../image_220/".$proImg['albumPath'])){
-				unlink("../image_220/".$proImg['albumPath']);
+			if (file_exists("../image_220/" . $proImg['albumPath'])) {
+				unlink("../image_220/" . $proImg['albumPath']);
 			}
-			if(file_exists("../image_350/".$proImg['albumPath'])){
-				unlink("../image_350/".$proImg['albumPath']);
+			if (file_exists("../image_350/" . $proImg['albumPath'])) {
+				unlink("../image_350/" . $proImg['albumPath']);
 			}
-			if(file_exists("../image_800/".$proImg['albumPath'])){
-				unlink("../image_800/".$proImg['albumPath']);
+			if (file_exists("../image_800/" . $proImg['albumPath'])) {
+				unlink("../image_800/" . $proImg['albumPath']);
 			}
-			
+
 		}
 	}
-	$where1="pid={$id}";
-	$res1=delete($link,"do_album",$where1);
-	if($res&&$res1){
-		$mes="删除成功!<br/><a href='listPro.php' target='mainFrame'>查看商品列表</a>";
-	}else{
-		$mes="删除失败!<br/><a href='listPro.php' target='mainFrame'>重新删除</a>";
+	$where1 = "pid={$id}";
+	$res1 = delete($link, "do_album", $where1);
+	if ($res && $res1) {
+		$mes = "删除成功!<br/><a href='listPro.php' target='mainFrame'>查看商品列表</a>";
+	} else {
+		$mes = "删除失败!<br/><a href='listPro.php' target='mainFrame'>重新删除</a>";
 	}
 	return $mes;
 }
 
-
+function getAlbumPathById($link,$id){
+	$sql="select albumPath from go_album where id={$id}";
+	$row=fetchOne($link,$sql);
+	return $row;
+}
 
 function getAllProByAdmin($link){
 	$sql="select p.id,p.pName,p.pIndex,p.pNum,p.mPrice,p.iPrice,p.pDescription,p.pTime,p.isShow,p.isHot,c.name from go_product as p join go_cate c on p.cId=c.id";
@@ -191,13 +196,13 @@ function getAllProByCId($link,$id){
 }
 
 function getAllProByDes($link){
-	$sql="select p.id,p.pName,p.pIndex,p.pNum,p.mPrice,p.iPrice,p.pDescription,p.pTime,p.isShow,p.isHot,c.name,p.cId from go_product as p join go_cate c on p.cId=c.id where p.pNum>0 and p.pDescription like '%[***]%'";
+	$sql="select p.id,p.pName,p.pIndex,p.pNum,p.mPrice,p.iPrice,p.pDescription,p.pTime,p.isShow,p.isHot,c.name,p.cId from go_product as p join go_cate c on p.cId=c.id where p.pNum>0 and p.pDescription like '%sale%'";
 	$rows=fetchAll($link,$sql);
 	return $rows;
 }
 
 function getHotPro($link){
-	$sql="select p.id,p.pName,p.pIndex,p.pNum,p.mPrice,p.iPrice,p.pDescription,p.pTime,p.isShow,p.isHot,c.name,p.cId from go_product as p join go_cate c on p.cId=c.id where p.pNum>0 and p.isHot>0 order by p.isHot DESC limit 10";
+	$sql="select p.id,p.pName,p.pIndex,p.pNum,p.mPrice,p.iPrice,p.pDescription,p.pTime,p.isShow,p.isHot,c.name,p.cId from go_product as p join go_cate c on p.cId=c.id where p.pNum>0 and p.isHot>0 order by p.isHot DESC limit 8";
 	$rows=fetchAll($link,$sql);
 	return $rows;
 }
@@ -222,7 +227,7 @@ function getRecommendPro($link){
 
 function getProInfo ($link)
 {
-	$sql = "select a.Pid,p.pName,a.albumPath from go_album as a join go_product as p on a.Pid=p.id";
+	$sql = "select a.id,a.Pid,p.pName,a.albumPath from go_album as a join go_product as p on a.Pid=p.id";
 	$rows=fetchAll($link,$sql);
 	return $rows;
 }

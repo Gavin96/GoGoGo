@@ -111,7 +111,7 @@ $proImg = getProImgById($link,$pro["id"]);
                     <li><span class="shopping_list_text"><em>*</em>详细地址：</span><input name="add_detail" type="text" placeholder="最多输入20个汉字" class="input input_b"></li>
                     <li><span class="shopping_list_text"><em>*</em>收 货 人：</span><input name="name" type="text" placeholder="请填写完整姓名" class="input"></li>
                     <li><span class="shopping_list_text"><em>*</em>手	机：</span><input type="text" name="phoneNumber" placeholder="请填写有效号码" class="input"></li>
-                    <li><input type="button" class="affirm"></li>
+                    
                 </ul>
             </div>
         </div>

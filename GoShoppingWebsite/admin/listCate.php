@@ -44,7 +44,7 @@ if(!$rows){
         <tbody>
         <?php  foreach($rows as $row):?>
             <tr>
-                <td><input type="checkbox" id="c1" class="check"><label for="c1" class="label"><?php echo $row['id'];?></label></td>
+                <td><label for="c1" class="label"><?php echo $row['id'];?></label></td>
                 <td><?php echo $row['name'];?></td>
                 <td align="center"><input type="button" value="修改" class="btn" onclick="editCate(<?php echo $row['id'];?>)"><input type="button" value="删除" class="btn"  onclick="delCate(<?php echo $row['id'];?>)"></td>
             </tr>

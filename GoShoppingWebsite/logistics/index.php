@@ -1,6 +1,6 @@
 <?php
 require_once '../include.php';
-if(!isset($_SESSION['admin2Id'])&&$_COOKIE['admin2Id']==""){
+if(!isset($_SESSION['admin2Id'])&&!isset($_COOKIE['admin2Id'])){
     alertMes("请先登录","login.php");
 }
 $link = connect();
@@ -26,7 +26,7 @@ $Dname[4]='杨浦';
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Insert title here</title>
+    <title>运输管理员</title>
     <link rel="stylesheet" href="../admin/styles/backstage.css">
 </head>
 <body>

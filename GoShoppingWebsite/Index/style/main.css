@@ -314,14 +314,13 @@ left top no-repeat;}
 .des_info .money{color: red;font-weight: bold;padding-top: 0;}
 /*详细介绍*/
 .des_infoContent{border: #CCC solid 1px; background-color: #FFF;}
-.des_tit{height: 39px;/*border-top: #CCC solid 1px;*/background: url(../images/icon/des_title.png)left top repeat-x;}
-.des_tit li{float: left;width: 50%;/*font-size: 14px;line-height: 39px;*/font:16px/39px "宋体";
-    text-align: center;border-left: solid 1px #CCC;margin-left: -1px;}
-/*.des_tit .x{border-left: solid 2px;}*/
+.des_tit{height: 39px;}
+.des_tit li{float: left;width: 50%;font:16px/39px "宋体";
+    text-align: center;border-left: solid 1px #CCC;margin-left: 0;}
 .des_tit .active{background-color: #83B842;font-weight: bold;color: #FFF;position: relative;}
-.des_tit .a{background: url(../images/icon/jieshao.png) left no-repeat;padding-left: 45px;
+.des_tit .a{padding-left: 45px;
     display: inline-block;line-height: 39px;}
-.des_tit .b{background: url(../images/icon/pingjia.png) left no-repeat;padding-left: 45px;
+.des_tit .b{padding-left: 45px;
     display: inline-block;line-height: 39px;}
 .ad{padding: 30px 0;text-align: center;}
 .info_tit{height: 26px;border-bottom: #CCC solid 1px; font-family: "Microsoft YaHei","微软雅黑";margin-bottom: 18px;}
@@ -339,12 +338,15 @@ left top no-repeat;}
 .score span{font-size: 50px;color: #FF8F00;}
 .score_speed{float: left; width: 450px;line-height: 16px;font-size: 12px;margin-top: 18px;position: relative;}
 .score_speed_text{/*height: 100%;*/margin-bottom: 10px;overflow: hidden;height: 16px;background-color: #BDBDBD;	color: #FFF;}
-.score_speed_text li{float: left;}
+.score_speed_text li{float: left;text-align: center;}
 .score_speed_text .speed_01{width: 114px;text-indent: 26px;}
 .score_speed_text .speed_02{width: 82px;}
 .score_speed_text .speed_03{width: 76px;}
 .score_speed_text .speed_04{width: 65px;}
-.score_num{position: absolute;left: 94%;top: -21px;text-align: center;width: 25px;height: 14px;
+.score_speed_text .speed_05{width: 113px;}
+.score_num0{position: absolute;left: 0%;top: -21px;text-align: center;width: 45px;height: 16px;
+    background-color: #7F7F7F;color: #FFF;}
+.score_num{position: absolute;left: 90%;top: -21px;text-align: center;width: 45px;height: 16px;
     background-color: #7F7F7F;color: #FFF;}
 .score_num i{border-width: 4px;border-style: solid dashed dashed dashed;border-color:
         #7F7F7F transparent transparent transparent; width: 0;height: 0;}

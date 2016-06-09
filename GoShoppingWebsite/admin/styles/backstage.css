@@ -55,7 +55,7 @@ a:hover{text-decoration: underline;}
 .table{border-collapse: collapse; width: 100%; font-size: 14px;}
 .table th{background-color: #E8E8E8;}
 .table th,
-.table td{border: solid 1px #ccc; padding: 8px;}
+.table td{border: solid 1px #ccc; padding: 8px;text-align:center;}
 .label,.check{vertical-align: middle;}
 .check{margin-right: 4px;}
 .btn{padding: 4px 16px; background-color: #E8E8E8; margin: 0 10px;font-family: "微软雅黑"; font-size: 14px; }

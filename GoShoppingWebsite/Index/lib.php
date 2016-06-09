@@ -104,7 +104,7 @@ function getOrderByUser($link,$userName){
 //isCommit=1,表示商品已经生成待提交订单
 function getCartByUser($link,$userName){
 
-    $sql="select * from go_cart where userName = '{$userName}' and isCommit = 0";
+    $sql="select * from go_cart where userName = '{$userName}' and isCommit = 0 order by id desc";
     $rows=fetchAll($link,$sql);
 
     return $rows;
@@ -131,6 +131,7 @@ function commitCart($proID,$amount){
     $arr["isCommit"] = 3;
 
     unset($arr["act"]);
+    unset($arr["paymentStyle"]);
     if(isset($_SESSION['userName']))
     {
         $mes = update($link,"go_cart",$arr,"userName='{$_SESSION['userName']}' and isCommit = 1");

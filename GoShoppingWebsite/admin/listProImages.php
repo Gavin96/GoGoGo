@@ -21,38 +21,7 @@ $rows=getProInfo($link);
 
 </div>
 <div class="details">
-    <div class="details_operation clearfix">
-        <div class="bui_select">
-            <input type="button" value="添&nbsp;&nbsp;加" class="add" onclick="addPro()">
-        </div>
-        <div class="fr">
-            <div class="text">
-                <span>商品价格：</span>
-                <div class="bui_select">
-                    <select id="" class="select" onchange="change(this.value)">
-                        <option>-请选择-</option>
-                        <option value="iPrice asc" >由低到高</option>
-                        <option value="iPrice desc">由高到底</option>
-                    </select>
-                </div>
-            </div>
-            <div class="text">
-                <span>上架时间：</span>
-                <div class="bui_select">
-                    <select id="" class="select" onchange="change(this.value)">
-                        <option>-请选择-</option>
-                        <option value="pTime desc" >最新发布</option>
-                        <option value="pTime asc">历史发布</option>
-                    </select>
-                </div>
-            </div>
-            <div class="text">
 
-                <input type="text" value="" class="search"  id="search" onkeypress="search()" >
-                <input type="button" value="搜索" class="btn" onclick="searchbtn()">
-            </div>
-        </div>
-    </div>
     <!--表格-->
     <table class="table" cellspacing="0" cellpadding="0">
         <thead>
@@ -67,14 +36,14 @@ $rows=getProInfo($link);
         <?php foreach($rows as $row):?>
             <tr>
                 <!--这里的id和for里面的c1 需要循环出来-->
-                <td><input type="checkbox" id="c<?php echo $row['Pid'];?>" class="check" value=<?php echo $row['Pid'];?>><label for="c1" class="label"><?php echo $row['Pid'];?></label></td>
+                <td><label for="c1" class="label"><?php echo $row['Pid'];?></label></td>
                 <td><?php echo $row['pName']; ?></td>
-                <td>
-                    <img width="100" height="100" src="..\image_800\<?php echo $row['albumPath']?>" alt=""/> &nbsp;&nbsp;
+                <td >
+                    <img width="50" height="50" src="../image_220/<?php echo $row['albumPath']?>" alt=""/> &nbsp;&nbsp;
                 </td>
                 <td align="center">
-                    <input type="button" value="添加文字水印" class="btn"  onclick="doImg1(<?php echo $row['Pid'];?>)">
-                    <input type="button" value="添加图片水印" class="btn"  onclick="doImg2(<?php echo $row['Pid'];?>)">
+                    <input type="button" value="添加文字水印" class="btn"  onclick="doImg1(<?php echo $row['id'];?>)">
+<!--                    <input type="button" value="添加图片水印" class="btn"  onclick="doImg2()">-->
                 </td>
 
             </tr>

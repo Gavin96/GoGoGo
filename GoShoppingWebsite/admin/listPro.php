@@ -9,7 +9,7 @@ $where=$keywords?"where p.pName like '%{$keywords}%'":null;
 //得到数据库中所有商品
 $sql="select p.id,p.pName,p.pIndex,p.pNum,p.mPrice,p.iPrice,p.pDescription,p.pTime,p.isShow,p.isHot,c.name from go_product as p join go_cate c on p.cId=c.id {$where}";
 $totalRows=getResultNum($link,$sql);
-$pageSize=2;
+$pageSize=5;
 $totalPage=ceil($totalRows/$pageSize);
 $page=isset($_REQUEST['page'])?(int)$_REQUEST['page']:1;
 if($page<1||$page==null||!is_numeric($page))$page=1;
@@ -87,7 +87,7 @@ if($totalPage!=0)
                         <?php foreach($rows as $row):?>
                             <tr>
                                 <!--这里的id和for里面的c1 需要循环出来-->
-                                <td><input type="checkbox" id="c<?php echo $row['id'];?>" class="check" value=<?php echo $row['id'];?>><label for="c1" class="label"><?php echo $row['id'];?></label></td>
+                                <td><label for="c1" class="label"><?php echo $row['id'];?></label></td>
                                 <td><?php echo $row['pName']; ?></td>
                                 <td><?php echo $row['name'];?></td>
                                 <td>
