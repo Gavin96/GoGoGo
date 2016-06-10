@@ -47,7 +47,7 @@ $Dname[4]='杨浦';
             ?>
 
         </b>&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.php" class="icon icon_i">首页</a>
-        
+        <span></span><a href="javascript:void(0);" class="icon icon_n" onclick="reload()">刷新</a>
         <span></span><a href="doLogAction.php?act=logout" class="icon icon_e">退出</a>
 
     </div>
@@ -96,6 +96,10 @@ $Dname[4]='杨浦';
         if(window.confirm("您确定要完成订单吗？")){
             window.location="doLogAction.php?act=finishCart&id="+id;
         }
+    }
+
+    function reload(){
+        window.location.reload(true);
     }
 </script>
 </body>

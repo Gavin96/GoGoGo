@@ -4,7 +4,7 @@
 function showBanner1(obj){
     var src = "images/banner/banner_01.jpg";
     $(".bannerImgBox img").attr("src",src);
-    $(".bannerImgBox a").attr("href","cateDetail.php?CId=1");
+    $(".bannerImgBox a").attr("href","cateDetail.php?CId=2");
     $(".bannerImgNum").children().addClass("active");
     $(".bannerImgNum").children().next().removeClass("active");
 }
@@ -12,24 +12,24 @@ function showBanner1(obj){
 function showBanner2(obj){
     var src = "images/banner/banner_02.jpg";
     $(".bannerImgBox img").attr("src",src);
-    $(".bannerImgBox a").attr("href","cateDetail.php?CId=2");
+    $(".bannerImgBox a").attr("href","cateDetail.php?CId=3");
     $(".bannerImgNum").children().removeClass("active");
     $(".bannerImgNum").children().next().addClass("active");
 }
 
-function decrease(obj) {
+function decrease(obj,id) {
     var val=parseInt($(obj).next().val())-1;
     if(val>=0){$(obj).next().val(val);}
-    $(".show_total_price").html(parseInt($(obj).next().val())*parseInt($(".show_per_price").html()));
+    $(".total_price_"+id).html(parseInt($(obj).next().val())*parseInt($(".show_per_price").html()));
 
 }
 
-function increase(obj) {
+function increase(obj,id) {
     var val = parseInt($(obj).prev().val())+1;
     if(val<=$(".total_amount_left").val()){
         $(obj).prev().val(val);
     }
-    $(".show_total_price").html(parseInt($(obj).prev().val())*parseInt($(".show_per_price").html()));
+    $(".total_price_"+id).html(parseInt($(obj).prev().val())*parseInt($(".show_per_price").html()));
     
 }
 

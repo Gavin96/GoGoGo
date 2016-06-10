@@ -106,7 +106,7 @@ $cartRows = getCartNum($link);
 	<div class="banner comWidth clearfix">
 		<div class="banner_bar banner_big">
 			<ul class="imgBox bannerImgBox">
-				<li><a href="#"><img src="images/banner/banner_01.jpg" alt="banner"></a></li>
+				<li><a href="cateDetail.php?CId=2"><img src="images/banner/banner_01.jpg" alt="banner"></a></li>
 
 			</ul>
 			<div class="imgNum bannerImgNum">

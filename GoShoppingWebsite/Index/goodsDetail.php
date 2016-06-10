@@ -154,7 +154,7 @@ else{
 
 					 <div class="dl clearfix">
 						 <div class="dt k1">简介：</div>
-						 <div class="dd clearfix"><?php echo $pro['pDescription'];?></div>
+						 <div class="dd clearfix" style="margin-left:25px;"><?php echo $pro['pDescription'];?></div>
 					 </div>
 
     	         	<div class="des_position">
@@ -269,7 +269,7 @@ else{
 
 			<h3 class="tit2">推荐一下</h3>
 			<?php
-			    $recommendPros = getRecommendPro($link);
+			    $recommendPros = getRecommendPro($link,$pro['id']);
 				if(($recommendPros&&is_array($recommendPros))):
 					foreach($recommendPros as $recommendPro):
 						$recommendProImg = getProImgById($link,$recommendPro["id"]);

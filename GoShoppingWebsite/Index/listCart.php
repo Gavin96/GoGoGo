@@ -127,7 +127,7 @@ $carts=getCartByUser($link,$userName);
                             <div class="cart_shopInfo clearfix">
                                 <a href="goodsDetail.php?id=<?php echo $pro['id'];?>"><img src="../image_220/<?php echo $proImg["albumPath"]?>" alt=""></a>
                                 <div class="cart_shopInfo_cont">
-                                    <p class="cart_link"><a href="#"><?php echo $pro['pName'];?></a></p>
+                                    <p class="cart_link"><a href="goodsDetail.php?id=<?php echo $pro['id'];?>"><?php echo $pro['pName'];?></a></p>
                                     <p class="cart_info"><?php echo $pro['pDescription'];?></p>
                                 </div>
                             </div>
@@ -139,12 +139,12 @@ $carts=getCartByUser($link,$userName);
                         <input class="total_amount_left" type="hidden" value="<?php echo $pro['pNum'];?>">
                         <div class="cart_item t_num">
                             <p class="p_num">
-                                <span class="sy_minus" id="min1" onclick="decrease(this)">-</span>
+                                <span class="sy_minus" id="min1" onclick="decrease(this,<?php echo $pro['id'];?>)">-</span>
                                 <input class="sy_num" id="text_box1" readonly="readonly" type="text" name="number1" value="1" />
-                                <span class="sy_plus" id="add1"  onclick="increase(this)">+</span>
+                                <span class="sy_plus" id="add1"  onclick="increase(this,<?php echo $pro['id'];?>)">+</span>
                             </p>
                         </div>
-                        <div class="cart_item t_subtotal t_red"><span class="show_total_price"><?php echo $pro['iPrice']?></span>元</div>
+                        <div class="cart_item t_subtotal t_red"><span class="show_total_price total_price_<?php echo $pro['id'];?>"><?php echo $pro['iPrice']?></span>元</div>
                     </div>
                     <div class="cart_message">
                         

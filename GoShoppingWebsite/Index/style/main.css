@@ -139,13 +139,13 @@
 .cart_head{padding-top:5px;}
 .cart_head .cart_item{line-height:28px;}
 .cart_item{border-bottom:#CCC solid 1px; float:left;}
-.t_name_order{width:307px; padding-left:30px;}
+.t_name_order{width:387px; padding-left:30px;}
 .t_name{width:440px; padding-left:30px;}
-.t_time{width:130px;}
-.t_price{width:134px;}
-.t_return{width:136px;}
-.t_num{width:135px;}
-.t_subtotal{width:123px;}
+.t_time{width:120px;}
+.t_price{width:114px;}
+.t_return{width:116px;}
+.t_num{width:115px;}
+.t_subtotal{width:113px;}
 .t_red{color:red;}
 
 /*商品信息 ——范亮*/
@@ -157,7 +157,7 @@
 .cart_cont .t_subtotal{line-height:40px;}
 .cart_shopInfo img{width:90px; height:100px; display:block; float:left;}
 .cart_shopInfo_cont{padding-left:90px; font-size:12px;}
-.cart_link{line-height:37px; margin-bottom:30px;}
+.cart_link{line-height:37px; margin-bottom:5px;}
 .cart_link a:hover{text-decoration:underline;}
 .cart_info{color:#000;}
 .cart_message{line-height:40px; padding-left:30px; margin-bottom:10px;}

@@ -184,13 +184,13 @@ function getProByCId($link,$id){
 }
 
 function getSmallProByCId($link,$id){
-	$sql="select p.id,p.pName,p.pIndex,p.pNum,p.mPrice,p.iPrice,p.pDescription,p.pTime,p.isShow,p.isHot,c.name,p.cId from go_product as p join go_cate c on p.cId=c.id where p.cId={$id} limit 4,4";
+	$sql="select p.id,p.pName,p.pIndex,p.pNum,p.mPrice,p.iPrice,p.pDescription,p.pTime,p.isShow,p.isHot,c.name,p.cId from go_product as p join go_cate c on p.cId=c.id where p.cId={$id} and p.pNum>0 limit 4,4";
 	$row=fetchAll($link,$sql);
 	return $row;
 }
 
 function getAllProByCId($link,$id){
-	$sql="select p.id,p.pName,p.pIndex,p.pNum,p.mPrice,p.iPrice,p.pDescription,p.pTime,p.isShow,p.isHot,c.name,p.cId from go_product as p join go_cate c on p.cId=c.id where p.cId={$id}";
+	$sql="select p.id,p.pName,p.pIndex,p.pNum,p.mPrice,p.iPrice,p.pDescription,p.pTime,p.isShow,p.isHot,c.name,p.cId from go_product as p join go_cate c on p.cId=c.id where p.cId={$id} and p.pNum>0";
 	$row=fetchAll($link,$sql);
 	return $row;
 }
@@ -214,13 +214,16 @@ function getAllProByName($link,$product_name){
 }
 
 function getSimilarProByCId($link,$cId,$proID){
-	$sql="select p.id,p.pName,p.pIndex,p.pNum,p.mPrice,p.iPrice,p.pDescription,p.pTime,p.isShow,p.isHot,c.name,p.cId from go_product as p join go_cate c on p.cId=c.id where c.id = {$cId} and p.cId!={$proID} limit 2";
+	$sql="select p.id,p.pName,p.pIndex,p.pNum,p.mPrice,p.iPrice,p.pDescription,p.pTime,p.isShow,p.isHot,c.name,p.cId from go_product as p join go_cate c on p.cId=c.id where p.pNum>0 and c.id = {$cId} and p.id!={$proID} limit 2";
 	$row=fetchAll($link,$sql);
 	return $row;
 }
 
-function getRecommendPro($link){
-	$sql="select p.id,p.pName,p.pIndex,p.pNum,p.mPrice,p.iPrice,p.pDescription,p.pTime,p.isShow,p.isHot,c.name,p.cId from go_product as p join go_cate c on p.cId=c.id where p.pNum>0 and p.isHot>0 order by p.isHot DESC limit 1";
+function getRecommendPro($link,$proID){
+	//生成随机数
+	$arr=range(0,4);
+	shuffle($arr);
+	$sql="select p.id,p.pName,p.pIndex,p.pNum,p.mPrice,p.iPrice,p.pDescription,p.pTime,p.isShow,p.isHot,c.name,p.cId from go_product as p join go_cate c on p.cId=c.id where p.pNum>0 and p.isHot>0 and p.id!={$proID} order by p.isHot DESC limit {$arr[0]},1";
 	$rows=fetchAll($link,$sql);
 	return $rows;
 }

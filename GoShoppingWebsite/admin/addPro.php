@@ -76,7 +76,7 @@ if(!$rows){
 	<tr>
 		<td align="right">商品描述</td>
 		<td>
-			<textarea name="pDescription" id="editor_id" style="width:100%;height:150px;"></textarea>
+			<textarea name="pDescription" id="editor_id" placeholder="50字以内" style="width:100%;height:150px;"></textarea>
 		</td>
 	</tr>
 	<tr>

@@ -120,7 +120,7 @@ foreach($orders as $order):
                                 <div class="cart_shopInfo clearfix">
                                     <a href="goodsDetail.php?id=<?php echo $pro['id'];?>"><img  src="../image_220/<?php echo $proImg["albumPath"]?>" alt=""></a>
                                     <div class="cart_shopInfo_cont">
-                                        <p class="cart_link"><a href="#"><?php echo $pro['pName'];?></a></p>
+                                        <p class="cart_link"><a href="goodsDetail.php?id=<?php echo $pro['id'];?>"><?php echo $pro['pName'];?></a></p>
                                         <p class="cart_info"><?php echo $pro['pDescription'];?></p>
                                     </div>
                                 </div>
